@@ -1,0 +1,7 @@
+export { Error } from './error'
+export { Home } from './home'
+export { NotFound } from './404'
+export { Login } from './login'
+export { Register } from './register'
+export { Words } from './words'
+export { CreateWord } from './words/create'

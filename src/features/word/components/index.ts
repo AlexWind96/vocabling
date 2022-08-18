@@ -1,0 +1,1 @@
+export { CreateWordForm } from './CreateWordForm'
