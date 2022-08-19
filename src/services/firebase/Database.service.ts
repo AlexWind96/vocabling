@@ -7,6 +7,7 @@ import {
   doc,
   getDoc,
   getDocs,
+  increment,
   setDoc,
   updateDoc,
 } from 'firebase/firestore'
@@ -85,7 +86,6 @@ export class DatabaseService {
 
   createWithId = async (data, id): Promise<any> => {
     const docRef = this.getDocRef(id)
-    console.log(data)
     return await setDoc(docRef, {
       ...data,
       createdAt: Timestamp.now(),
@@ -107,6 +107,20 @@ export class DatabaseService {
   remove = async (id) => {
     const docRef = this.getDocRef(id)
     return await deleteDoc(docRef)
+  }
+  resetCount = async (id, count): Promise<any> => {
+    const docRef = this.getDocRef(id)
+    await updateDoc(docRef, {
+      count,
+    })
+    return await this.getOneById(id)
+  }
+  incrementCount = async (id): Promise<any> => {
+    const docRef = this.getDocRef(id)
+    await updateDoc(docRef, {
+      count: increment(1),
+    })
+    return await this.getOneById(id)
   }
 }
 

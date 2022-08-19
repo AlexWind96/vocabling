@@ -8,6 +8,7 @@ import { ForeignExampleSection } from './ForeignExampleSection'
 import { ForeignWordSection } from './ForeignWordSection'
 import { NativeExampleSection } from './NativeExampleSection'
 import { NativeWordSection } from './NativeWordSection'
+import { CreateFormDefaultValues } from './defaultValues'
 
 type CreateWordFormProps = {
   onSubmit: (values: CreateWordFormValues) => Promise<void>
@@ -17,6 +18,7 @@ export const CreateWordForm = (props: CreateWordFormProps) => {
   const methods = useForm<CreateWordFormValues>({
     resolver: yupResolver(Yup.object().shape({})),
     mode: 'onChange',
+    defaultValues: CreateFormDefaultValues,
   })
   const {
     reset,
