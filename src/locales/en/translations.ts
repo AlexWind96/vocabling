@@ -6,4 +6,5 @@ export const EN = {
   'examination-record': 'Examination record',
   error: 'Error',
   templates: 'Templates',
+  words: 'Words',
 }

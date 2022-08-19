@@ -3,4 +3,5 @@ export const DE = {
   'message.error-fallback': 'Error occurred',
   refresh: 'Refresh',
   examinations: 'Untersuchungen',
+  words: 'Wörter',
 }
