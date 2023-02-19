@@ -22,7 +22,7 @@ export const HomePage = () => {
           weight={700}
           style={{ fontFamily: 'Greycliff CF, sans-serif', fontSize: 56 }}
         >
-          Vocabling
+          Lango
         </Text>
         <Button component={Link} to={`/${PATH.login}`}>
           Get started

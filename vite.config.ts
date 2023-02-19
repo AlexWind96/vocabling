@@ -14,8 +14,8 @@ export default defineConfig({
       },
       includeAssets: ['favicon.ico', 'apple-touch-icon.png', 'masked-icon.svg'],
       manifest: {
-        name: 'Doctor assistant',
-        short_name: 'DA',
+        name: 'Lango',
+        short_name: 'L',
         description: 'App to make work of doctor easier',
         icons: [
           {
