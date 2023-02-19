@@ -2,8 +2,8 @@ import { configureStore } from '@reduxjs/toolkit'
 import { persistStore } from 'redux-persist'
 import createSagaMiddleware from 'redux-saga'
 import { promiseMiddleware } from 'redux-saga-promise-actions'
-import rootReducer from './reducers'
-import rootSaga from './sagas'
+import { rootReducer } from './root-reducer'
+import rootSaga from './root-saga'
 
 const sagaMiddleware = createSagaMiddleware()
 
