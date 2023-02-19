@@ -1,6 +1,6 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit'
 import { User } from '@/api'
-import { login, logout, register } from './sagas'
+import { login, logout, register, saga } from './sagas'
 
 interface AuthState {
   isLoggedIn: boolean
@@ -53,3 +53,5 @@ export const selectors = {
 }
 //Reducer
 export const reducer = authSlice.reducer
+
+export { saga }

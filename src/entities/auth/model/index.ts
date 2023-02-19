@@ -1,2 +1,1 @@
-export * from './auth'
-export { authSaga as saga } from './sagas'
+export * as model from './auth'
