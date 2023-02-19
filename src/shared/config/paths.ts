@@ -1,3 +1,5 @@
+// Path aliases used across the app
+
 export const PATH = {
   dashboard: 'dashboard',
   home: 'home',
@@ -9,4 +11,7 @@ export const PATH = {
   app: 'app',
   words: 'words',
   subscription: 'subscription',
+  modules: 'modules',
+  create: 'create',
+  learn: 'learn',
 }
