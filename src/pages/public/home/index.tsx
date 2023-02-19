@@ -1,10 +1,10 @@
 import * as React from 'react'
 import { Link } from 'react-router-dom'
 import { Button, Container, Overlay, Text } from '@mantine/core'
-import { PATH } from '@/routes/path'
-import useStyles from './home.styles'
+import { PATH } from '@/shared/config'
+import useStyles from './styles'
 
-export const Home = () => {
+export const HomePage = () => {
   const { classes } = useStyles()
   return (
     <div className={classes.hero}>
@@ -22,7 +22,7 @@ export const Home = () => {
           weight={700}
           style={{ fontFamily: 'Greycliff CF, sans-serif', fontSize: 56 }}
         >
-          Polyclinic
+          Vocabling
         </Text>
         <Button component={Link} to={`/${PATH.login}`}>
           Get started
