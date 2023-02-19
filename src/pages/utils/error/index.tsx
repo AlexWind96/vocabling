@@ -1,9 +1,9 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { Button, Container, Group, Title } from '@mantine/core'
-import useStyles from './error.styles'
+import useStyles from './styles'
 
-export const Error = () => {
+export const ErrorPage = () => {
   const { classes } = useStyles()
 
   return (
