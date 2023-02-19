@@ -14,7 +14,7 @@ export const RegisterWrongAnswer = (props: RegisterWrongAnswerProps) => {
   }
 
   return (
-    <Button color="green" variant="filled" disabled={isLoading} onClick={handleWrongAnswer}>
+    <Button color="red" variant="filled" disabled={isLoading} onClick={handleWrongAnswer}>
       Wrong
     </Button>
   )

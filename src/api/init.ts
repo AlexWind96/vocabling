@@ -25,7 +25,7 @@ declare global {
   type TypedEndpoints = typeof endpoints
 }
 
-export const API = new ApiService(apiInstance, window.store.dispatch, jwtTokenService, endpoints)
+export const API = new ApiService(apiInstance, jwtTokenService, endpoints)
 
 //4.Add interceptors for request and response depending on your business requirements
 API.instance.interceptors.request.use(
@@ -64,7 +64,7 @@ API.instance.interceptors.response.use(
       switch (err.response.status) {
         case 401: {
           if (originalConfig.url === 'auth/refresh') {
-            API.dispatch({ type: 'auth/cleanAuthData' })
+            window.store.dispatch({ type: 'auth/cleanAuthData' })
           } else {
             originalConfig._retry = true
             try {

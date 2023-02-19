@@ -11,7 +11,7 @@ export const navbarLinks: INavbarLink[] = [
     icon: Stack2,
   },
   {
-    path: `${PATH.learn}`,
+    path: `${PATH.learn_cards}`,
     roles: [ROLE.User, ROLE.Admin],
     label: 'Learn',
     icon: Book,

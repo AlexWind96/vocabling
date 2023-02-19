@@ -4,6 +4,7 @@ import { Home } from 'tabler-icons-react'
 import { ActionIcon, Grid, Progress, Skeleton, Text } from '@mantine/core'
 import { useAuth } from '@/entities/auth'
 import { useCurrentLearnSession } from '@/entities/current-learn-session'
+import { PATH } from '@/shared/config'
 import { getPercent } from '@/shared/utils'
 
 type LearnCardHeaderProps = {}
@@ -27,7 +28,7 @@ export const LearnCardHeader = ({}: LearnCardHeaderProps) => {
   return (
     <Grid align={'center'}>
       <Grid.Col span={2}>
-        <ActionIcon component={Link} to={'/learn'} variant="light" color={'pink'}>
+        <ActionIcon component={Link} to={`/${PATH.learn_cards}`} variant="light" color={'pink'}>
           <Home />
         </ActionIcon>
       </Grid.Col>
