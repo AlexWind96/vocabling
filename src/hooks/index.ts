@@ -1,1 +1,0 @@
-export { useFromPath } from './useFromPath'

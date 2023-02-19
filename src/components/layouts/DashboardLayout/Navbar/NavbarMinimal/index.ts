@@ -1,1 +1,0 @@
-export { NavbarMinimal } from './NavbarMinimal'

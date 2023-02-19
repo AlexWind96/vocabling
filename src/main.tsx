@@ -1,9 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import App from './App'
-import './assets/scss/index.scss'
-import './lib/axios'
-import './lib/i18n'
+import './api'
+import App from './app'
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
