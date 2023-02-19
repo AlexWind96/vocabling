@@ -13,5 +13,5 @@ export const PATH = {
   subscription: 'subscription',
   modules: 'modules',
   create: 'create',
-  learn: 'learn',
+  learn_cards: 'learn-cards',
 }
