@@ -8,8 +8,9 @@ export const ColorSchemeToggle = () => {
       onClick={() => toggleColorScheme()}
       size="lg"
       sx={(theme) => ({
-        backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[0],
-        color: theme.colorScheme === 'dark' ? theme.colors.yellow[4] : theme.colors.brand[6],
+        backgroundColor:
+          theme.colorScheme === 'dark' ? theme.colors.slate[6] : theme.colors.gray[0],
+        color: theme.colorScheme === 'dark' ? theme.colors.yellow[4] : theme.colors.amber[6],
       })}
     >
       {colorScheme === 'dark' ? <Sun width={18} height={18} /> : <Moon width={20} height={20} />}

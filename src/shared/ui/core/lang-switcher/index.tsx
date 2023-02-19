@@ -2,18 +2,17 @@ import React from 'react'
 import { useTranslation } from 'react-i18next'
 import { Button, Menu } from '@mantine/core'
 
-export const LangSwitcher = ({}) => {
+type LangSwitcherProps = {
+  languages: string[]
+}
+
+export const LangSwitcher = ({ languages }: LangSwitcherProps) => {
   const { i18n } = useTranslation()
 
   const changeLanguageHandler = (lang) => {
-    i18n
-      .changeLanguage(lang)
-      .then(() => {
-        console.log('hello')
-      })
-      .catch((err) => {
-        console.log(err)
-      })
+    i18n.changeLanguage(lang).catch((err) => {
+      console.log(err)
+    })
   }
   return (
     <Menu shadow="md" width={200}>
@@ -23,10 +22,13 @@ export const LangSwitcher = ({}) => {
 
       <Menu.Dropdown>
         <Menu.Label>Languages</Menu.Label>
-
-        <Menu.Item onClick={() => changeLanguageHandler('de')}>DE</Menu.Item>
-        <Menu.Item onClick={() => changeLanguageHandler('en')}>EN</Menu.Item>
-        <Menu.Item onClick={() => changeLanguageHandler('ru')}>RU</Menu.Item>
+        {languages.map((lang, index) => {
+          return (
+            <Menu.Item key={lang + index} onClick={() => changeLanguageHandler(lang)}>
+              {lang.toUpperCase()}
+            </Menu.Item>
+          )
+        })}
       </Menu.Dropdown>
     </Menu>
   )
