@@ -15,7 +15,7 @@ export type LoginFormValues = {
   password: string
 }
 
-export const LoginForm = () => {
+export const Login = () => {
   const {
     register,
     handleSubmit,

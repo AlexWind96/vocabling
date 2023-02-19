@@ -16,7 +16,7 @@ export type RegisterFormValues = {
   name: string
 }
 
-export const RegisterForm = () => {
+export const Register = () => {
   const {
     register,
     handleSubmit,
