@@ -1,38 +1,23 @@
 import { createStyles } from '@mantine/core'
 
-export default createStyles((theme, _params, getRef) => {
+export const useNavbarLinkStyles = createStyles((theme, _params, getRef) => {
   const icon = getRef('icon')
   return {
-    header: {
-      marginBottom: theme.spacing.md * 1.5,
-      height: 44,
-      borderBottom: `1px solid ${
-        theme.colorScheme === 'dark' ? theme.colors.dark[4] : theme.colors.gray[2]
-      }`,
-    },
-
-    footer: {
-      paddingTop: theme.spacing.md,
-      marginTop: theme.spacing.md,
-      borderTop: `1px solid ${
-        theme.colorScheme === 'dark' ? theme.colors.dark[4] : theme.colors.gray[2]
-      }`,
-    },
-
     link: {
       ...theme.fn.focusStyles(),
       display: 'flex',
       alignItems: 'center',
       textDecoration: 'none',
       fontSize: theme.fontSizes.sm,
-      color: theme.colorScheme === 'dark' ? theme.colors.dark[1] : theme.colors.gray[7],
+      color: theme.colorScheme === 'dark' ? theme.colors.slate[1] : theme.colors.gray[7],
       padding: `${theme.spacing.xs}px ${theme.spacing.sm}px`,
       borderRadius: theme.radius.sm,
       fontWeight: 500,
       marginBottom: 4,
 
       '&:hover': {
-        backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[0],
+        backgroundColor:
+          theme.colorScheme === 'dark' ? theme.colors.slate[6] : theme.colors.gray[0],
         color: theme.colorScheme === 'dark' ? theme.white : theme.black,
 
         [`& .${icon}`]: {
@@ -43,7 +28,7 @@ export default createStyles((theme, _params, getRef) => {
 
     linkIcon: {
       ref: icon,
-      color: theme.colorScheme === 'dark' ? theme.colors.dark[2] : theme.colors.gray[6],
+      color: theme.colorScheme === 'dark' ? theme.colors.slate[2] : theme.colors.gray[6],
       marginRight: theme.spacing.sm,
     },
 

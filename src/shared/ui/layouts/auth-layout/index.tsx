@@ -1,9 +1,12 @@
-import * as React from 'react'
+import React from 'react'
 import { Link, Outlet } from 'react-router-dom'
 import { Anchor, Container, Title } from '@mantine/core'
-import { LoadingScreen } from '@/components/elements'
 
-export const AuthLayout = () => {
+type AuthLayoutProps = {
+  fallback: React.ReactNode
+}
+
+export const AuthLayout = ({ fallback }: AuthLayoutProps) => {
   return (
     <Container size={420} my={20}>
       <Anchor component={Link} to={'/'}>
@@ -11,7 +14,7 @@ export const AuthLayout = () => {
           LOGO
         </Title>
       </Anchor>
-      <React.Suspense fallback={<LoadingScreen />}>
+      <React.Suspense fallback={fallback}>
         <Outlet />
       </React.Suspense>
     </Container>

@@ -1,14 +1,19 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { Anchor, Container, Group, Header as MantineHeader, Space, Title } from '@mantine/core'
-import { ColorSchemeToggle } from '@/components/elements'
+import { INavbarLink } from '../../types'
 import useStyles from './Header.styles'
 
-export const Header = ({ links }) => {
+type HeaderProps = {
+  colorSchemeToggle: React.FC
+  links: Omit<INavbarLink, 'roles'>[]
+}
+
+export const Header = ({ links, colorSchemeToggle: ColorSchemeToggle }: HeaderProps) => {
   const { classes } = useStyles()
 
   const items = links.map((link) => (
-    <Link key={link.label} to={link.to}>
+    <Link key={link.label} to={link.path}>
       <Anchor component="a">{link.label}</Anchor>
     </Link>
   ))

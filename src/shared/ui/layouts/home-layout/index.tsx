@@ -1,21 +1,25 @@
 import React from 'react'
 import { Outlet } from 'react-router-dom'
 import { AppShell } from '@mantine/core'
-import { LoadingScreen } from '@/components/elements'
 import { Header } from './Header'
 
-export function HomeLayout() {
+type HomeLayoutProps = {
+  fallback: React.ReactNode
+  colorSchemeToggle: React.FC
+}
+
+export function HomeLayout({ fallback, colorSchemeToggle }: HomeLayoutProps) {
   return (
     <AppShell
       padding={0}
-      header={<Header links={[]} />}
+      header={<Header links={[]} colorSchemeToggle={colorSchemeToggle} />}
       styles={() => ({
         main: {
           minHeight: '100vh',
         },
       })}
     >
-      <React.Suspense fallback={<LoadingScreen />}>
+      <React.Suspense fallback={fallback}>
         <Outlet />
       </React.Suspense>
     </AppShell>
