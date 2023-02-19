@@ -1,13 +1,14 @@
 import { yupResolver } from '@hookform/resolvers/yup'
+import { AxiosError } from 'axios'
 import * as React from 'react'
 import { useState } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
-import { useTranslation } from 'react-i18next'
-import { Link } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 import * as Yup from 'yup'
-import { Alert, Anchor, Button, PasswordInput, Stack, Text, TextInput } from '@mantine/core'
-import { PATH } from '@/routes/path'
-import { ValidationErrors } from '@/types'
+import { Alert, Button, PasswordInput, Stack, TextInput } from '@mantine/core'
+import { auth } from '@/entities/auth'
+import { PATH } from '@/shared/config'
 
 export type RegisterFormValues = {
   email: string
@@ -15,11 +16,7 @@ export type RegisterFormValues = {
   name: string
 }
 
-type RegisterFormProps = {
-  onSubmit: (values: RegisterFormValues) => Promise<void>
-}
-
-export const RegisterForm = (props: RegisterFormProps) => {
+export const RegisterForm = () => {
   const {
     register,
     handleSubmit,
@@ -36,15 +33,27 @@ export const RegisterForm = (props: RegisterFormProps) => {
     mode: 'onChange',
   })
 
-  const { t } = useTranslation()
-
+  const [alertError, setAlertError] = useState<string | null>(null)
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
   const onSubmit: SubmitHandler<RegisterFormValues> = async (data) => {
-    await props.onSubmit(data)
-    reset()
+    try {
+      await dispatch(auth.model.actions.register.request(data))
+      navigate(`/${PATH.app}`, { replace: true })
+      reset()
+    } catch (err) {
+      const serverError = err as AxiosError
+      setAlertError(serverError?.message || 'Error')
+    }
   }
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
+      {alertError && !isSubmitting && (
+        <Alert color="red" mb={'sm'}>
+          {alertError}
+        </Alert>
+      )}
       <Stack>
         <TextInput
           {...register('name')}
@@ -71,12 +80,6 @@ export const RegisterForm = (props: RegisterFormProps) => {
       <Button fullWidth type={'submit'} mt={'md'} loading={isSubmitting}>
         Sign in
       </Button>
-      <Text color="dimmed" size="sm" align="center" mt={'sm'}>
-        Have an account yet?{' '}
-        <Anchor size={'sm'} component={Link} to={`/${PATH.login}`}>
-          Log in
-        </Anchor>
-      </Text>
     </form>
   )
 }

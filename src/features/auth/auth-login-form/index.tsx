@@ -1,24 +1,21 @@
 import { yupResolver } from '@hookform/resolvers/yup'
+import { AxiosError } from 'axios'
 import * as React from 'react'
 import { useState } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
-import { useTranslation } from 'react-i18next'
-import { Link } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 import * as Yup from 'yup'
-import { Alert, Anchor, Button, PasswordInput, Text, TextInput } from '@mantine/core'
-import { PATH } from '@/routes/path'
-import { ValidationErrors } from '@/types'
+import { Alert, Button, PasswordInput, TextInput } from '@mantine/core'
+import { auth } from '@/entities/auth'
+import { PATH } from '@/shared/config'
 
 export type LoginFormValues = {
   email: string
   password: string
 }
 
-type LoginFormProps = {
-  onSubmit: (values: LoginFormValues) => Promise<void>
-}
-
-export const LoginForm = (props: LoginFormProps) => {
+export const LoginForm = () => {
   const {
     register,
     handleSubmit,
@@ -35,15 +32,17 @@ export const LoginForm = (props: LoginFormProps) => {
   })
 
   const [alertError, setAlertError] = useState<string | null>(null)
-  const { t } = useTranslation()
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
 
   const onSubmit: SubmitHandler<LoginFormValues> = async (data) => {
     try {
-      await props.onSubmit(data)
+      await dispatch(auth.model.actions.login.request(data))
+      navigate(`/${PATH.app}`, { replace: true })
       reset()
     } catch (err) {
-      const serverError = err as ValidationErrors
-      setAlertError(serverError?.message || t('error'))
+      const serverError = err as AxiosError
+      setAlertError(serverError.message || 'error')
     }
   }
 
@@ -72,12 +71,6 @@ export const LoginForm = (props: LoginFormProps) => {
       <Button fullWidth mt="xl" type={'submit'} loading={isSubmitting}>
         Sign in
       </Button>
-      <Text color="dimmed" size="sm" align="center" mt={'sm'}>
-        Do not have an account yet?
-        <Anchor size={'sm'} component={Link} to={`/${PATH.register}`}>
-          Register new account
-        </Anchor>
-      </Text>
     </form>
   )
 }
