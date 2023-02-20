@@ -25,6 +25,7 @@ export type CardLearnProgress = {
   interval: number
   countOfAnswers: number
   countOfRightAnswers: number
+  step: number
   accuracy: number
   status: LEARN_STATUS
   lastRepetitionDate: Date | null
