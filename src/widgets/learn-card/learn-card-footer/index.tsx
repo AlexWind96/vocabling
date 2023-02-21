@@ -1,12 +1,21 @@
 import * as React from 'react'
-import { Group, Skeleton } from '@mantine/core'
+import { useDispatch } from 'react-redux'
+import { Button, Group, Skeleton } from '@mantine/core'
 import { useLearnCard } from '@/entities/card'
+import { currentLearnSession } from '@/entities/current-learn-session'
 import { RegisterRightAnswer, RegisterWrongAnswer } from '@/features/card'
+import { useTypedSelector } from '@/shared/hooks'
 
 type LearnCardFooterProps = {}
+const { selectors, actions } = currentLearnSession
 
 export const LearnCardFooter = ({}: LearnCardFooterProps) => {
   const { data, isLoading } = useLearnCard()
+  const { isShownResult } = useTypedSelector(selectors.selectCurrentLearnSessionState)
+  const dispatch = useDispatch()
+  const handleShowResult = () => {
+    dispatch(actions.showResult())
+  }
 
   if (isLoading)
     return (
@@ -17,10 +26,14 @@ export const LearnCardFooter = ({}: LearnCardFooterProps) => {
     )
   if (!data) return null
 
-  return (
-    <Group position={'apart'}>
-      <RegisterWrongAnswer id={data.id} />
-      <RegisterRightAnswer id={data.id} />
-    </Group>
-  )
+  if (isShownResult) {
+    return (
+      <Group position={'apart'}>
+        <RegisterWrongAnswer id={data.id} />
+        <RegisterRightAnswer id={data.id} />
+      </Group>
+    )
+  } else {
+    return <Button onClick={handleShowResult}>Show result</Button>
+  }
 }

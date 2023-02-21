@@ -1,9 +1,13 @@
+import { useEffect } from 'react'
 import * as React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { Home } from 'tabler-icons-react'
 import { ActionIcon, Grid, Progress, Skeleton, Text } from '@mantine/core'
 import { useAuth } from '@/entities/auth'
-import { useCurrentLearnSession } from '@/entities/current-learn-session'
+import {
+  useCompleteCurrentLearnSession,
+  useCurrentLearnSession,
+} from '@/entities/current-learn-session'
 import { PATH } from '@/shared/config'
 import { getPercent } from '@/shared/utils'
 
@@ -11,7 +15,17 @@ type LearnCardHeaderProps = {}
 
 export const LearnCardHeader = ({}: LearnCardHeaderProps) => {
   const { data: session, isLoading } = useCurrentLearnSession()
+  const { mutateAsync } = useCompleteCurrentLearnSession()
   const { user } = useAuth()
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    if (session && session.countOfCompleted === user!.learnGoal) {
+      mutateAsync().then(() => {
+        navigate(`/${PATH.learn_sessions}/${session.id}`)
+      })
+    }
+  }, [session])
 
   if (isLoading || !session)
     return (
