@@ -14,4 +14,5 @@ export const PATH = {
   modules: 'modules',
   create: 'create',
   learn_cards: 'learn-cards',
+  learn_sessions: 'learn-sessions',
 }
