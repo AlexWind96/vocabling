@@ -7,7 +7,7 @@ export class CurrentLearnSessionEndpoints extends Endpoints {
     return this.instance.get(this.getEndpoint())
   }
   completeCurrentLearnSession = (): AxiosPromise<undefined> => {
-    return this.instance.get(this.getEndpoint(`/complete`))
+    return this.instance.post(this.getEndpoint(`/complete`))
   }
   updateCurrentLearnSession = (
     body: UpdateCurrentLearnSessionDto
