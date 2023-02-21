@@ -1,6 +1,7 @@
 import * as React from 'react'
 import { Link } from 'react-router-dom'
 import { Button, Group, Paper, Stack, Title } from '@mantine/core'
+import { PATH } from '@/shared/config'
 
 type NoCardProps = {}
 
@@ -12,10 +13,10 @@ export const NoCard = ({}: NoCardProps) => {
           No more cards to learn
         </Title>
         <Group>
-          <Button color={'pink'} component={Link} to={'/learn'}>
+          <Button color={'pink'} component={Link} to={`/${PATH.learn_cards}`}>
             Choose another module
           </Button>
-          <Button color={'blue'} component={Link} to={'/modules'}>
+          <Button color={'blue'} component={Link} to={`/${PATH.modules}`}>
             Add new cards
           </Button>
         </Group>
