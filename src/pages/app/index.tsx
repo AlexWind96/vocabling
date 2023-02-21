@@ -19,6 +19,8 @@ const { CardsLearningSessionPage } = lazyImport(
   'CardsLearningSessionPage'
 )
 
+const { LearnSession } = lazyImport(() => import('./learn-sessions/[id]'), 'LearnSession')
+
 export const getAppRoutes = (user: any) => {
   return [
     {
@@ -86,6 +88,11 @@ const privateRoutes: PrivateRouteType[] = [
   {
     path: `${PATH.learn_cards}/:id`,
     element: <CardsLearningSessionPage />,
+    roles: [ROLE.User, ROLE.Admin],
+  },
+  {
+    path: `${PATH.learn_sessions}/:id`,
+    element: <LearnSession />,
     roles: [ROLE.User, ROLE.Admin],
   },
 ]
