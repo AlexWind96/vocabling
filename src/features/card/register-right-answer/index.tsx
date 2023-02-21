@@ -1,16 +1,25 @@
 import * as React from 'react'
+import { useDispatch } from 'react-redux'
 import { Button } from '@mantine/core'
-import { useRegisterAnswer } from '@/entities/card'
+import { currentLearnSession } from '@/entities/current-learn-session'
+import { useTypedSelector } from '@/shared/hooks'
 
 type RegisterRightAnswerProps = {
   id: string
 }
 
-export const RegisterRightAnswer = (props: RegisterRightAnswerProps) => {
-  const { mutateAsync, isLoading } = useRegisterAnswer()
+const {
+  asyncActions: { registerAnswer },
+  selectors: { selectCurrentLearnSessionState },
+} = currentLearnSession
 
+export const RegisterRightAnswer = (props: RegisterRightAnswerProps) => {
+  const isLoading = useTypedSelector(
+    (state) => selectCurrentLearnSessionState(state).isLoadingAnswer
+  )
+  const dispatch = useDispatch()
   const handleRightAnswer = async () => {
-    await mutateAsync({ id: props.id, isRight: true })
+    await dispatch(registerAnswer.request({ id: props.id, isRight: true }))
   }
 
   return (
