@@ -1,5 +1,5 @@
-import { useEffect } from 'react'
 import * as React from 'react'
+import { useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { Home } from 'tabler-icons-react'
 import { ActionIcon, Grid, Progress, Skeleton, Text } from '@mantine/core'
@@ -46,10 +46,10 @@ export const LearnCardHeader = ({}: LearnCardHeaderProps) => {
           <Home />
         </ActionIcon>
       </Grid.Col>
-      <Grid.Col span={8}>
+      <Grid.Col span={7} sm={8}>
         <Progress value={getPercent(session.countOfCompleted, user!.learnGoal)} color={'pink'} />
       </Grid.Col>
-      <Grid.Col span={2}>
+      <Grid.Col span={3} sm={2}>
         <Text>
           {session.countOfCompleted} / {user!.learnGoal}
         </Text>

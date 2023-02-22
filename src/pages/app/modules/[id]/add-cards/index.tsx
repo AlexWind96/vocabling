@@ -8,7 +8,7 @@ import { SimpleCardsStack } from '@/widgets/simple-cards-stack'
 export const AddCardsPage = () => {
   const { id } = useParams()
   return (
-    <Grid>
+    <Grid gutter={'sm'}>
       <Grid.Col>
         <BackAnchor>Back to module</BackAnchor>
       </Grid.Col>
