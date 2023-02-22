@@ -28,7 +28,7 @@ export const ModulesPage = () => {
       </Grid.Col>
       {modules.map((module) => {
         return (
-          <Grid.Col span={6} key={module.id}>
+          <Grid.Col span={12} xs={6} key={module.id}>
             <ModuleCard data={module} actions={<DeleteModule id={module.id} />} />
           </Grid.Col>
         )

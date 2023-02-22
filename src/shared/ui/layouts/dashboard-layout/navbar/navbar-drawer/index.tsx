@@ -39,20 +39,24 @@ export const NavbarDrawer: FC<NavbarExpandProps> = ({
   ))
 
   return (
-    <Drawer opened={opened} onClose={onClose} padding="sm" size="md" withCloseButton={false}>
+    <Drawer
+      opened={opened}
+      title={undefined}
+      onClose={onClose}
+      padding="sm"
+      size="md"
+      withCloseButton={false}
+    >
+      <Group className={classes.header} position="apart">
+        <Title order={3}>{title}</Title>
+        <ActionIcon onClick={onClose} size="sm" mr="xl">
+          <X />
+        </ActionIcon>
+      </Group>
       <Navbar className={classes.nav} p="sm">
-        <Navbar.Section>
-          <Group className={classes.header} position="apart">
-            <Title order={3}>{title}</Title>
-            <ActionIcon onClick={onClose} size="sm" mr="xl">
-              <X />
-            </ActionIcon>
-          </Group>
-        </Navbar.Section>
-        <Navbar.Section component={ScrollArea} grow>
+        <Navbar.Section component={ScrollArea} grow mt={10}>
           {links}
         </Navbar.Section>
-
         <Navbar.Section className={classes.footer}>{footerActions}</Navbar.Section>
       </Navbar>
     </Drawer>

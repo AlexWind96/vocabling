@@ -28,7 +28,7 @@ export const DashboardLayout: FC<DashboardLayoutProps> = ({
   return (
     <AppShell
       classNames={{ main: classes.main }}
-      padding={0}
+      padding={10}
       navbar={
         <NavbarCollapsed
           navbarLinks={navbarLinks}
@@ -65,7 +65,7 @@ export const DashboardLayout: FC<DashboardLayoutProps> = ({
           onClose={close}
         />
       )}
-      <Container fluid py={26} px={100}>
+      <Container px={{ base: 'lg', md: 100 }} py={{ base: 'xs', sm: 'md' }} fluid>
         <React.Suspense fallback={fallBack}>
           <Outlet />
         </React.Suspense>
