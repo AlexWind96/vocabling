@@ -52,3 +52,11 @@ export type CreateCardDTO = {
   sentenceTranslation?: string
   notes?: string
 }
+
+export type UpdateCardDTO = {
+  sentence?: CreateSentenceUnitDto[]
+  moduleId?: string
+  phraseTranslation?: string
+  sentenceTranslation?: string
+  notes?: string
+}

@@ -2,7 +2,7 @@ import React from 'react'
 import { Stack, Text } from '@mantine/core'
 import { PaginationArgs } from '@/api'
 import { SimpleCard, useCards } from '@/entities/card'
-import { DeleteCard } from '@/features/card'
+import { CardSettings } from '@/features/card'
 import { LoadingScreen } from '@/shared/ui'
 
 type CardsProps = {
@@ -20,7 +20,7 @@ export const SimpleCardsStack = ({ moduleId, paginationArgs }: CardsProps) => {
   return (
     <Stack>
       {cards.map((card) => {
-        return <SimpleCard data={card} key={card.id} rightSection={<DeleteCard id={card.id} />} />
+        return <SimpleCard data={card} key={card.id} rightSection={<CardSettings id={card.id} />} />
       })}
     </Stack>
   )

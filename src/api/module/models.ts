@@ -3,7 +3,6 @@ export type Module = {
   createdAt: Date
   updatedAt: Date
   label: string
-  value: string
   folderId: string | null
   userId: string
   _count: {

@@ -1,14 +1,14 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { Settings } from 'tabler-icons-react'
-import { ActionIcon, Group, Paper, Progress, Stack, Text, Title } from '@mantine/core'
+import { Group, Paper, Progress, Stack, Text, Title } from '@mantine/core'
 import { Module } from '@/api'
 
 type ModuleCardProps = {
   data: Module
+  actions: React.ReactNode
 }
 
-export const ModuleCard = ({ data }: ModuleCardProps) => {
+export const ModuleCard = ({ data, actions }: ModuleCardProps) => {
   return (
     <Paper p={'md'} shadow="md" withBorder>
       <Stack spacing={'lg'}>
@@ -23,13 +23,7 @@ export const ModuleCard = ({ data }: ModuleCardProps) => {
             >
               {data.label}
             </Text>
-            <ActionIcon
-              onClick={(event) => {
-                event.stopPropagation()
-              }}
-            >
-              <Settings />
-            </ActionIcon>
+            {actions}
           </Group>
           <Title color={'slate.6'} order={3}>
             Cards: {data._count.cards}

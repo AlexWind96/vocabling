@@ -1,7 +1,7 @@
 import type { AxiosPromise } from 'axios'
 import { Endpoints } from '@/shared/api'
 import { Page, PaginationArgs } from '../types'
-import { Card, CreateCardDTO } from './model'
+import { Card, CreateCardDTO, UpdateCardDTO } from './model'
 
 export class CardEndpoints extends Endpoints {
   getCards = (moduleId?: string, paginationArgs?: PaginationArgs): AxiosPromise<Page<Card>> => {
@@ -10,7 +10,7 @@ export class CardEndpoints extends Endpoints {
   getCardById = (id: string): AxiosPromise<Card> => {
     return this.instance.get(this.getEndpoint(`/${id}`))
   }
-  updateCard = (id: string, body: Partial<Card>): AxiosPromise<Card> => {
+  updateCard = (id: string, body: UpdateCardDTO): AxiosPromise<Card> => {
     return this.instance.patch(this.getEndpoint(`/${id}`), body)
   }
 

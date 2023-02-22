@@ -9,13 +9,13 @@ function App() {
   return (
     <ErrorBoundary>
       <StoreProvider>
-        <MantineProvider>
-          <QueryProvider>
+        <QueryProvider>
+          <MantineProvider>
             <Router>
               <AppRoutes />
             </Router>
-          </QueryProvider>
-        </MantineProvider>
+          </MantineProvider>
+        </QueryProvider>
       </StoreProvider>
     </ErrorBoundary>
   )

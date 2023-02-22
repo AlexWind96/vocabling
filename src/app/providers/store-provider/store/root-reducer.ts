@@ -10,6 +10,6 @@ const authDataPersistConfig = {
 }
 
 export const rootReducer = combineReducers({
-  auth: auth.model.reducer,
+  auth: persistReducer(authDataPersistConfig, auth.model.reducer),
   currentLearnSession: currentLearnSession.reducer,
 })

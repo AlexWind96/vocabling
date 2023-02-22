@@ -1,18 +1,19 @@
+import { IconX } from '@tabler/icons'
 import * as React from 'react'
-import { X } from 'tabler-icons-react'
 import { ActionIcon } from '@mantine/core'
 import { openConfirmModal } from '@mantine/modals'
-import { useDeleteCard } from '@/entities/card'
+import { useDeleteModule } from '@/entities/module'
 
-type DeleteCardProps = {
+type DeleteModuleProps = {
   id: string
 }
 
-export const DeleteCard = (props: DeleteCardProps) => {
-  const { mutateAsync } = useDeleteCard()
+export const DeleteModule = (props: DeleteModuleProps) => {
+  const { mutateAsync } = useDeleteModule()
+
   const handleDelete = async () => {
     openConfirmModal({
-      title: 'Do you want to remove this card?',
+      title: 'Do you want to remove this module?',
       labels: { confirm: 'Confirm', cancel: 'Cancel' },
       onConfirm: async () => {
         await mutateAsync(props.id)
@@ -20,8 +21,8 @@ export const DeleteCard = (props: DeleteCardProps) => {
     })
   }
   return (
-    <ActionIcon variant={'light'} color={'red'} size={'xs'} onClick={handleDelete}>
-      <X />
+    <ActionIcon color="red" onClick={handleDelete}>
+      <IconX />
     </ActionIcon>
   )
 }

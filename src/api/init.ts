@@ -5,6 +5,7 @@ import { jwtTokenService } from '@/shared/lib/jwt-token-service'
 import { AuthEndpoints } from './auth'
 import { CardEndpoints } from './card'
 import { CurrentLearnSessionEndpoints } from './current-learn-session'
+import { LearnSessionEndpoints } from './learn-session'
 import { ModuleEndpoints } from './module'
 
 const apiInstance = axios.create({
@@ -18,6 +19,7 @@ export const endpoints = {
   auth: new AuthEndpoints(apiInstance, 'auth'),
   card: new CardEndpoints(apiInstance, 'cards'),
   module: new ModuleEndpoints(apiInstance, 'modules'),
+  learnSession: new LearnSessionEndpoints(apiInstance, 'learn-sessions'),
   currentLearnSession: new CurrentLearnSessionEndpoints(apiInstance, 'current-learn-session'),
 }
 

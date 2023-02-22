@@ -15,11 +15,11 @@ export function useThemeMediaQuery(): UseThemeMediaQueryReturnType {
   const { breakpoints } = useMantineTheme()
   const getMediaQueryBooleans = useCallback(() => {
     return {
-      isMD: width <= breakpoints.md,
-      isXS: width <= breakpoints.xs,
-      isSM: width <= breakpoints.sm,
-      isLG: width <= breakpoints.lg,
-      isXL: width <= breakpoints.xl,
+      isXS: width >= breakpoints.xs,
+      isSM: width >= breakpoints.sm,
+      isMD: width >= breakpoints.md,
+      isLG: width >= breakpoints.lg,
+      isXL: width >= breakpoints.xl,
     }
   }, [width])
 
