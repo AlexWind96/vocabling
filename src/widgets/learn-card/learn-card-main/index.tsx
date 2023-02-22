@@ -7,11 +7,11 @@ import { useTypedSelector } from '@/shared/hooks'
 type LearnCardMainProps = {}
 
 export const LearnCardMain = ({}: LearnCardMainProps) => {
-  const { data, isLoading } = useLearnCard()
+  const { data, isFetching } = useLearnCard()
   const { isRightAnswer, isShownResult } = useTypedSelector(
     currentLearnSession.selectors.selectCurrentLearnSessionState
   )
-  if (isLoading) return <Skeleton height={150} radius="xl" />
+  if (isFetching) return <Skeleton height={150} radius="xl" />
 
   if (!data) return <NoCard />
 
