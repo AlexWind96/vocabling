@@ -21,7 +21,7 @@ export const LearnCardHeader = ({}: LearnCardHeaderProps) => {
 
   useEffect(() => {
     if (session && session.countOfCompleted === user!.learnGoal) {
-      mutateAsync().then(() => {
+      mutateAsync(undefined).then(() => {
         navigate(`/${PATH.learn_sessions}/${session.id}`)
       })
     }

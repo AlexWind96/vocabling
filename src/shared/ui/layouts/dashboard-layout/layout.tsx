@@ -5,9 +5,10 @@ import { Logout } from 'tabler-icons-react'
 import { AppShell, Burger, Container, MediaQuery, UnstyledButtonProps } from '@mantine/core'
 import { useDisclosure } from '@mantine/hooks'
 import { useNavbarLinkStyles } from '../navbar-link.styles'
+import { INavbarLink } from '../types'
 import { useThemeMediaQuery } from '../use-theme-media-query'
 import { Header } from './header'
-import { INavbarLink, NavbarCollapsed, NavbarDrawer } from './navbar'
+import { NavbarCollapsed, NavbarDrawer } from './navbar'
 import useStyles from './styles'
 
 type DashboardLayoutProps = {
