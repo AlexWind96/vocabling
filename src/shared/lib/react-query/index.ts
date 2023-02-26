@@ -1,5 +1,6 @@
 import { AxiosError } from 'axios'
 import { DefaultOptions, QueryClient, UseMutationOptions, UseQueryOptions } from 'react-query'
+import { UseInfiniteQueryOptions } from 'react-query/types/react/types'
 import { PromiseValue } from 'type-fest'
 
 const queryConfig: DefaultOptions = {
@@ -18,6 +19,11 @@ export type ExtractFnReturnType<FnType extends (...args: any) => any> = PromiseV
 
 export type QueryConfig<QueryFnType extends (...args: any) => any> = Omit<
   UseQueryOptions<ExtractFnReturnType<QueryFnType>>,
+  'queryKey' | 'queryFn'
+>
+
+export type InfiniteQueryConfig<QueryFnType extends (...args: any) => any> = Omit<
+  UseInfiniteQueryOptions<ExtractFnReturnType<QueryFnType>>,
   'queryKey' | 'queryFn'
 >
 
