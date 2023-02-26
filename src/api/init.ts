@@ -74,9 +74,17 @@ API.instance.interceptors.response.use(
               API.tokenService.updateTokens(data)
               return API.instance(originalConfig)
             } catch (_error) {
+              window.store.dispatch({ type: 'auth/cleanAuthData' })
               return Promise.reject(_error)
             }
           }
+          break
+        }
+        case 403: {
+          if (originalConfig.url === 'auth/refresh') {
+            API.tokenService.removeTokens()
+          }
+          break
         }
       }
     }
