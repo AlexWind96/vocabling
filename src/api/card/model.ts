@@ -4,6 +4,7 @@ export type Card = {
   updatedAt: Date
   userId: string
   sentence: SentenceUnit[]
+  sentenceText: string
   phraseTranslation: string
   sentenceTranslation: string | null
   notes: string | null
@@ -48,7 +49,7 @@ export type CreateCardDTO = {
   sentence: CreateSentenceUnitDto[]
   phraseTranslation: string
   moduleId: string
-
+  sentenceText: string
   sentenceTranslation?: string
   notes?: string
 }
@@ -59,4 +60,5 @@ export type UpdateCardDTO = {
   phraseTranslation?: string
   sentenceTranslation?: string
   notes?: string
+  sentenceText?: string
 }

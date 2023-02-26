@@ -42,6 +42,7 @@ export const EditCardForm = (props: CreateCardFormProps) => {
       phraseTranslation: data.phraseTranslation,
       sentenceTranslation: data.sentenceTranslation,
       sentence: addStudyPhraseToSentence(getSentenceUnits(data.sentence), data.phrase),
+      sentenceText: data.sentence.trim(),
     }
     await props.onSubmit(card)
   }

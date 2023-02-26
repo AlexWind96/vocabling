@@ -1,5 +1,4 @@
-import { Card, CreateSentenceUnitDto, SentenceUnit } from '@/api'
-import { isLastItem } from '@/shared/utils'
+import { Card, CreateSentenceUnitDto } from '@/api'
 import { CardFormValues } from './model'
 
 export const getSentenceUnits = (sentence: string): CreateSentenceUnitDto[] => {
@@ -37,24 +36,9 @@ export const addStudyPhraseToSentence = (
   })
 }
 
-const getSentence = (data: SentenceUnit[]): string =>
-  data
-    .map((unit, index, array) => {
-      if (isLastItem(index, array)) return unit.value
-
-      const isNextPunctuationUnit = array[index + 1].isPunctuation
-
-      if (isNextPunctuationUnit) {
-        return unit.value
-      } else {
-        return unit.value + ' '
-      }
-    })
-    .join('')
-
 export const getInitialEditCardValues = (card: Card): CardFormValues => {
   return {
-    sentence: getSentence(card.sentence),
+    sentence: card.sentenceText,
     phrase: card.sentence
       .map((unit, index) => {
         return { ...unit, id: index }
