@@ -11,16 +11,25 @@ type CardsProps = {
 }
 
 export const SimpleCardsStack = ({ moduleId, paginationArgs }: CardsProps) => {
-  const { data: cards, isLoading } = useCards({ moduleId, paginationArgs })
+  const { data, isLoading } = useCards({
+    params: {
+      moduleId,
+      ...paginationArgs,
+    },
+  })
 
   if (isLoading) return <LoadingScreen />
 
-  if (!cards) return <Text>No cards</Text>
+  if (!data) return <Text>No cards</Text>
 
   return (
     <Stack>
-      {cards.map((card) => {
-        return <SimpleCard data={card} key={card.id} rightSection={<CardSettings id={card.id} />} />
+      {data.pages.map((group) => {
+        return group.cards.map((card) => {
+          return (
+            <SimpleCard data={card} key={card.id} rightSection={<CardSettings id={card.id} />} />
+          )
+        })
       })}
     </Stack>
   )
