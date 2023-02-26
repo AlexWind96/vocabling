@@ -24,9 +24,9 @@ export const CardsLearningSettingsPage = ({}: CardsLearningSettingsPageProps) =>
   }
 
   return (
-    <Grid>
-      <Grid.Col span={1} sm={2} lg={3} />
-      <Grid.Col span={10} sm={8} lg={6}>
+    <Grid gutter={0}>
+      <Grid.Col span={0} sm={2} lg={3} />
+      <Grid.Col span={12} sm={8} lg={6}>
         <Stack>
           <Group>
             <Title>Learn new words</Title>
@@ -41,7 +41,7 @@ export const CardsLearningSettingsPage = ({}: CardsLearningSettingsPageProps) =>
           />
         </Stack>
       </Grid.Col>
-      <Grid.Col span={1} sm={2} lg={3} />
+      <Grid.Col span={0} sm={2} lg={3} />
     </Grid>
   )
 }

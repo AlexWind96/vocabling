@@ -34,7 +34,7 @@ export const ModulePage = () => {
           return (
             <React.Fragment key={card.id}>
               <Grid.Col span={1} sm={2} md={3} />
-              <Grid.Col span={10} sm={8} md={6}>
+              <Grid.Col span={12} sm={8} md={6}>
                 <SimpleCard data={card} rightSection={<CardSettings id={card.id} />} />
               </Grid.Col>
               <Grid.Col span={1} sm={2} md={3} />

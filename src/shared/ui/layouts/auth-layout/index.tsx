@@ -11,7 +11,7 @@ export const AuthLayout = ({ fallback }: AuthLayoutProps) => {
     <Container size={420} my={20}>
       <Anchor component={Link} to={'/'}>
         <Title sx={{ cursor: 'pointer' }} align="center" order={2}>
-          LOGO
+          LANGO
         </Title>
       </Anchor>
       <React.Suspense fallback={fallback}>

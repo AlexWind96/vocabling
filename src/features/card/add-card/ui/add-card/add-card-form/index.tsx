@@ -69,7 +69,7 @@ export const AddCardForm = (props: CreateCardFormProps) => {
               <PhraseTranslation />
               <SentenceTranslation />
               <Note />
-              <Button fullWidth mt="xl" type={'submit'} loading={isSubmitting}>
+              <Button fullWidth type={'submit'} loading={isSubmitting}>
                 Save
               </Button>
             </Stack>
