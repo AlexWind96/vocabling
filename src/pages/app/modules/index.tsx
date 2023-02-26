@@ -2,16 +2,11 @@ import React from 'react'
 import { Plus } from 'tabler-icons-react'
 import { Button, Grid, Group, Modal, Title } from '@mantine/core'
 import { useDisclosure } from '@mantine/hooks'
-import { ModuleCard, useModules } from '@/entities/module'
-import { CreateModule, DeleteModule } from '@/features/module'
-import { LoadingScreen } from '@/shared/ui'
+import { CreateModule } from '@/features/module'
+import { ModulesGrid } from '@/widgets/modules-grid'
 
 export const ModulesPage = () => {
-  const { data: modules, isLoading } = useModules()
   const [opened, handlers] = useDisclosure(false)
-
-  if (isLoading) return <LoadingScreen />
-  if (!modules) return <Title>No modules</Title>
   return (
     <Grid>
       <Grid.Col />
@@ -26,13 +21,7 @@ export const ModulesPage = () => {
           </Modal>
         </Group>
       </Grid.Col>
-      {modules.map((module) => {
-        return (
-          <Grid.Col span={12} xs={6} key={module.id}>
-            <ModuleCard data={module} actions={<DeleteModule id={module.id} />} />
-          </Grid.Col>
-        )
-      })}
+      <ModulesGrid />
     </Grid>
   )
 }

@@ -1,4 +1,4 @@
-import { useMutation } from 'react-query'
+import { useMutation } from '@tanstack/react-query'
 import { API, CurrentLearnSession, QUERY_KEY, UpdateCurrentLearnSessionDto } from '@/api'
 import { MutationConfig, queryClient } from '@/shared/lib/react-query'
 

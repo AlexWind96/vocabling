@@ -1,5 +1,5 @@
 import { nanoid } from '@reduxjs/toolkit'
-import { useMutation } from 'react-query'
+import { useMutation } from '@tanstack/react-query'
 import { API, Card, CreateCardDTO, QUERY_KEY } from '@/api'
 import { MutationConfig, queryClient } from '@/shared/lib/react-query'
 

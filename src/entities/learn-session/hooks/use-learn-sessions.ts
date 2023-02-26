@@ -1,4 +1,5 @@
-import { useQuery } from 'react-query'
+import { useQuery } from '@tanstack/react-query'
+import { AxiosError } from 'axios'
 import { API, LearnSession, QUERY_KEY } from '@/api'
 import { ExtractFnReturnType, QueryConfig } from '@/shared/lib/react-query'
 
@@ -14,7 +15,7 @@ type Options = {
 }
 
 export const useLearnSessions = ({ config }: Options = {}) => {
-  return useQuery<ExtractFnReturnType<QueryFnType>>({
+  return useQuery<ExtractFnReturnType<QueryFnType>, AxiosError>({
     queryKey: [QUERY_KEY.LEARN_SESSIONS],
     queryFn: getLearnSessions,
     ...config,

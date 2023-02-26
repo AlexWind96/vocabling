@@ -1,4 +1,5 @@
-import { useInfiniteQuery } from 'react-query'
+import { useInfiniteQuery } from '@tanstack/react-query'
+import { AxiosError } from 'axios'
 import { API, Card, CardQueryArgs, PageInfo, PaginationArgs, QUERY_KEY } from '@/api'
 import { ExtractFnReturnType, InfiniteQueryConfig } from '@/shared/lib/react-query'
 
@@ -23,7 +24,7 @@ type Options = {
 }
 
 export const useCards = ({ config, params }: Options) => {
-  return useInfiniteQuery<ExtractFnReturnType<QueryFnType>>({
+  return useInfiniteQuery<ExtractFnReturnType<QueryFnType>, AxiosError>({
     queryKey: [QUERY_KEY.CARDS, params],
     queryFn: ({ pageParam = undefined }) => getCards(params, pageParam),
     getNextPageParam: (lastPage) => {
