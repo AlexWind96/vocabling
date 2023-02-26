@@ -21,7 +21,7 @@ export const CardsGrid = ({ moduleId }: CardsGridProps) => {
   } = useCards({
     params: {
       moduleId,
-      first: 3,
+      first: 10,
     },
   })
   let content: React.ReactNode = null
