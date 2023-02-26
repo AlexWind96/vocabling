@@ -5,7 +5,7 @@ import { Button, Grid, Group, Text, Title } from '@mantine/core'
 import { SimpleCard, useCards } from '@/entities/card'
 import { useModule } from '@/entities/module'
 import { CardSettings } from '@/features/card'
-import { BackAnchor, LoadingScreen } from '@/shared/ui'
+import { BackAnchor, LoadingScreen, ScrollToTop } from '@/shared/ui'
 
 export const ModulePage = () => {
   const { id } = useParams()
@@ -17,30 +17,33 @@ export const ModulePage = () => {
   if (!data) return <Text>Module not found</Text>
 
   return (
-    <Grid>
-      <Grid.Col>
-        <BackAnchor>Back to modules</BackAnchor>
-      </Grid.Col>
-      <Grid.Col>
-        <Group position={'apart'}>
-          <Title>{data.label}</Title>
-          <Button color={'green'} component={Link} to={'add-cards'} leftIcon={<Plus />}>
-            Add cards
-          </Button>
-        </Group>
-      </Grid.Col>
-      {cards &&
-        cards.map((card) => {
-          return (
-            <React.Fragment key={card.id}>
-              <Grid.Col span={1} sm={2} md={3} />
-              <Grid.Col span={12} sm={8} md={6}>
-                <SimpleCard data={card} rightSection={<CardSettings id={card.id} />} />
-              </Grid.Col>
-              <Grid.Col span={1} sm={2} md={3} />
-            </React.Fragment>
-          )
-        })}
-    </Grid>
+    <>
+      <Grid>
+        <Grid.Col>
+          <BackAnchor>Back to modules</BackAnchor>
+        </Grid.Col>
+        <Grid.Col>
+          <Group position={'apart'}>
+            <Title>{data.label}</Title>
+            <Button color={'green'} component={Link} to={'add-cards'} leftIcon={<Plus />}>
+              Add cards
+            </Button>
+          </Group>
+        </Grid.Col>
+        {cards &&
+          cards.map((card) => {
+            return (
+              <React.Fragment key={card.id}>
+                <Grid.Col span={1} sm={2} md={3} />
+                <Grid.Col span={12} sm={8} md={6}>
+                  <SimpleCard data={card} rightSection={<CardSettings id={card.id} />} />
+                </Grid.Col>
+                <Grid.Col span={1} sm={2} md={3} />
+              </React.Fragment>
+            )
+          })}
+      </Grid>
+      <ScrollToTop />
+    </>
   )
 }
