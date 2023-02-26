@@ -1,3 +1,5 @@
+import { SortType } from '../types'
+
 export type Card = {
   id: string
   createdAt: Date
@@ -61,4 +63,17 @@ export type UpdateCardDTO = {
   sentenceTranslation?: string
   notes?: string
   sentenceText?: string
+}
+
+export enum CardOrderByFields {
+  Progress = 'progress',
+  CreatedAt = 'createdAt',
+}
+
+export type CardQueryArgs = {
+  moduleId?: string
+  orderBy?: CardOrderByFields
+  sort?: SortType
+  keywords?: string
+  step?: number
 }

@@ -1,11 +1,11 @@
 import type { AxiosPromise } from 'axios'
 import { Endpoints } from '@/shared/api'
 import { Page, PaginationArgs } from '../types'
-import { Card, CreateCardDTO, UpdateCardDTO } from './model'
+import { Card, CardQueryArgs, CreateCardDTO, UpdateCardDTO } from './model'
 
 export class CardEndpoints extends Endpoints {
-  getCards = (moduleId?: string, paginationArgs?: PaginationArgs): AxiosPromise<Page<Card>> => {
-    return this.instance.get(this.getEndpoint(), { params: { moduleId, ...paginationArgs } })
+  getCards = (params: (CardQueryArgs & PaginationArgs) | undefined): AxiosPromise<Page<Card>> => {
+    return this.instance.get(this.getEndpoint(), { params })
   }
   getCardById = (id: string): AxiosPromise<Card> => {
     return this.instance.get(this.getEndpoint(`/${id}`))

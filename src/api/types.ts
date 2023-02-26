@@ -1,4 +1,4 @@
-interface PageInfo {
+export interface PageInfo {
   hasNextPage: boolean
 
   hasPreviousPage: boolean
@@ -8,7 +8,7 @@ interface PageInfo {
   endCursor?: string
 }
 
-interface Edge<Record> {
+export interface Edge<Record> {
   cursor: string
   node: Record
 }
@@ -34,4 +34,9 @@ export interface PaginationArgs {
   after?: string
 
   before?: string
+}
+
+export enum SortType {
+  Asc = 'asc',
+  Desc = 'desc',
 }
