@@ -6,9 +6,10 @@ import { LoadingScreen } from '@/shared/ui'
 
 type CardsGridProps = {
   moduleId: string
+  keywords?: string
 }
 
-export const CardsGrid = ({ moduleId }: CardsGridProps) => {
+export const CardsGrid = ({ moduleId, keywords }: CardsGridProps) => {
   const {
     data,
     isInitialLoading,
@@ -22,6 +23,7 @@ export const CardsGrid = ({ moduleId }: CardsGridProps) => {
     params: {
       moduleId,
       first: 10,
+      keywords: keywords ? keywords : undefined,
     },
   })
   let content: React.ReactNode = null
