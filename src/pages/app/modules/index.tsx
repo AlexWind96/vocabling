@@ -1,27 +1,31 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import { Plus } from 'tabler-icons-react'
-import { Button, Grid, Group, Modal, Title } from '@mantine/core'
+import { Button, Group, Modal, Stack, Title } from '@mantine/core'
 import { useDisclosure } from '@mantine/hooks'
 import { CreateModule } from '@/features/module'
-import { ModulesGrid } from '@/widgets/modules-grid'
+import { PATH } from '@/shared/config'
+import { ModulesGrid } from './modules-grid'
 
 export const ModulesPage = () => {
   const [opened, handlers] = useDisclosure(false)
   return (
-    <Grid>
-      <Grid.Col />
-      <Grid.Col>
-        <Group position={'apart'}>
-          <Title>Modules</Title>
+    <Stack>
+      <Group position={'apart'}>
+        <Title>Modules</Title>
+        <Group>
+          <Button color={'amber'} component={Link} to={PATH.all_cards}>
+            All cards
+          </Button>
           <Button color={'green'} onClick={handlers.open} leftIcon={<Plus />}>
             Create
           </Button>
-          <Modal opened={opened} onClose={handlers.close} title="Create module">
-            <CreateModule onSuccess={handlers.close} />
-          </Modal>
         </Group>
-      </Grid.Col>
+        <Modal opened={opened} onClose={handlers.close} title="Create module">
+          <CreateModule onSuccess={handlers.close} />
+        </Modal>
+      </Group>
       <ModulesGrid />
-    </Grid>
+    </Stack>
   )
 }
