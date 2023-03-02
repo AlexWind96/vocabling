@@ -32,6 +32,7 @@ export const useDeleteModule = ({ config }: Options = {}) => {
     },
     onSuccess: () => {
       queryClient.invalidateQueries([QUERY_KEY.MODULES])
+      queryClient.invalidateQueries([QUERY_KEY.FOLDERS])
     },
     ...config,
     mutationFn: deleteModule,

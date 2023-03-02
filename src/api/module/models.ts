@@ -21,3 +21,13 @@ export type Module = {
 export type CreateModuleDTO = {
   label: string
 }
+
+export type UpdateModuleDTO = {
+  label?: string
+  folderId?: string | null
+}
+
+export type ModulesQueryParams = {
+  folderId?: string | 'without_folder'
+  folderFilterOperator?: 'contains' | 'not'
+}

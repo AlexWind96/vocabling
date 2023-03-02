@@ -1,16 +1,16 @@
 import type { AxiosPromise } from 'axios'
 import { Endpoints } from '@/shared/api'
 import { Page } from '../types'
-import { CreateModuleDTO, Module } from './models'
+import { CreateModuleDTO, Module, ModulesQueryParams, UpdateModuleDTO } from './models'
 
 export class ModuleEndpoints extends Endpoints {
-  getModules = (): AxiosPromise<Page<Module>> => {
-    return this.instance.get(this.getEndpoint())
+  getModules = (params: ModulesQueryParams | undefined): AxiosPromise<Page<Module>> => {
+    return this.instance.get(this.getEndpoint(), { params })
   }
   getModuleById = (id: string): AxiosPromise<Module> => {
     return this.instance.get(this.getEndpoint(`/${id}`))
   }
-  updateModule = (id: string, body: Partial<Module>): AxiosPromise<Module> => {
+  updateModule = (id: string, body: UpdateModuleDTO): AxiosPromise<Module> => {
     return this.instance.patch(this.getEndpoint(`/${id}`), body)
   }
 
