@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { Group, Paper, Progress, Stack, Text, Title } from '@mantine/core'
+import { Group, Paper, Stack, Text } from '@mantine/core'
 import { Module } from '@/api'
 
 type ModuleCardProps = {
@@ -11,26 +11,23 @@ type ModuleCardProps = {
 export const ModuleCard = ({ data, actions }: ModuleCardProps) => {
   return (
     <Paper p={'md'} shadow="md" withBorder>
-      <Stack spacing={'lg'}>
+      <Group position={'apart'}>
         <Stack spacing={2}>
-          <Group position={'apart'}>
-            <Text
-              component={Link}
-              to={data.id}
-              fw={'bold'}
-              fz={30}
-              className={'hover:text-slate-700'}
-            >
-              {data.label}
-            </Text>
-            {actions}
-          </Group>
-          <Title color={'slate.6'} order={3}>
-            Cards: {data._count.cards}
-          </Title>
+          <Text
+            component={Link}
+            to={data.id}
+            fw={'bold'}
+            fz={20}
+            className={'hover:text-slate-700'}
+          >
+            {data.label}
+          </Text>
+          <Text color={'slate.5'} fz={14} fw={'bold'}>
+            Cards: {data._count?.cards && ''}
+          </Text>
         </Stack>
-        <Progress mb={4} color={'yellow.4'} size="lg" value={50} />
-      </Stack>
+        {actions}
+      </Group>
     </Paper>
   )
 }
