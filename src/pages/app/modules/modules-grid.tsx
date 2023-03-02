@@ -1,13 +1,13 @@
 import * as React from 'react'
 import { Grid } from '@mantine/core'
 import { ModuleCard, useModules } from '@/entities/module'
-import { DeleteModule } from '@/features/module'
+import { ModuleSettings } from '@/features/module/module-settings'
 import { ErrorAlert, LoadingData, NoData } from '@/shared/ui'
 
 type ModulesGridProps = {}
 
 export const ModulesGrid = ({}: ModulesGridProps) => {
-  const { isError, error, isSuccess, data } = useModules()
+  const { isError, error, isSuccess, data } = useModules({ params: { folderId: 'without_folder' } })
 
   if (isSuccess) {
     if (!data.length) {
@@ -17,8 +17,11 @@ export const ModulesGrid = ({}: ModulesGridProps) => {
       <Grid>
         {data.map((module) => {
           return (
-            <Grid.Col span={12} xs={6} key={module.id}>
-              <ModuleCard data={module} actions={<DeleteModule id={module.id} />} />
+            <Grid.Col span={12} xs={3} key={module.id}>
+              <ModuleCard
+                data={module}
+                actions={<ModuleSettings folderId={module.folderId} id={module.id} />}
+              />
             </Grid.Col>
           )
         })}
