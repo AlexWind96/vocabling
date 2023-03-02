@@ -12,7 +12,7 @@ const queryConfig: DefaultOptions = {
   queries: {
     useErrorBoundary: false,
     refetchOnWindowFocus: false,
-    retry: false,
+    retry: 3,
   },
 }
 
