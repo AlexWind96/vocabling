@@ -1,10 +1,10 @@
 import { useQuery } from '@tanstack/react-query'
 import { AxiosError } from 'axios'
-import { API, Module, QUERY_KEY } from '@/api'
+import { API, Module, QUERY_KEY } from '@/shared/api'
 import { ExtractFnReturnType, QueryConfig } from '@/shared/lib/react-query'
 
 export const getModule = async (id: string): Promise<Module> => {
-  const { data } = await API.endpoints.module.getModuleById(id)
+  const { data } = await API.module.getModuleById(id)
   return data
 }
 type QueryFnType = typeof getModule

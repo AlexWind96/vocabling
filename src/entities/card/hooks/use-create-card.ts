@@ -1,10 +1,10 @@
 import { nanoid } from '@reduxjs/toolkit'
 import { useMutation } from '@tanstack/react-query'
-import { API, Card, CreateCardDTO, QUERY_KEY } from '@/api'
+import { API, Card, CreateCardDTO, QUERY_KEY } from '@/shared/api'
 import { MutationConfig, queryClient } from '@/shared/lib/react-query'
 
 export const createCard = async (body: CreateCardDTO): Promise<Card> => {
-  const { data } = await API.endpoints.card.createCard(body)
+  const { data } = await API.card.createCard(body)
   return data
 }
 

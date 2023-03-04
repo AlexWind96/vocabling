@@ -1,9 +1,9 @@
 import { useMutation } from '@tanstack/react-query'
-import { API, Card, QUERY_KEY } from '@/api'
+import { API, Card, QUERY_KEY } from '@/shared/api'
 import { MutationConfig, queryClient } from '@/shared/lib/react-query'
 
 export const deleteCard = async (id: string): Promise<Card> => {
-  const { data } = await API.endpoints.card.deleteCard(id)
+  const { data } = await API.card.deleteCard(id)
   return data
 }
 

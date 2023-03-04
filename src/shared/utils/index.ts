@@ -30,3 +30,7 @@ export function lazyImport<
 export const getPercent = (smaller: number, bigger: number) => {
   return Math.round((smaller / bigger) * 100)
 }
+
+export const getBearer = (token: string): string => {
+  return 'Bearer ' + token
+}

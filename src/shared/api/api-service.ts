@@ -1,19 +1,41 @@
-import { AxiosInstance } from 'axios'
-import { IJwtTokenService } from '@/shared/lib/jwt-token-service'
+import axios, { AxiosInstance } from 'axios'
+import { API_URL } from '../config'
+import { AuthEndpoints } from './auth'
+import { CardEndpoints } from './card'
+import { CurrentLearnSessionEndpoints } from './current-learn-session'
+import { Endpoints } from './endpoints'
+import { FolderEndpoints } from './folder'
+import { LearnSessionEndpoints } from './learn-session'
+import { ModuleEndpoints } from './module'
+
+export { Endpoints } from './endpoints'
 
 export class ApiService {
-  instance!: AxiosInstance
-  tokenService!: IJwtTokenService
-  //TypeEndpoints muss be declared globally in app/api/index.ts
-  //It helps us to make HTTP class clear and make business logic only in app layer
-  //It also let us to collect endpoints from entities and connect them only in app layer
-  endpoints!: TypedEndpoints
-  constructor(instance: AxiosInstance, tokenService: IJwtTokenService, endpoints) {
+  instance: AxiosInstance
+
+  card: CardEndpoints
+  auth: AuthEndpoints
+  currentLearnSession: CurrentLearnSessionEndpoints
+  folder: FolderEndpoints
+  learnSession: LearnSessionEndpoints
+  module: ModuleEndpoints
+
+  constructor(instance: AxiosInstance) {
     this.instance = instance
-    this.tokenService = tokenService
-    this.endpoints = endpoints
-  }
-  getBearer = (token: string): string => {
-    return 'Bearer ' + token
+    this.card = new CardEndpoints(instance)
+    this.auth = new AuthEndpoints(instance)
+    this.currentLearnSession = new CurrentLearnSessionEndpoints(instance)
+    this.folder = new FolderEndpoints(instance)
+    this.learnSession = new LearnSessionEndpoints(instance)
+    this.module = new ModuleEndpoints(instance)
   }
 }
+
+export const API = new ApiService(
+  axios.create({
+    baseURL: API_URL,
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+)

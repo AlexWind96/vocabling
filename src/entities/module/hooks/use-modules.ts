@@ -1,10 +1,10 @@
 import { useQuery } from '@tanstack/react-query'
 import { AxiosError } from 'axios'
-import { API, Module, ModulesQueryParams, QUERY_KEY } from '@/api'
+import { API, Module, ModulesQueryParams, QUERY_KEY } from '@/shared/api'
 import { ExtractFnReturnType, QueryConfig } from '@/shared/lib/react-query'
 
 export const getModules = async (params: ModulesQueryParams | undefined): Promise<Module[]> => {
-  const { data } = await API.endpoints.module.getModules(params)
+  const { data } = await API.module.getModules(params)
   return data.edges.map((item) => item.node)
 }
 

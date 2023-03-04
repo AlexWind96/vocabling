@@ -1,9 +1,9 @@
 import { useMutation } from '@tanstack/react-query'
-import { API, QUERY_KEY } from '@/api'
+import { API, QUERY_KEY } from '@/shared/api'
 import { MutationConfig, queryClient } from '@/shared/lib/react-query'
 
 const completeCurrentLearnSession = async (): Promise<undefined> => {
-  await API.endpoints.currentLearnSession.completeCurrentLearnSession()
+  await API.currentLearnSession.completeCurrentLearnSession()
   return
 }
 

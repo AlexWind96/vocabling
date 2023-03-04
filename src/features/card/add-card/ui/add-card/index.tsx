@@ -1,6 +1,6 @@
 import React from 'react'
-import { CreateCardDTO } from '@/api'
 import { useCreateCard } from '@/entities/card'
+import { CreateCardDTO } from '@/shared/api'
 import { AddCardForm } from './add-card-form'
 
 type AddCardProps = {

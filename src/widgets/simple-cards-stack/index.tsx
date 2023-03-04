@@ -1,8 +1,8 @@
 import React from 'react'
 import { Stack, Text } from '@mantine/core'
-import { PaginationArgs } from '@/api'
 import { SimpleCard, useCards } from '@/entities/card'
 import { CardSettings } from '@/features/card'
+import { PaginationArgs } from '@/shared/api'
 import { LoadingScreen } from '@/shared/ui'
 
 type CardsProps = {

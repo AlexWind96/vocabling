@@ -1,5 +1,5 @@
 import { useMutation } from '@tanstack/react-query'
-import { API, Card, QUERY_KEY, UpdateCardDTO } from '@/api'
+import { API, Card, QUERY_KEY, UpdateCardDTO } from '@/shared/api'
 import { MutationConfig, queryClient } from '@/shared/lib/react-query'
 
 type UpdateCardPayload = {
@@ -8,7 +8,7 @@ type UpdateCardPayload = {
 }
 
 export const updateCard = async ({ id, body }: UpdateCardPayload): Promise<Card> => {
-  const { data } = await API.endpoints.card.updateCard(id, body)
+  const { data } = await API.card.updateCard(id, body)
   return data
 }
 

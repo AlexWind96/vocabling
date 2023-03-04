@@ -6,7 +6,7 @@ import {
   resolvePromiseAction,
 } from 'redux-saga-promise-actions'
 import { call, delay, put, takeEvery } from 'redux-saga/effects'
-import { API, QUERY_KEY } from '@/api'
+import { API, QUERY_KEY } from '@/shared/api'
 import { queryClient } from '@/shared/lib/react-query'
 import { actions } from '..'
 
@@ -20,10 +20,10 @@ function* worker(action: PromiseAction<string, { id: string; isRight: boolean },
   try {
     if (action.payload.isRight) {
       yield put(actions.makeAnswer(true))
-      yield call(API.endpoints.card.registerRightAnswer, action.payload.id)
+      yield call(API.card.registerRightAnswer, action.payload.id)
     } else {
       yield put(actions.makeAnswer(false))
-      yield call(API.endpoints.card.registerWrongAnswer, action.payload.id)
+      yield call(API.card.registerWrongAnswer, action.payload.id)
     }
     yield delay(1000)
     yield put(actions.cleanState())

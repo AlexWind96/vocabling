@@ -3,7 +3,7 @@ import * as React from 'react'
 import { FormProvider, SubmitHandler, useForm } from 'react-hook-form'
 import * as Yup from 'yup'
 import { Button, Stack } from '@mantine/core'
-import { Module, UpdateModuleDTO } from '@/api'
+import { Module, UpdateModuleDTO } from '@/shared/api'
 import { TextInputController } from '@/shared/ui'
 
 type RenameModuleFormValues = Pick<Module, 'label'>

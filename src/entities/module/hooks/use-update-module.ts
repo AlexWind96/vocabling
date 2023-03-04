@@ -1,5 +1,5 @@
 import { useMutation } from '@tanstack/react-query'
-import { API, Module, QUERY_KEY, UpdateModuleDTO } from '@/api'
+import { API, Module, QUERY_KEY, UpdateModuleDTO } from '@/shared/api'
 import { MutationConfig, queryClient } from '@/shared/lib/react-query'
 
 type UpdateModulePayload = {
@@ -8,7 +8,7 @@ type UpdateModulePayload = {
 }
 
 export const updateModule = async ({ id, body }: UpdateModulePayload): Promise<Module> => {
-  const { data } = await API.endpoints.module.updateModule(id, body)
+  const { data } = await API.module.updateModule(id, body)
   return data
 }
 

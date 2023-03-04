@@ -1,9 +1,9 @@
 import { useMutation } from '@tanstack/react-query'
-import { API, Module, QUERY_KEY } from '@/api'
+import { API, Module, QUERY_KEY } from '@/shared/api'
 import { MutationConfig, queryClient } from '@/shared/lib/react-query'
 
 export const deleteModule = async (id: string): Promise<Module> => {
-  const { data } = await API.endpoints.module.deleteModule(id)
+  const { data } = await API.module.deleteModule(id)
   return data
 }
 

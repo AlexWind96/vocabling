@@ -1,5 +1,5 @@
 import { useMutation } from '@tanstack/react-query'
-import { API, Module, QUERY_KEY } from '@/api'
+import { API, Module, QUERY_KEY } from '@/shared/api'
 import { MutationConfig, queryClient } from '@/shared/lib/react-query'
 
 const toggleToFolder = async ({
@@ -9,7 +9,7 @@ const toggleToFolder = async ({
   id: string
   folderId: string | null
 }): Promise<Module> => {
-  const { data } = await API.endpoints.module.updateModule(id, { folderId })
+  const { data } = await API.module.updateModule(id, { folderId })
   return data
 }
 

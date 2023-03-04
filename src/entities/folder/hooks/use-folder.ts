@@ -1,10 +1,10 @@
 import { useQuery } from '@tanstack/react-query'
 import { AxiosError } from 'axios'
-import { API, Folder, QUERY_KEY } from '@/api'
+import { API, Folder, QUERY_KEY } from '@/shared/api'
 import { ExtractFnReturnType, QueryConfig } from '@/shared/lib/react-query'
 
 export const getFolder = async (id: string): Promise<Folder> => {
-  const { data } = await API.endpoints.folder.getFolderById(id)
+  const { data } = await API.folder.getFolderById(id)
   return data
 }
 type QueryFnType = typeof getFolder

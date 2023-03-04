@@ -1,5 +1,5 @@
 import { Book, Stack2 } from 'tabler-icons-react'
-import { ROLE } from '@/api'
+import { ROLE } from '@/shared/api'
 import { PATH } from '@/shared/config'
 import { INavbarLink } from './types'
 

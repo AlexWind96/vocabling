@@ -1,6 +1,6 @@
 import { useInfiniteQuery } from '@tanstack/react-query'
 import { AxiosError } from 'axios'
-import { API, Card, CardQueryArgs, PageInfo, PaginationArgs, QUERY_KEY } from '@/api'
+import { API, Card, CardQueryArgs, PageInfo, PaginationArgs, QUERY_KEY } from '@/shared/api'
 import { ExtractFnReturnType, InfiniteQueryConfig } from '@/shared/lib/react-query'
 
 type GetCardsParams = CardQueryArgs & PaginationArgs
@@ -9,7 +9,7 @@ export const getCards = async (
   params: GetCardsParams | undefined,
   after: string | undefined
 ): Promise<{ cards: Card[]; pageInfo: PageInfo; totalCount: number }> => {
-  const { data } = await API.endpoints.card.getCards({ ...params, after })
+  const { data } = await API.card.getCards({ ...params, after })
   return {
     cards: data.edges.map((item) => item.node),
     pageInfo: data.pageInfo,

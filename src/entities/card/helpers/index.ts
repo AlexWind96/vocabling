@@ -1,4 +1,4 @@
-import { LEARN_STATUS } from '@/api'
+import { LEARN_STATUS } from '@/shared/api'
 
 type Progress = 1 | 2 | 3 | 4 | 5
 

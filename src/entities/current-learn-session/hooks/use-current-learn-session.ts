@@ -1,10 +1,10 @@
 import { useQuery } from '@tanstack/react-query'
 import { AxiosError } from 'axios'
-import { API, CurrentLearnSession, QUERY_KEY } from '@/api'
+import { API, CurrentLearnSession, QUERY_KEY } from '@/shared/api'
 import { ExtractFnReturnType, QueryConfig } from '@/shared/lib/react-query'
 
 const getCurrentLearnSession = async (): Promise<CurrentLearnSession> => {
-  const { data } = await API.endpoints.currentLearnSession.getCurrentLearnSession()
+  const { data } = await API.currentLearnSession.getCurrentLearnSession()
   return data
 }
 

@@ -1,11 +1,11 @@
 import { useMutation } from '@tanstack/react-query'
-import { API, CurrentLearnSession, QUERY_KEY, UpdateCurrentLearnSessionDto } from '@/api'
+import { API, CurrentLearnSession, QUERY_KEY, UpdateCurrentLearnSessionDto } from '@/shared/api'
 import { MutationConfig, queryClient } from '@/shared/lib/react-query'
 
 export const updateCurrentLearnSession = async (
   body: UpdateCurrentLearnSessionDto
 ): Promise<CurrentLearnSession> => {
-  const { data } = await API.endpoints.currentLearnSession.updateCurrentLearnSession(body)
+  const { data } = await API.currentLearnSession.updateCurrentLearnSession(body)
   return data
 }
 

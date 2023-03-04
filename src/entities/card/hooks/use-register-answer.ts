@@ -1,13 +1,13 @@
 import { useMutation } from '@tanstack/react-query'
-import { API, Card, QUERY_KEY } from '@/api'
+import { API, Card, QUERY_KEY } from '@/shared/api'
 import { MutationConfig, queryClient } from '@/shared/lib/react-query'
 
 const registerAnswer = async ({ id, isRight }: { id: string; isRight: boolean }): Promise<Card> => {
   if (isRight) {
-    const { data } = await API.endpoints.card.registerRightAnswer(id)
+    const { data } = await API.card.registerRightAnswer(id)
     return data
   } else {
-    const { data } = await API.endpoints.card.registerWrongAnswer(id)
+    const { data } = await API.card.registerWrongAnswer(id)
     return data
   }
 }

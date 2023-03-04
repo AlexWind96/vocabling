@@ -1,4 +1,4 @@
-import { Card, CreateSentenceUnitDto } from '@/api'
+import { Card, CreateSentenceUnitDto } from '@/shared/api'
 import { CardFormValues } from './model'
 
 export const getSentenceUnits = (sentence: string): CreateSentenceUnitDto[] => {

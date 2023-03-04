@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { CreateSentenceUnitDto } from '@/api'
+import { CreateSentenceUnitDto } from '@/shared/api'
 import { isLastItem } from '@/shared/utils'
 import { Unit } from './sentence-unit'
 

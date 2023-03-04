@@ -1,6 +1,6 @@
 import React from 'react'
 import { Accordion, Box, Paper, Stack, Text } from '@mantine/core'
-import { CreateCardDTO } from '@/api'
+import { CreateCardDTO } from '@/shared/api'
 import { Sentence } from './sentence'
 
 type PreviewCardProps = {

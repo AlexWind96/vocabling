@@ -1,10 +1,10 @@
 import { useQuery } from '@tanstack/react-query'
 import { AxiosError } from 'axios'
-import { API, Card, QUERY_KEY } from '@/api'
+import { API, Card, QUERY_KEY } from '@/shared/api'
 import { ExtractFnReturnType, QueryConfig } from '@/shared/lib/react-query'
 
 const getLearnCard = async (): Promise<Card | null> => {
-  const { data } = await API.endpoints.card.getLearnCard()
+  const { data } = await API.card.getLearnCard()
   return data
 }
 

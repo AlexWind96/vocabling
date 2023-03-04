@@ -14,7 +14,7 @@ export const ToggleModuleToFolder = ({
   moduleId,
   hasFolder,
 }: ToggleModuleToFolderProps) => {
-  const { mutateAsync } = useToggleToFolder()
+  const { mutateAsync, isLoading } = useToggleToFolder()
   const handleClick = async () => {
     if (hasFolder) {
       await mutateAsync({ id: moduleId, folderId: null })
@@ -23,7 +23,7 @@ export const ToggleModuleToFolder = ({
     }
   }
   return (
-    <ActionIcon color={'green'} onClick={handleClick}>
+    <ActionIcon color={'green'} onClick={handleClick} disabled={isLoading}>
       {hasFolder ? <IconMinus /> : <IconPlus />}
     </ActionIcon>
   )

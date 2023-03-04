@@ -1,10 +1,10 @@
 import { nanoid } from '@reduxjs/toolkit'
 import { useMutation } from '@tanstack/react-query'
-import { API, CreateModuleDTO, Module, QUERY_KEY } from '@/api'
+import { API, CreateModuleDTO, Module, QUERY_KEY } from '@/shared/api'
 import { MutationConfig, queryClient } from '@/shared/lib/react-query'
 
 export const createModule = async (body: CreateModuleDTO): Promise<Module> => {
-  const { data } = await API.endpoints.module.createModule(body)
+  const { data } = await API.module.createModule(body)
   return data
 }
 

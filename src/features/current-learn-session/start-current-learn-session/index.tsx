@@ -4,8 +4,8 @@ import { useEffect } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import * as Yup from 'yup'
 import { Button, Stack } from '@mantine/core'
-import { CurrentLearnSession, UpdateCurrentLearnSessionDto } from '@/api'
 import { useModules } from '@/entities/module'
+import { CurrentLearnSession, UpdateCurrentLearnSessionDto } from '@/shared/api'
 import { MultiSelectController } from '@/shared/ui'
 
 type StartCurrentLearnSessionProps = {

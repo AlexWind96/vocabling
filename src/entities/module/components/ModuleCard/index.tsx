@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { Group, Paper, Stack, Text } from '@mantine/core'
-import { Module } from '@/api'
+import { Module } from '@/shared/api'
 
 type ModuleCardProps = {
   data: Module

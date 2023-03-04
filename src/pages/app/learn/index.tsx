@@ -1,13 +1,13 @@
 import * as React from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Grid, Group, Progress, Stack, Title } from '@mantine/core'
-import { UpdateCurrentLearnSessionDto } from '@/api'
 import { useAuth } from '@/entities/auth/hooks'
 import {
   useCurrentLearnSession,
   useUpdateCurrentLearnSession,
 } from '@/entities/current-learn-session'
 import { StartCurrentLearnSession } from '@/features/current-learn-session'
+import { UpdateCurrentLearnSessionDto } from '@/shared/api'
 import { getPercent } from '@/shared/utils'
 
 type CardsLearningSettingsPageProps = {}

@@ -1,4 +1,4 @@
-import { CreateSentenceUnitDto } from '@/api'
+import { CreateSentenceUnitDto } from '@/shared/api'
 
 export const getSentenceUnits = (sentence: string): CreateSentenceUnitDto[] => {
   const notLettersReg = /[^'’\s\p{L}\p{N}\p{M}-]+/gu

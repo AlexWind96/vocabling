@@ -1,6 +1,6 @@
 import React from 'react'
 import { Accordion, Box, Group, Paper, Stack, Text } from '@mantine/core'
-import { Card } from '@/api'
+import { Card } from '@/shared/api'
 import { Progress } from './progress'
 import { Sentence } from './sentence'
 

@@ -1,5 +1,5 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit'
-import { User } from '@/api'
+import { User } from '@/shared/api'
 import { login, logout, register, saga } from './sagas'
 
 interface AuthState {

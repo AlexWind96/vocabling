@@ -1,9 +1,9 @@
 import { useMutation } from '@tanstack/react-query'
-import { API, Folder, QUERY_KEY } from '@/api'
+import { API, Folder, QUERY_KEY } from '@/shared/api'
 import { MutationConfig, queryClient } from '@/shared/lib/react-query'
 
 export const deleteFolder = async (id: string): Promise<Folder> => {
-  const { data } = await API.endpoints.folder.deleteFolder(id)
+  const { data } = await API.folder.deleteFolder(id)
   return data
 }
 
