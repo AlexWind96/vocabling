@@ -11,6 +11,18 @@ type CardViewProps = {
   hideStudyPhrase?: boolean
 }
 
+const hasAdditionalInfo = (notes: string | null, sentence: string | null) => {
+  let isNotes = false
+  let isSentence = false
+  if (notes && notes.length && notes !== '<p></p>') {
+    isNotes = true
+  }
+  if (sentence && sentence.length) {
+    isSentence = true
+  }
+  return isSentence || isNotes
+}
+
 export const SimpleCard = ({
   data,
   rightSection,
@@ -18,6 +30,9 @@ export const SimpleCard = ({
   hideStudyPhrase = false,
 }: CardViewProps) => {
   const diff = isGraterProgress ? 1 : 0
+
+  const isAdditionalInfo = hasAdditionalInfo(data.notes, data.sentenceTranslation)
+
   return (
     <Paper p={'xs'} shadow="md" withBorder radius="md">
       <Stack>
@@ -32,21 +47,29 @@ export const SimpleCard = ({
             </Stack>
           </Stack>
         </Box>
-        <Accordion variant="separated" radius="lg">
-          <Accordion.Item value="translations">
-            <Accordion.Control>
-              <Text fw={'bold'} c={'slate.6'}>
-                {data.phraseTranslation}
-              </Text>
-            </Accordion.Control>
-            <Accordion.Panel>
-              <Text c={'slate.7'} size={'md'}>
-                {data.sentenceTranslation}
-              </Text>
-              <div className={'text-sm'} dangerouslySetInnerHTML={{ __html: data.notes || '' }} />
-            </Accordion.Panel>
-          </Accordion.Item>
-        </Accordion>
+        {isAdditionalInfo ? (
+          <Accordion variant="separated" radius="lg">
+            <Accordion.Item value="translations">
+              <Accordion.Control>
+                <Text fw={'bold'} c={'slate.6'}>
+                  {data.phraseTranslation}
+                </Text>
+              </Accordion.Control>
+              <Accordion.Panel>
+                <Text c={'slate.7'} size={'md'}>
+                  {data.sentenceTranslation}
+                </Text>
+                <div className={'text-sm'} dangerouslySetInnerHTML={{ __html: data.notes || '' }} />
+              </Accordion.Panel>
+            </Accordion.Item>
+          </Accordion>
+        ) : (
+          <Box p={16} bg={'slate.0'} sx={(theme) => ({ borderRadius: theme.radius.lg })}>
+            <Text fw={'bold'} c={'slate.6'}>
+              {data.phraseTranslation}
+            </Text>
+          </Box>
+        )}
       </Stack>
     </Paper>
   )
