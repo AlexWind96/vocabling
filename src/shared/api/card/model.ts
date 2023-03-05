@@ -1,4 +1,4 @@
-import { SortType } from '../types'
+import { PaginationArgs, SortType } from '../types'
 
 export type Card = {
   id: string
@@ -70,10 +70,10 @@ export enum CardOrderByFields {
   CreatedAt = 'createdAt',
 }
 
-export type CardQueryArgs = {
+export type CardsQueryParams = {
   moduleId?: string
   orderBy?: CardOrderByFields
   sort?: SortType
   keywords?: string
   step?: number
-}
+} & PaginationArgs

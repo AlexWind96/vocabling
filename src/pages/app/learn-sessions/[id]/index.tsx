@@ -11,7 +11,7 @@ type LearnSessionProps = {}
 export const LearnSession = ({}: LearnSessionProps) => {
   const { colors } = useMantineTheme()
   const { id } = useParams()
-  const { data, isLoading } = useLearnSession({ id: id as string })
+  const { data, isLoading } = useLearnSession({ variables: { id: id as string } })
 
   if (isLoading || !data) return <LoadingScreen />
   return (

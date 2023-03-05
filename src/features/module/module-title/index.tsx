@@ -1,15 +1,15 @@
 import * as React from 'react'
 import { Skeleton, Title, TitleProps } from '@mantine/core'
-import { useModule } from '@/entities/module'
+import { useModuleTitle } from '@/entities/module'
 
 type ModuleTitleProps = {
   moduleId: string
 } & TitleProps
 
-export const ModuleTitle = (props: ModuleTitleProps) => {
-  const { data: module, isSuccess, isError } = useModule({ id: props.moduleId })
+export const ModuleTitle = ({ moduleId, ...titleProps }: ModuleTitleProps) => {
+  const { data, isSuccess, isError } = useModuleTitle({ variables: { id: moduleId } })
   if (isSuccess) {
-    return <Title {...props}>{module.label}</Title>
+    return <Title {...titleProps}>{data}</Title>
   }
   if (isError) {
     return <Title color={'red'}>Error[module]</Title>

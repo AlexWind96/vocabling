@@ -1,9 +1,9 @@
 import * as React from 'react'
 import { Button, ButtonProps, Modal } from '@mantine/core'
 import { useDisclosure } from '@mantine/hooks'
-import { useCreateFolder } from '@/entities/folder'
 import { CreateFolderDto } from '@/shared/api'
 import { CreateFolderForm } from './create-folder-form'
+import { useCreateFolder } from './use-create-folder'
 
 type CreateFolderProps = {} & Omit<ButtonProps, 'onClick'>
 

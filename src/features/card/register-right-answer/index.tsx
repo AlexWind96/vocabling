@@ -1,8 +1,10 @@
 import * as React from 'react'
 import { useDispatch } from 'react-redux'
 import { Button } from '@mantine/core'
-import { currentLearnSession } from '@/entities/current-learn-session'
+import { useLearnCard } from '@/entities/card'
+import { currentLearnSession, useCurrentLearnSession } from '@/entities/current-learn-session'
 import { useTypedSelector } from '@/shared/hooks'
+import { queryClient } from '@/shared/lib/react-query'
 
 type RegisterRightAnswerProps = {
   id: string
@@ -11,6 +13,7 @@ type RegisterRightAnswerProps = {
 const {
   asyncActions: { registerAnswer },
   selectors: { selectCurrentLearnSessionState },
+  actions: { cleanState },
 } = currentLearnSession
 
 export const RegisterRightAnswer = (props: RegisterRightAnswerProps) => {
@@ -20,6 +23,9 @@ export const RegisterRightAnswer = (props: RegisterRightAnswerProps) => {
   const dispatch = useDispatch()
   const handleRightAnswer = async () => {
     await dispatch(registerAnswer.request({ id: props.id, isRight: true }))
+    await queryClient.invalidateQueries(useLearnCard.getKey())
+    await queryClient.invalidateQueries(useCurrentLearnSession.getKey())
+    dispatch(cleanState())
   }
 
   return (

@@ -11,7 +11,7 @@ type CardsProps = {
 export const Cards = ({ keywords }: CardsProps) => {
   const { data, isError, error, isSuccess, fetchNextPage, hasNextPage, isFetchingNextPage } =
     useCards({
-      params: {
+      variables: {
         first: 10,
         keywords: keywords ? keywords : undefined,
       },
@@ -24,7 +24,7 @@ export const Cards = ({ keywords }: CardsProps) => {
           if (!group.totalCount) {
             return <NoData key={'group' + i} message={'No cards'} />
           }
-          return group.cards.map((card) => {
+          return group.edges.map(({ node: card }) => {
             return (
               <SimpleCard key={card.id} data={card} rightSection={<CardSettings id={card.id} />} />
             )

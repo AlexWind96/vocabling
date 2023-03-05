@@ -2,7 +2,7 @@ import React from 'react'
 import { useFormContext } from 'react-hook-form'
 import { PreviewCard } from '@/entities/card'
 import { CreateCardDTO } from '@/shared/api'
-import { addStudyPhraseToSentence, getSentenceUnits } from '../../../../helpers'
+import { addStudyPhraseToSentence, getSentenceUnits } from '../../helpers'
 import { CardFormValues } from '../model'
 
 export const PreviewCardSection = () => {

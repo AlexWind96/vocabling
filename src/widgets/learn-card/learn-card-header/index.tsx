@@ -4,10 +4,8 @@ import { Link, useNavigate } from 'react-router-dom'
 import { Home } from 'tabler-icons-react'
 import { ActionIcon, Grid, Progress, Skeleton, Text } from '@mantine/core'
 import { useAuth } from '@/entities/auth'
-import {
-  useCompleteCurrentLearnSession,
-  useCurrentLearnSession,
-} from '@/entities/current-learn-session'
+import { useCurrentLearnSession } from '@/entities/current-learn-session'
+import { useCompleteCurrentLearnSession } from '@/features/current-learn-session/complete-current-learn-session'
 import { PATH } from '@/shared/config'
 import { getPercent } from '@/shared/utils'
 
@@ -21,7 +19,7 @@ export const LearnCardHeader = ({}: LearnCardHeaderProps) => {
 
   useEffect(() => {
     if (session && session.countOfCompleted === user!.learnGoal) {
-      mutateAsync(undefined).then(() => {
+      mutateAsync().then(() => {
         navigate(`/${PATH.learn_sessions}/${session.id}`)
       })
     }

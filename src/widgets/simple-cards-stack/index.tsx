@@ -12,7 +12,7 @@ type CardsProps = {
 
 export const SimpleCardsStack = ({ moduleId, paginationArgs }: CardsProps) => {
   const { data, isLoading } = useCards({
-    params: {
+    variables: {
       moduleId,
       ...paginationArgs,
     },
@@ -25,7 +25,7 @@ export const SimpleCardsStack = ({ moduleId, paginationArgs }: CardsProps) => {
   return (
     <Stack>
       {data.pages.map((group) => {
-        return group.cards.map((card) => {
+        return group.edges.map(({ node: card }) => {
           return (
             <SimpleCard data={card} key={card.id} rightSection={<CardSettings id={card.id} />} />
           )

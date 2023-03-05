@@ -2,7 +2,7 @@ import { IconTrash } from '@tabler/icons'
 import * as React from 'react'
 import { Menu } from '@mantine/core'
 import { openConfirmModal } from '@mantine/modals'
-import { useDeleteModule } from '@/entities/module'
+import { useDeleteModule } from './use-delete-module'
 
 type DeleteModuleProps = {
   id: string
@@ -16,7 +16,7 @@ export const DeleteModule = (props: DeleteModuleProps) => {
       title: 'Do you want to remove this module with cards?',
       labels: { confirm: 'Confirm', cancel: 'Cancel' },
       onConfirm: async () => {
-        await mutateAsync(props.id)
+        await mutateAsync({ id: props.id })
       },
     })
   }

@@ -3,10 +3,10 @@ import * as React from 'react'
 import { Grid, Group } from '@mantine/core'
 import { Folder, useFolders } from '@/entities/folder'
 import { ModuleCard } from '@/entities/module'
+import { DeleteFolder } from '@/features/folder/delete-folder'
 import { ModuleSettings } from '@/features/module/module-settings'
 import { ErrorAlert, LoadingData, NoData } from '@/shared/ui'
-import { DeleteFolder } from '../../../features/folder/delete-folder'
-import { UpdateFolder } from '../../../features/folder/update-folder'
+import { UpdateFolder } from '@/widgets/update-module'
 
 type FoldersGridProps = {}
 

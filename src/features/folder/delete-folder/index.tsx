@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { ActionIcon, ActionIconProps } from '@mantine/core'
 import { openConfirmModal } from '@mantine/modals'
-import { useDeleteFolder } from '@/entities/folder'
+import { useDeleteFolder } from './use-delete-folder'
 
 type DeleteFolderProps = {
   id: string
@@ -15,7 +15,7 @@ export const DeleteFolder = ({ id, ...actionIconProps }: DeleteFolderProps) => {
       title: 'Do you want to remove this folder? Modules will be saved',
       labels: { confirm: 'Confirm', cancel: 'Cancel' },
       onConfirm: async () => {
-        await mutateAsync(id)
+        await mutateAsync({ id })
       },
     })
   }

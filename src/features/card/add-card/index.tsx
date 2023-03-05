@@ -1,7 +1,7 @@
 import React from 'react'
-import { useCreateCard } from '@/entities/card'
 import { CreateCardDTO } from '@/shared/api'
 import { AddCardForm } from './add-card-form'
+import { useCreateCard } from './use-create-card'
 
 type AddCardProps = {
   previewSection: React.ReactNode

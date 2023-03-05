@@ -1,40 +1,17 @@
-import { useInfiniteQuery } from '@tanstack/react-query'
 import { AxiosError } from 'axios'
-import { API, Card, CardQueryArgs, PageInfo, PaginationArgs, QUERY_KEY } from '@/shared/api'
-import { ExtractFnReturnType, InfiniteQueryConfig } from '@/shared/lib/react-query'
+import { createInfiniteQuery } from 'react-query-kit'
+import { API, Card, CardsQueryParams, Page } from '@/shared/api'
 
-type GetCardsParams = CardQueryArgs & PaginationArgs
-
-export const getCards = async (
-  params: GetCardsParams | undefined,
-  after: string | undefined
-): Promise<{ cards: Card[]; pageInfo: PageInfo; totalCount: number }> => {
-  const { data } = await API.card.getCards({ ...params, after })
-  return {
-    cards: data.edges.map((item) => item.node),
-    pageInfo: data.pageInfo,
-    totalCount: data.totalCount,
-  }
-}
-
-type QueryFnType = typeof getCards
-
-type Options = {
-  params?: GetCardsParams
-  config?: InfiniteQueryConfig<QueryFnType>
-}
-
-export const useCards = ({ config, params }: Options) => {
-  return useInfiniteQuery<ExtractFnReturnType<QueryFnType>, AxiosError>({
-    queryKey: [QUERY_KEY.CARDS, params],
-    queryFn: ({ pageParam = undefined }) => getCards(params, pageParam),
-    getNextPageParam: (lastPage) => {
-      if (lastPage.pageInfo.hasNextPage) {
-        return lastPage.pageInfo.endCursor
-      } else {
-        return undefined
-      }
-    },
-    ...config,
-  })
-}
+export const useCards = createInfiniteQuery<Page<Card>, CardsQueryParams | undefined, AxiosError>({
+  primaryKey: API.card.basePath,
+  queryFn: ({ queryKey: [, variables], pageParam = undefined }) => {
+    return API.card.getCards({ ...variables, after: pageParam }).then((res) => res.data)
+  },
+  getNextPageParam: (lastPage) => {
+    if (lastPage.pageInfo.hasNextPage) {
+      return lastPage.pageInfo.endCursor
+    } else {
+      return undefined
+    }
+  },
+})

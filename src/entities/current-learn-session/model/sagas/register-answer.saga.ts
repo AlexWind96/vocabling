@@ -6,8 +6,7 @@ import {
   resolvePromiseAction,
 } from 'redux-saga-promise-actions'
 import { call, delay, put, takeEvery } from 'redux-saga/effects'
-import { API, QUERY_KEY } from '@/shared/api'
-import { queryClient } from '@/shared/lib/react-query'
+import { API } from '@/shared/api'
 import { actions } from '..'
 
 export const registerAnswer = createPromiseAction('REGISTER_CARD_ANSWER')<
@@ -26,9 +25,6 @@ function* worker(action: PromiseAction<string, { id: string; isRight: boolean },
       yield call(API.card.registerWrongAnswer, action.payload.id)
     }
     yield delay(1000)
-    yield put(actions.cleanState())
-    queryClient.invalidateQueries([QUERY_KEY.CARDS, QUERY_KEY.LEARN_CARD])
-    queryClient.invalidateQueries([QUERY_KEY.CURRENT_LEARN_SESSION])
     resolvePromiseAction(action, null)
   } catch (err) {
     yield put(actions.cleanState())

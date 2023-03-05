@@ -1,9 +1,9 @@
 import * as React from 'react'
 import { Button, ButtonProps, Modal } from '@mantine/core'
 import { useDisclosure } from '@mantine/hooks'
-import { useCreateModule } from '@/entities/module'
 import { CreateModuleDTO } from '@/shared/api'
 import { CreateModuleForm } from './create-module-form'
+import { useCreateModule } from './use-create-module'
 
 type CreateModuleProps = {} & Omit<ButtonProps, 'onClick'>
 

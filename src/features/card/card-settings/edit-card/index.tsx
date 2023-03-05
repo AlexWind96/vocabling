@@ -2,17 +2,22 @@ import { IconEdit } from '@tabler/icons'
 import React from 'react'
 import { Menu } from '@mantine/core'
 import { closeModal, openModal } from '@mantine/modals'
-import { useCard, useUpdateCard } from '@/entities/card'
+import { useCard } from '@/entities/card'
 import { UpdateCardDTO } from '@/shared/api'
 import { LoadingScreen } from '@/shared/ui'
 import { EditCardForm } from './edit-card-form'
+import { useUpdateCard } from './use-update-card'
 
 type EditCardProps = {
   id: string
 }
 
 export const EditCard = (props: EditCardProps) => {
-  const { data, isFetching } = useCard({ id: props.id })
+  const { data, isFetching } = useCard({
+    variables: {
+      id: props.id,
+    },
+  })
   const { mutateAsync } = useUpdateCard()
 
   const handleSubmit = async (data: UpdateCardDTO) => {

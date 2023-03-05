@@ -7,7 +7,9 @@ import { ErrorAlert, LoadingData, NoData } from '@/shared/ui'
 type ModulesGridProps = {}
 
 export const ModulesGrid = ({}: ModulesGridProps) => {
-  const { isError, error, isSuccess, data } = useModules({ params: { folderId: 'without_folder' } })
+  const { isError, error, isSuccess, data } = useModules({
+    variables: { folderId: 'without_folder' },
+  })
 
   if (isSuccess) {
     if (!data.length) {

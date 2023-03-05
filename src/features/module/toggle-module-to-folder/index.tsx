@@ -1,7 +1,7 @@
 import { IconMinus, IconPlus } from '@tabler/icons'
 import * as React from 'react'
 import { ActionIcon } from '@mantine/core'
-import { useToggleToFolder } from '@/entities/module'
+import { useUpdateModule } from '../use-update-module'
 
 type ToggleModuleToFolderProps = {
   moduleId: string
@@ -14,12 +14,18 @@ export const ToggleModuleToFolder = ({
   moduleId,
   hasFolder,
 }: ToggleModuleToFolderProps) => {
-  const { mutateAsync, isLoading } = useToggleToFolder()
-  const handleClick = async () => {
+  const { mutate, isLoading, error } = useUpdateModule()
+  console.log(error)
+  const handleClick = () => {
     if (hasFolder) {
-      await mutateAsync({ id: moduleId, folderId: null })
+      mutate({ id: moduleId, body: { folderId: null } })
     } else {
-      await mutateAsync({ id: moduleId, folderId: folderId })
+      mutate({
+        id: moduleId,
+        body: {
+          folderId,
+        },
+      })
     }
   }
   return (

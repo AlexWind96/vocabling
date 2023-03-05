@@ -17,7 +17,7 @@ export const ModulePage = () => {
 
       <Grid align={'center'}>
         <Grid.Col span={6} md={3} order={1} orderMd={1}>
-          <ModuleTitle moduleId={id as string} />
+          <ModuleTitle moduleId={id!} />
         </Grid.Col>
         <Grid.Col span={6} md={3} order={2} orderMd={3}>
           <div className={'flex justify-end'}>

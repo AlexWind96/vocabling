@@ -2,9 +2,10 @@ import { IconCursorText } from '@tabler/icons'
 import React from 'react'
 import { Menu } from '@mantine/core'
 import { closeModal, openModal } from '@mantine/modals'
-import { useModule, useUpdateModule } from '@/entities/module'
+import { useModule } from '@/entities/module'
 import { UpdateModuleDTO } from '@/shared/api'
 import { LoadingScreen } from '@/shared/ui'
+import { useUpdateModule } from '../../use-update-module'
 import { RenameModuleForm } from './rename-module-form'
 
 type RenameModuleProps = {
@@ -12,7 +13,7 @@ type RenameModuleProps = {
 }
 
 export const RenameModule = (props: RenameModuleProps) => {
-  const { data, isFetching } = useModule({ id: props.id })
+  const { data, isFetching } = useModule({ variables: { id: props.id } })
   const { mutateAsync } = useUpdateModule()
 
   const handleSubmit = async (data: UpdateModuleDTO) => {

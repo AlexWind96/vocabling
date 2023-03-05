@@ -2,7 +2,7 @@ import * as React from 'react'
 import { ActionIcon, ActionIconProps, Modal, ScrollArea, Stack, Text } from '@mantine/core'
 import { useDisclosure } from '@mantine/hooks'
 import { ModuleCard, useModules } from '@/entities/module'
-import { ToggleModuleToFolder } from './toggle-module-to-folder'
+import { ToggleModuleToFolder } from '@/features/module'
 
 type UpdateFolderProps = {
   folderId: string
@@ -10,7 +10,7 @@ type UpdateFolderProps = {
 
 export const UpdateFolder = ({ folderId, ...actionIconProps }: UpdateFolderProps) => {
   const [opened, { open, close }] = useDisclosure(false)
-  const { data } = useModules({ params: { folderId: 'without_folder' } })
+  const { data } = useModules({ variables: { folderId: 'without_folder' } })
   return (
     <>
       <Modal opened={opened} onClose={close} title={<Text fw={'bold'}>Add modules</Text>}>

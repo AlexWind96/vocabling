@@ -1,23 +1,10 @@
-import { useQuery } from '@tanstack/react-query'
 import { AxiosError } from 'axios'
-import { API, LearnSession, QUERY_KEY } from '@/shared/api'
-import { ExtractFnReturnType, QueryConfig } from '@/shared/lib/react-query'
+import { createQuery } from 'react-query-kit'
+import { API, LearnSession, Page } from '@/shared/api'
 
-const getLearnSessions = async (): Promise<LearnSession[]> => {
-  const { data } = await API.learnSession.getLearnSessions()
-  return data.edges.map((item) => item.node)
-}
-
-type QueryFnType = typeof getLearnSessions
-
-type Options = {
-  config?: QueryConfig<QueryFnType>
-}
-
-export const useLearnSessions = ({ config }: Options = {}) => {
-  return useQuery<ExtractFnReturnType<QueryFnType>, AxiosError>({
-    queryKey: [QUERY_KEY.LEARN_SESSIONS],
-    queryFn: getLearnSessions,
-    ...config,
-  })
-}
+export const useLearnSessions = createQuery<Page<LearnSession>, void, AxiosError>({
+  primaryKey: API.learnSession.basePath,
+  queryFn: () => {
+    return API.learnSession.getLearnSessions().then((res) => res.data)
+  },
+})

@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { Controller, useFormContext, useWatch } from 'react-hook-form'
 import { Chip, Text } from '@mantine/core'
-import { getSentenceUnits } from '../../../../helpers'
+import { getSentenceUnits } from '../../helpers'
 import { CardFormValues } from '../model'
 
 export const Phrase = () => {

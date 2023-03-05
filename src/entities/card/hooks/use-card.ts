@@ -1,24 +1,10 @@
-import { useQuery } from '@tanstack/react-query'
 import { AxiosError } from 'axios'
-import { API, Card, QUERY_KEY } from '@/shared/api'
-import { ExtractFnReturnType, QueryConfig } from '@/shared/lib/react-query'
+import { createQuery } from 'react-query-kit'
+import { API, Card } from '@/shared/api'
 
-export const getCard = async (id: string): Promise<Card> => {
-  const { data } = await API.card.getCardById(id)
-  return data
-}
-
-type QueryFnType = typeof getCard
-
-type UseModuleOptions = {
-  id: string
-  config?: QueryConfig<QueryFnType>
-}
-
-export const useCard = ({ id, config }: UseModuleOptions) => {
-  return useQuery<ExtractFnReturnType<QueryFnType>, AxiosError>({
-    ...config,
-    queryKey: [QUERY_KEY.CARDS, id],
-    queryFn: () => getCard(id),
-  })
-}
+export const useCard = createQuery<Card, { id: string }, AxiosError>({
+  primaryKey: API.card.basePath,
+  queryFn: ({ queryKey: [, vars] }) => {
+    return API.card.getCardById(vars.id).then((res) => res.data)
+  },
+})

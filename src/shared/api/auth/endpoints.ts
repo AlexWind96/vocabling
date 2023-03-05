@@ -61,28 +61,24 @@ export class AuthEndpoints extends Endpoints {
       },
       async (err) => {
         const originalConfig = err.config
-
         if (err.response) {
           switch (err.response.status) {
             case 401: {
               if (originalConfig.url === 'auth/refresh') {
+                jwtTokenService.removeTokens()
                 dispatch({ type: 'auth/cleanAuthData' })
               } else {
                 originalConfig._retry = true
                 try {
                   const { data } = await this.refreshToken()
                   jwtTokenService.updateTokens(data)
-                  return this.instance(originalConfig)
+                  return this.instance(originalConfig.url, {
+                    ...originalConfig,
+                    data: originalConfig?.data ? JSON.parse(originalConfig.data) : undefined,
+                  })
                 } catch (_error) {
-                  dispatch({ type: 'auth/cleanAuthData' })
                   return Promise.reject(_error)
                 }
-              }
-              break
-            }
-            case 403: {
-              if (originalConfig.url === 'auth/refresh') {
-                jwtTokenService.removeTokens()
               }
               break
             }
