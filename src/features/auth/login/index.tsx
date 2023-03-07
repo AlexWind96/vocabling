@@ -9,6 +9,7 @@ import * as Yup from 'yup'
 import { Alert, Button, PasswordInput, TextInput } from '@mantine/core'
 import { auth } from '@/entities/auth'
 import { PATH } from '@/shared/config'
+import { ServerError } from '../../../shared/api'
 
 export type LoginFormValues = {
   email: string
@@ -41,8 +42,8 @@ export const Login = () => {
       navigate(`/${PATH.app}`, { replace: true })
       reset()
     } catch (err) {
-      const serverError = err as AxiosError
-      setAlertError(serverError.message || 'error')
+      const serverError = err as AxiosError<ServerError>
+      setAlertError(serverError.response?.data.message || 'Error')
     }
   }
 

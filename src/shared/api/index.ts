@@ -1,5 +1,4 @@
 export { API } from './api-service'
-export * from './query-keys'
 export * from './auth/models'
 export * from './card/model'
 export * from './module/models'

@@ -6,7 +6,7 @@ import {
   resolvePromiseAction,
 } from 'redux-saga-promise-actions'
 import { call, put, takeEvery } from 'redux-saga/effects'
-import { API, RegisterBody, Tokens } from '@/shared/api'
+import { API, RegisterBody, ServerError, Tokens } from '@/shared/api'
 import { jwtTokenService } from '@/shared/lib/jwt-token-service'
 import { login } from './login-saga'
 
@@ -20,9 +20,8 @@ function* worker(action: PromiseAction<string, RegisterBody, any>) {
     yield put(login.success(user))
     resolvePromiseAction(action, user)
   } catch (err) {
-    console.log(err)
-    const error = err as AxiosError
-    rejectPromiseAction(action, error.message)
+    const error = err as AxiosError<ServerError>
+    rejectPromiseAction(action, error)
   }
 }
 

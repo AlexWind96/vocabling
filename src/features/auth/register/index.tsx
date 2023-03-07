@@ -43,7 +43,7 @@ export const Register = () => {
       reset()
     } catch (err) {
       const serverError = err as AxiosError
-      setAlertError(serverError?.message || 'Error')
+      setAlertError(serverError.response?.data?.message || 'Error')
     }
   }
 

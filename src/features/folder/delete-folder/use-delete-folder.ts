@@ -1,7 +1,8 @@
 import { AxiosError } from 'axios'
 import { createMutation } from 'react-query-kit'
 import { useFolders } from '@/entities/folder'
-import { API, Folder, QUERY_KEY } from '@/shared/api'
+import { useModules } from '@/entities/module'
+import { API, Folder } from '@/shared/api'
 import { queryClient } from '@/shared/lib/react-query'
 
 export const useDeleteFolder = createMutation<Folder, { id: string }, AxiosError>(
@@ -11,7 +12,7 @@ export const useDeleteFolder = createMutation<Folder, { id: string }, AxiosError
   {
     onSettled: () => {
       queryClient.invalidateQueries(useFolders.getKey())
-      queryClient.invalidateQueries([QUERY_KEY.MODULES])
+      queryClient.invalidateQueries([useModules.getKey()])
     },
   }
 )

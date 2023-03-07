@@ -6,7 +6,7 @@ import {
   resolvePromiseAction,
 } from 'redux-saga-promise-actions'
 import { call, put, takeEvery } from 'redux-saga/effects'
-import { API, LoginBody } from '@/shared/api'
+import { API, LoginBody, ServerError } from '@/shared/api'
 import { jwtTokenService } from '@/shared/lib/jwt-token-service'
 
 export const login = createPromiseAction('AUTH_LOGIN')<LoginBody, null, AxiosError>()
@@ -19,8 +19,8 @@ function* worker(action: PromiseAction<string, LoginBody, any>) {
     yield put(login.success(user))
     resolvePromiseAction(action, user)
   } catch (err) {
-    const error = err as AxiosError
-    rejectPromiseAction(action, error.message)
+    const error = err as AxiosError<ServerError>
+    rejectPromiseAction(action, error)
   }
 }
 

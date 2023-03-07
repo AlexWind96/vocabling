@@ -40,3 +40,9 @@ export enum SortType {
   Asc = 'asc',
   Desc = 'desc',
 }
+
+export type ServerError = {
+  error: string
+  message: string
+  statusCode: number
+}
