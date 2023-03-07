@@ -5,7 +5,7 @@ import {
   rejectPromiseAction,
   resolvePromiseAction,
 } from 'redux-saga-promise-actions'
-import { call, delay, put, takeEvery } from 'redux-saga/effects'
+import { call, put, takeEvery } from 'redux-saga/effects'
 import { API } from '@/shared/api'
 import { actions } from '..'
 
@@ -24,7 +24,7 @@ function* worker(action: PromiseAction<string, { id: string; isRight: boolean },
       yield put(actions.makeAnswer(false))
       yield call(API.card.registerWrongAnswer, action.payload.id)
     }
-    yield delay(1000)
+    yield put(actions.cleanState())
     resolvePromiseAction(action, null)
   } catch (err) {
     yield put(actions.cleanState())
