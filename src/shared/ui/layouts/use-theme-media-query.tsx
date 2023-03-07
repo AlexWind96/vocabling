@@ -15,11 +15,11 @@ export function useThemeMediaQuery(): UseThemeMediaQueryReturnType {
   const { breakpoints } = useMantineTheme()
   const getMediaQueryBooleans = useCallback(() => {
     return {
-      isXS: width >= breakpoints.xs,
-      isSM: width >= breakpoints.sm,
-      isMD: width >= breakpoints.md,
-      isLG: width >= breakpoints.lg,
-      isXL: width >= breakpoints.xl,
+      isXS: window.matchMedia(`(min-width: ${breakpoints.xs}px)`).matches,
+      isSM: window.matchMedia(`(min-width: ${breakpoints.sm}px)`).matches,
+      isMD: window.matchMedia(`(min-width: ${breakpoints.md}px)`).matches,
+      isLG: window.matchMedia(`(min-width: ${breakpoints.lg}px)`).matches,
+      isXL: window.matchMedia(`(min-width: ${breakpoints.xl}px)`).matches,
     }
   }, [width])
 
