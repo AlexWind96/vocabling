@@ -9,7 +9,7 @@ import { lazyImport } from '@/shared/utils'
 
 const { ModulesPage } = lazyImport(() => import('./modules'), 'ModulesPage')
 const { ModulePage } = lazyImport(() => import('./modules/[id]'), 'ModulePage')
-const { AllCardsPage } = lazyImport(() => import('./modules/all-cards'), 'AllCardsPage')
+const { AllCardsPage } = lazyImport(() => import('./all-cards'), 'AllCardsPage')
 const { AddCardsPage } = lazyImport(() => import('./modules/[id]/add-cards'), 'AddCardsPage')
 const { CardsLearningSettingsPage } = lazyImport(
   () => import('./learn'),
@@ -72,7 +72,7 @@ const privateRoutes: PrivateRouteType[] = [
     roles: [ROLE.User, ROLE.Admin],
   },
   {
-    path: `${PATH.modules}/${PATH.all_cards}`,
+    path: `${PATH.all_cards}`,
     element: <AllCardsPage />,
     roles: [ROLE.User, ROLE.Admin],
   },

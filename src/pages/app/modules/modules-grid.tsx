@@ -19,7 +19,7 @@ export const ModulesGrid = ({}: ModulesGridProps) => {
       <Grid>
         {data.map((module) => {
           return (
-            <Grid.Col span={12} xs={3} key={module.id}>
+            <Grid.Col span={12} xs={6} sm={4} key={module.id}>
               <ModuleCard
                 data={module}
                 actions={<ModuleSettings folderId={module.folderId} id={module.id} />}

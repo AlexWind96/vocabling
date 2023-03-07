@@ -23,7 +23,7 @@ export const ModuleCard = ({ data, actions }: ModuleCardProps) => {
             {data.label}
           </Text>
           <Text color={'slate.5'} fz={14} fw={'bold'}>
-            Cards: {data._count?.cards && ''}
+            Cards: {data._count?.cards || 0}
           </Text>
         </Stack>
         {actions}

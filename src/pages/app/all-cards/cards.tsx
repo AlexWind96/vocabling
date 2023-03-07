@@ -26,7 +26,12 @@ export const Cards = ({ keywords }: CardsProps) => {
           }
           return group.edges.map(({ node: card }) => {
             return (
-              <SimpleCard key={card.id} data={card} rightSection={<CardSettings id={card.id} />} />
+              <SimpleCard
+                showModule
+                key={card.id}
+                data={card}
+                rightSection={<CardSettings id={card.id} />}
+              />
             )
           })
         })}

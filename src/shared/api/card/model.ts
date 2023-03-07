@@ -1,3 +1,4 @@
+import { Module } from '../module'
 import { PaginationArgs, SortType } from '../types'
 
 export type Card = {
@@ -12,6 +13,7 @@ export type Card = {
   notes: string | null
   moduleId: string
   progress?: CardLearnProgress
+  module?: Module
 }
 
 export enum LEARN_STATUS {

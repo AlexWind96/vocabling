@@ -1,10 +1,8 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 import { Plus } from 'tabler-icons-react'
-import { Button, Divider, Group, Stack, Title } from '@mantine/core'
+import { Divider, Group, Stack, Title } from '@mantine/core'
 import { CreateFolder } from '@/features/folder/create-folder'
 import { CreateModule } from '@/features/module'
-import { PATH } from '@/shared/config'
 import { FoldersGrid } from './folders-grid'
 import { ModulesGrid } from './modules-grid'
 
@@ -14,9 +12,6 @@ export const ModulesPage = () => {
       <Group position={'apart'}>
         <Title>Learn Modules</Title>
         <Group>
-          <Button color={'amber'} component={Link} to={PATH.all_cards}>
-            All cards
-          </Button>
           <CreateModule color={'green'} leftIcon={<Plus />}>
             Create module
           </CreateModule>

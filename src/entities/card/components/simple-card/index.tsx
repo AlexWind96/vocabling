@@ -1,5 +1,5 @@
 import React from 'react'
-import { Accordion, Box, Group, Paper, Stack, Text } from '@mantine/core'
+import { Accordion, Badge, Box, Group, Paper, Stack, Text } from '@mantine/core'
 import { Card } from '@/shared/api'
 import { Progress } from './progress'
 import { Sentence } from './sentence'
@@ -9,6 +9,7 @@ type CardViewProps = {
   rightSection: React.ReactNode
   isGraterProgress?: boolean
   hideStudyPhrase?: boolean
+  showModule?: boolean
 }
 
 const hasAdditionalInfo = (notes: string | null, sentence: string | null) => {
@@ -28,6 +29,7 @@ export const SimpleCard = ({
   rightSection,
   isGraterProgress,
   hideStudyPhrase = false,
+  showModule = false,
 }: CardViewProps) => {
   const diff = isGraterProgress ? 1 : 0
 
@@ -39,7 +41,17 @@ export const SimpleCard = ({
         <Box p={'xs'}>
           <Stack spacing={'sm'}>
             <Group position={'apart'} align={'start'}>
-              {data.progress && <Progress progress={data.progress.step + diff} />}
+              {data.progress && (
+                <div className={'flex gap-4'}>
+                  {data.progress && <Progress progress={data.progress.step + diff} />}
+                  {data.module && showModule && (
+                    <Badge color={'slate.4'} size={'xs'}>
+                      {data.module.label}
+                    </Badge>
+                  )}
+                </div>
+              )}
+
               {rightSection}
             </Group>
             <Stack spacing={'xs'}>

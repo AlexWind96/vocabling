@@ -1,4 +1,6 @@
+import { IconPlus } from '@tabler/icons'
 import * as React from 'react'
+import { Link } from 'react-router-dom'
 import { DotsVertical } from 'tabler-icons-react'
 import { ActionIcon, Menu } from '@mantine/core'
 import { useDisclosure } from '@mantine/hooks'
@@ -22,6 +24,9 @@ export const ModuleSettings = ({ id, folderId }: ModuleSettingsProps) => {
       </Menu.Target>
       <Menu.Dropdown>
         <Menu.Label>Settings</Menu.Label>
+        <Menu.Item icon={<IconPlus size={14} />} component={Link} to={`${id}/add-cards`}>
+          Add cards
+        </Menu.Item>
         <RenameModule id={id} />
         {folderId && <RemoveFromFolder id={id} />}
         <DeleteModule id={id} />
