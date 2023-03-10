@@ -1,7 +1,7 @@
 import React from 'react'
 import { Navigate } from 'react-router-dom'
 import { mapNavbarLinksByRole } from '@/entities/navigation'
-import { Logout } from '@/features/auth'
+import { Logout } from '@/features/auth/logout'
 import { ROLE } from '@/shared/api'
 import { PATH } from '@/shared/config'
 import { DashboardLayout, LoadingScreen } from '@/shared/ui'

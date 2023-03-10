@@ -1,10 +1,11 @@
 import React from 'react'
 import { Plus } from 'tabler-icons-react'
-import { Divider, Group, Stack, Title } from '@mantine/core'
+import { Divider, Grid, Group, Stack, Title } from '@mantine/core'
 import { CreateFolder } from '@/features/folder/create-folder'
-import { CreateModule } from '@/features/module'
-import { FoldersGrid } from './folders-grid'
-import { ModulesGrid } from './modules-grid'
+import { CreateModule } from '@/features/module/create-module'
+import { QueryErrorBoundary, QuerySuspense, QueryWrapper } from '@/shared/lib/react-query'
+import { FoldersStack } from '@/widgets/folder-stack'
+import { ModulesGrid } from '@/widgets/modules-grid'
 
 export const ModulesPage = () => {
   return (
@@ -21,9 +22,19 @@ export const ModulesPage = () => {
         </Group>
       </Group>
       <Divider my="sm" label="Folders" labelProps={{ fz: 14, c: 'slate.4', fw: 'bold' }} />
-      <FoldersGrid />
+      <Grid gutter={20}>
+        <Grid.Col>
+          <QueryWrapper>
+            <FoldersStack />
+          </QueryWrapper>
+        </Grid.Col>
+      </Grid>
       <Divider label="Modules" labelProps={{ fz: 14, c: 'slate.4', fw: 'bold' }} my="xs" />
-      <ModulesGrid />
+      <QueryErrorBoundary>
+        <QuerySuspense>
+          <ModulesGrid folderId={'without_folder'} />
+        </QuerySuspense>
+      </QueryErrorBoundary>
     </Stack>
   )
 }

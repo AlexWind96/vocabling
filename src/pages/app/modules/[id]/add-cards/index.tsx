@@ -2,9 +2,10 @@ import React from 'react'
 import { useParams } from 'react-router-dom'
 import { Badge, Grid, Group, Title } from '@mantine/core'
 import { useModuleTitle } from '@/entities/module'
-import { AddCard } from '@/features/card'
+import { AddCard } from '@/features/card/add-card'
+import { QueryWrapper } from '@/shared/lib/react-query'
 import { BackAnchor, ScrollToTop } from '@/shared/ui'
-import { SimpleCardsStack } from '@/widgets/simple-cards-stack'
+import { CardsStack } from '@/widgets/cards-stack'
 
 export const AddCardsPage = () => {
   const { id } = useParams()
@@ -24,7 +25,9 @@ export const AddCardsPage = () => {
         <Grid.Col>
           <AddCard
             previewSection={
-              <SimpleCardsStack moduleId={id as string} paginationArgs={{ first: 3 }} />
+              <QueryWrapper>
+                <CardsStack params={{ moduleId: id as string, first: 3 }} />
+              </QueryWrapper>
             }
           />
         </Grid.Col>

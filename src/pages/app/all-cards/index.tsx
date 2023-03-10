@@ -2,8 +2,9 @@ import React, { useState } from 'react'
 import { X } from 'tabler-icons-react'
 import { ActionIcon, Grid, Stack, TextInput, Title } from '@mantine/core'
 import { useDebouncedValue } from '@mantine/hooks'
+import { QueryWrapper } from '@/shared/lib/react-query'
 import { ScrollToTop } from '@/shared/ui'
-import { Cards } from './cards'
+import { CardsStack } from '@/widgets/cards-stack'
 
 export const AllCardsPage = () => {
   const [value, setValue] = useState('')
@@ -30,7 +31,9 @@ export const AllCardsPage = () => {
       <Grid>
         <Grid.Col span={1} sm={2} md={3} />
         <Grid.Col span={12} sm={8} md={6}>
-          <Cards keywords={debounced} />
+          <QueryWrapper>
+            <CardsStack params={{ keywords: debounced || undefined, first: 10 }} showModules />
+          </QueryWrapper>
         </Grid.Col>
         <Grid.Col span={1} sm={2} md={3} />
       </Grid>

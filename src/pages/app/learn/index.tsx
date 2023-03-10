@@ -3,10 +3,8 @@ import { useNavigate } from 'react-router-dom'
 import { Grid, Group, Progress, Stack, Title } from '@mantine/core'
 import { useAuth } from '@/entities/auth/hooks'
 import { useCurrentLearnSession } from '@/entities/current-learn-session'
-import {
-  StartCurrentLearnSession,
-  useUpdateCurrentLearnSession,
-} from '@/features/current-learn-session'
+import { StartCurrentLearnSession } from '@/features/current-learn-session/start-current-learn-session'
+import { useUpdateCurrentLearnSession } from '@/features/current-learn-session/update-current-learn-session'
 import { UpdateCurrentLearnSessionDto } from '@/shared/api'
 import { getPercent } from '@/shared/utils'
 

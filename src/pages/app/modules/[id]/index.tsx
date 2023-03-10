@@ -3,9 +3,10 @@ import { Link, useParams } from 'react-router-dom'
 import { Plus, X } from 'tabler-icons-react'
 import { ActionIcon, Button, Grid, Stack, TextInput } from '@mantine/core'
 import { useDebouncedValue } from '@mantine/hooks'
-import { ModuleTitle } from '@/features/module'
+import { ModuleTitle } from '@/features/module/module-title'
+import { QueryWrapper } from '@/shared/lib/react-query'
 import { BackAnchor, ScrollToTop } from '@/shared/ui'
-import { Cards } from './cards'
+import { CardsStack } from '@/widgets/cards-stack'
 
 export const ModulePage = () => {
   const { id } = useParams()
@@ -42,7 +43,11 @@ export const ModulePage = () => {
       <Grid>
         <Grid.Col span={1} sm={2} md={3} />
         <Grid.Col span={12} sm={8} md={6}>
-          <Cards moduleId={id as string} keywords={debounced} />
+          <QueryWrapper>
+            <CardsStack
+              params={{ moduleId: id as string, keywords: debounced || undefined, first: 10 }}
+            />
+          </QueryWrapper>
         </Grid.Col>
         <Grid.Col span={1} sm={2} md={3} />
       </Grid>
