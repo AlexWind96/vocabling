@@ -1,5 +1,6 @@
 import axios, { AxiosInstance } from 'axios'
-import { API_URL } from '../config'
+import { API_URL, isDevEnv } from '../config'
+import { sleep } from '../utils'
 import { AuthEndpoints } from './auth'
 import { CardEndpoints } from './card'
 import { CurrentLearnSessionEndpoints } from './current-learn-session'
@@ -28,6 +29,16 @@ export class ApiService {
     this.folder = new FolderEndpoints(instance)
     this.learnSession = new LearnSessionEndpoints(instance)
     this.module = new ModuleEndpoints(instance)
+  }
+
+  registerGlobalInterceptors = () => {
+    this.instance.interceptors.response.use(async (response) => {
+      // add artificial delay for dev env
+      if (isDevEnv) {
+        await sleep(4000)
+      }
+      return response
+    })
   }
 }
 
