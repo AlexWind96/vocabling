@@ -3,11 +3,11 @@ import { Controller, useFormContext } from 'react-hook-form'
 import { Plus } from 'tabler-icons-react'
 import { Button, Stack } from '@mantine/core'
 import { useDisclosure } from '@mantine/hooks'
-import { CardFormValues } from '../model'
+import { AddCardFormValues } from '../index'
 import { NoteEditor } from './note-editor'
 
 export function Note() {
-  const { control, formState } = useFormContext<CardFormValues>()
+  const { control, formState } = useFormContext<AddCardFormValues>()
   const [isNotes, handlers] = useDisclosure(false)
 
   const handleClick = () => {

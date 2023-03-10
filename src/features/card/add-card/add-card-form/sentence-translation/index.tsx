@@ -4,10 +4,10 @@ import { Plus, X } from 'tabler-icons-react'
 import { ActionIcon, Button, Stack } from '@mantine/core'
 import { useDisclosure } from '@mantine/hooks'
 import { TextareaController } from '@/shared/ui'
-import { CardFormValues } from '../model'
+import { AddCardFormValues } from '../index'
 
 export const SentenceTranslation = () => {
-  const { control, setFocus } = useFormContext<CardFormValues>()
+  const { control, setFocus } = useFormContext<AddCardFormValues>()
   const [isSentenceTranslation, handlers] = useDisclosure(false)
 
   const openField = () => {

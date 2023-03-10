@@ -1,12 +1,11 @@
-import { yupResolver } from '@hookform/resolvers/yup'
+import { zodResolver } from '@hookform/resolvers/zod'
 import * as React from 'react'
 import { FormProvider, SubmitHandler, useForm } from 'react-hook-form'
 import { useParams } from 'react-router-dom'
-import * as Yup from 'yup'
+import { z } from 'zod'
 import { Button, Grid, Stack } from '@mantine/core'
 import { CreateCardDTO } from '@/shared/api'
 import { addStudyPhraseToSentence, getSentenceUnits } from '../helpers'
-import { CardFormValues } from './model'
 import { Note } from './note'
 import { Phrase } from './phrase'
 import { PhraseTranslation } from './phrase-translation'
@@ -14,13 +13,15 @@ import { PreviewCardSection } from './preview-card-section'
 import { Sentence } from './sentence'
 import { SentenceTranslation } from './sentence-translation'
 
-const CREATE_FORM_DEFAULT_VALUES: CardFormValues = {
-  sentenceTranslation: '',
-  sentence: '',
-  phrase: [],
-  notes: '<p></p>',
-  phraseTranslation: '',
-}
+const addCardSchema = z.object({
+  sentenceTranslation: z.string().optional(),
+  sentence: z.string(),
+  phrase: z.array(z.string()).min(1),
+  phraseTranslation: z.string(),
+  notes: z.string(),
+})
+
+export type AddCardFormValues = z.infer<typeof addCardSchema>
 
 type CreateCardFormProps = {
   onSubmit: (values: CreateCardDTO) => Promise<void>
@@ -29,16 +30,16 @@ type CreateCardFormProps = {
 
 export const AddCardForm = (props: CreateCardFormProps) => {
   const { id } = useParams()
-  const methods = useForm<CardFormValues>({
-    resolver: yupResolver(
-      Yup.object().shape({
-        sentence: Yup.string().required(),
-        phraseTranslation: Yup.string().required(),
-        phrase: Yup.array().min(1),
-      })
-    ),
+  const methods = useForm<AddCardFormValues>({
+    resolver: zodResolver(addCardSchema),
     mode: 'onChange',
-    defaultValues: CREATE_FORM_DEFAULT_VALUES,
+    defaultValues: {
+      sentenceTranslation: '',
+      sentence: '',
+      phrase: [],
+      notes: '<p></p>',
+      phraseTranslation: '',
+    },
   })
   const {
     reset,
@@ -46,7 +47,7 @@ export const AddCardForm = (props: CreateCardFormProps) => {
     formState: { isSubmitting },
   } = methods
 
-  const onSubmit: SubmitHandler<CardFormValues> = async (data) => {
+  const onSubmit: SubmitHandler<AddCardFormValues> = async (data) => {
     const card: CreateCardDTO = {
       moduleId: id as string,
       notes: data.notes,
@@ -59,7 +60,7 @@ export const AddCardForm = (props: CreateCardFormProps) => {
     reset()
   }
   return (
-    <FormProvider<CardFormValues> {...methods}>
+    <FormProvider<AddCardFormValues> {...methods}>
       <Grid>
         <Grid.Col md={6}>
           <form onSubmit={handleSubmit(onSubmit)}>

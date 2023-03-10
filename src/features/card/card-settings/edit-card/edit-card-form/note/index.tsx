@@ -1,10 +1,10 @@
 import React from 'react'
 import { Controller, useFormContext } from 'react-hook-form'
-import { CardFormValues } from '../model'
+import { EditCardFormValues } from '../index'
 import { NoteEditor } from './note-editor'
 
 export function Note() {
-  const { control, formState } = useFormContext<CardFormValues>()
+  const { control, formState } = useFormContext<EditCardFormValues>()
 
   return (
     <Controller

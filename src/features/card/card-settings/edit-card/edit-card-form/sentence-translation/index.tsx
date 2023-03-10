@@ -1,10 +1,10 @@
 import React from 'react'
 import { useFormContext } from 'react-hook-form'
 import { TextareaController } from '@/shared/ui'
-import { CardFormValues } from '../model'
+import { EditCardFormValues } from '../index'
 
 export const SentenceTranslation = () => {
-  const { control } = useFormContext<CardFormValues>()
+  const { control } = useFormContext<EditCardFormValues>()
 
   return (
     <TextareaController

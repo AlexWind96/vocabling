@@ -1,5 +1,5 @@
 import { Card, CreateSentenceUnitDto } from '@/shared/api'
-import { CardFormValues } from './model'
+import { EditCardFormValues } from './index'
 
 export const getSentenceUnits = (sentence: string): CreateSentenceUnitDto[] => {
   const notLettersReg = /[^'’\s\p{L}\p{N}\p{M}-]+/gu
@@ -36,7 +36,7 @@ export const addStudyPhraseToSentence = (
   })
 }
 
-export const getInitialEditCardValues = (card: Card): CardFormValues => {
+export const getInitialEditCardValues = (card: Card): EditCardFormValues => {
   return {
     sentence: card.sentenceText,
     phrase: card.sentence

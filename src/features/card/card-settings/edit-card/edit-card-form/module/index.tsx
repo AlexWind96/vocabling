@@ -2,13 +2,13 @@ import React from 'react'
 import { useFormContext } from 'react-hook-form'
 import { useModules } from '@/entities/module'
 import { SelectController } from '@/shared/ui'
-import { CardFormValues } from '../model'
+import { EditCardFormValues } from '../index'
 
 export const Module = () => {
   const {
     control,
     formState: { errors },
-  } = useFormContext<CardFormValues>()
+  } = useFormContext<EditCardFormValues>()
   const { data, isLoading } = useModules()
   const modules = data
     ? data.map((module) => {

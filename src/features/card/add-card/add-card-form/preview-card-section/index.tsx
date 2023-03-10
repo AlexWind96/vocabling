@@ -3,10 +3,10 @@ import { useFormContext } from 'react-hook-form'
 import { PreviewCard } from '@/entities/card'
 import { CreateCardDTO } from '@/shared/api'
 import { addStudyPhraseToSentence, getSentenceUnits } from '../../helpers'
-import { CardFormValues } from '../model'
+import { AddCardFormValues } from '../index'
 
 export const PreviewCardSection = () => {
-  const { watch } = useFormContext<CardFormValues>()
+  const { watch } = useFormContext<AddCardFormValues>()
   const data: Pick<
     CreateCardDTO,
     'sentence' | 'sentenceTranslation' | 'phraseTranslation' | 'notes'

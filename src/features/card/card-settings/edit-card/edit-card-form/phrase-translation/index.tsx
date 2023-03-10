@@ -1,13 +1,13 @@
 import React from 'react'
 import { useFormContext } from 'react-hook-form'
 import { TextareaController } from '@/shared/ui'
-import { CardFormValues } from '../model'
+import { EditCardFormValues } from '../index'
 
 export const PhraseTranslation = () => {
   const {
     control,
     formState: { errors },
-  } = useFormContext<CardFormValues>()
+  } = useFormContext<EditCardFormValues>()
   return (
     <TextareaController
       autosize

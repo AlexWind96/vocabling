@@ -2,10 +2,10 @@ import React, { useEffect } from 'react'
 import { Controller, useFormContext, useWatch } from 'react-hook-form'
 import { Chip, Text } from '@mantine/core'
 import { getSentenceUnits } from '../helpers'
-import { CardFormValues } from '../model'
+import { EditCardFormValues } from '../index'
 
 export const Phrase = () => {
-  const { control, setValue, formState } = useFormContext<CardFormValues>()
+  const { control, setValue, formState } = useFormContext<EditCardFormValues>()
   const sentence = useWatch({
     control,
     name: 'sentence',
