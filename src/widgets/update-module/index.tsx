@@ -2,7 +2,7 @@ import * as React from 'react'
 import { ActionIcon, ActionIconProps, Modal, ScrollArea, Stack, Text } from '@mantine/core'
 import { useDisclosure } from '@mantine/hooks'
 import { ModuleCard, useModules } from '@/entities/module'
-import { ToggleModuleToFolder } from '@/features/module'
+import { ToggleModuleToFolder } from '@/features/module/toggle-module-to-folder'
 
 type UpdateFolderProps = {
   folderId: string

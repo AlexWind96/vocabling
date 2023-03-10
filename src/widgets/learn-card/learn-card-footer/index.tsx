@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux'
 import { Button, Group, Skeleton } from '@mantine/core'
 import { useLearnCard } from '@/entities/card'
 import { currentLearnSession, useCurrentLearnSession } from '@/entities/current-learn-session'
-import { RegisterAnswer } from '@/features/current-learn-session'
+import { RegisterAnswer } from '@/features/current-learn-session/register-answer'
 import { useTypedSelector } from '@/shared/hooks'
 import { queryClient } from '@/shared/lib/react-query'
 
