@@ -1,25 +1,25 @@
-import { yupResolver } from '@hookform/resolvers/yup'
+import { zodResolver } from '@hookform/resolvers/zod'
 import * as React from 'react'
 import { FormProvider, SubmitHandler, useForm } from 'react-hook-form'
-import * as Yup from 'yup'
+import { z } from 'zod'
 import { Button, Stack } from '@mantine/core'
-import { Module, UpdateModuleDTO } from '@/shared/api'
+import { UpdateModuleDTO } from '@/shared/api'
 import { TextInputController } from '@/shared/ui'
-
-type RenameModuleFormValues = Pick<Module, 'label'>
 
 type RenameModuleFormProps = {
   defaultValues: RenameModuleFormValues
   onSubmit: (values: UpdateModuleDTO) => Promise<void>
 }
 
+const renameModuleFormSchema = z.object({
+  label: z.string(),
+})
+
+type RenameModuleFormValues = z.infer<typeof renameModuleFormSchema>
+
 export const RenameModuleForm = (props: RenameModuleFormProps) => {
   const methods = useForm<RenameModuleFormValues>({
-    resolver: yupResolver(
-      Yup.object().shape({
-        label: Yup.string().required('This field is requered'),
-      })
-    ),
+    resolver: zodResolver(renameModuleFormSchema),
     mode: 'onChange',
     defaultValues: props.defaultValues,
   })

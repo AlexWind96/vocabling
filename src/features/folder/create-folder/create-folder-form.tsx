@@ -1,24 +1,24 @@
-import { yupResolver } from '@hookform/resolvers/yup'
+import { zodResolver } from '@hookform/resolvers/zod'
 import * as React from 'react'
 import { FormProvider, SubmitHandler, useForm } from 'react-hook-form'
-import * as Yup from 'yup'
+import { z } from 'zod'
 import { Button, Stack } from '@mantine/core'
-import { CreateFolderDto, Folder } from '@/shared/api'
+import { CreateFolderDto } from '@/shared/api'
 import { TextInputController } from '@/shared/ui'
-
-type CreateFolderFormValues = Pick<Folder, 'label'>
 
 type CreateFolderFormProps = {
   onSubmit: (values: CreateFolderDto) => Promise<void>
 }
 
+const createFolderSchema = z.object({
+  label: z.string(),
+})
+
+type CreateFolderFormValues = z.infer<typeof createFolderSchema>
+
 export const CreateFolderForm = (props: CreateFolderFormProps) => {
   const methods = useForm<CreateFolderFormValues>({
-    resolver: yupResolver(
-      Yup.object().shape({
-        label: Yup.string().required('Required'),
-      })
-    ),
+    resolver: zodResolver(createFolderSchema),
     mode: 'onChange',
     defaultValues: {
       label: '',

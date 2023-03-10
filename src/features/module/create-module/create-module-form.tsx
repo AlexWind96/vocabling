@@ -1,24 +1,24 @@
-import { yupResolver } from '@hookform/resolvers/yup'
+import { zodResolver } from '@hookform/resolvers/zod'
 import * as React from 'react'
 import { FormProvider, SubmitHandler, useForm } from 'react-hook-form'
-import * as Yup from 'yup'
+import { z } from 'zod'
 import { Button, Stack } from '@mantine/core'
-import { CreateModuleDTO, Module } from '@/shared/api'
+import { CreateModuleDTO } from '@/shared/api'
 import { TextInputController } from '@/shared/ui'
-
-type CreateModuleFormValues = Pick<Module, 'label'>
 
 type CreateModuleFormProps = {
   onSubmit: (values: CreateModuleDTO) => Promise<void>
 }
 
+const createModuleFormSchema = z.object({
+  label: z.string(),
+})
+
+type CreateModuleFormValues = z.infer<typeof createModuleFormSchema>
+
 export const CreateModuleForm = (props: CreateModuleFormProps) => {
   const methods = useForm<CreateModuleFormValues>({
-    resolver: yupResolver(
-      Yup.object().shape({
-        label: Yup.string().required('Required'),
-      })
-    ),
+    resolver: zodResolver(createModuleFormSchema),
     mode: 'onChange',
     defaultValues: {
       label: '',

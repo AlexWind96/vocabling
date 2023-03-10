@@ -23,6 +23,7 @@
     "@reduxjs/toolkit": "^1.8.0",
     "@tabler/icons": "1.119.0",
     "@tanstack/react-query": "^4.24.10",
+    "@tanstack/react-query-devtools": "^4.26.1",
     "@tiptap/extension-color": "^2.0.0-beta.216",
     "@tiptap/extension-link": "^2.0.0-beta.216",
     "@tiptap/extension-text-style": "^2.0.0-beta.216",
@@ -56,7 +57,7 @@
     "sass": "^1.54.0",
     "tabler-icons-react": "^1.48.1",
     "web-vitals": "^2.1.4",
-    "yup": "^0.32.11"
+    "zod": "^3.21.4"
   },
   "devDependencies": {
     "@trivago/prettier-plugin-sort-imports": "^3.3.0",

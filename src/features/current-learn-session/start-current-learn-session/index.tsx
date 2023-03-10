@@ -1,8 +1,8 @@
-import { yupResolver } from '@hookform/resolvers/yup'
+import { zodResolver } from '@hookform/resolvers/zod'
 import * as React from 'react'
 import { useEffect } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
-import * as Yup from 'yup'
+import { z } from 'zod'
 import { Button, Stack } from '@mantine/core'
 import { useModules } from '@/entities/module'
 import { CurrentLearnSession, UpdateCurrentLearnSessionDto } from '@/shared/api'
@@ -14,15 +14,17 @@ type StartCurrentLearnSessionProps = {
   isSessionLoading: boolean
 }
 
-type FromValues = {
-  modules: string[]
-}
+const startCurrentLearnSessionSchema = z.object({
+  modules: z.array(z.string()),
+})
+
+type FormValues = z.infer<typeof startCurrentLearnSessionSchema>
 
 export const StartCurrentLearnSession = (props: StartCurrentLearnSessionProps) => {
   const { data: modules, isFetched } = useModules()
 
-  const methods = useForm<FromValues>({
-    resolver: yupResolver(Yup.object().shape({})),
+  const methods = useForm<FormValues>({
+    resolver: zodResolver(startCurrentLearnSessionSchema),
     mode: 'onChange',
     defaultValues: {
       modules: props.learnSession?.modules || [],
@@ -37,7 +39,7 @@ export const StartCurrentLearnSession = (props: StartCurrentLearnSessionProps) =
     setValue,
   } = methods
 
-  const onSubmit: SubmitHandler<FromValues> = async (data) => {
+  const onSubmit: SubmitHandler<FormValues> = async (data) => {
     await props.onSubmit(data)
     reset()
   }
