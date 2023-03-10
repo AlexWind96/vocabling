@@ -21,7 +21,7 @@ export function MantineProvider({ children }) {
   return (
     <ColorSchemeProvider colorScheme={colorScheme} toggleColorScheme={toggleColorScheme}>
       <Provider theme={{ ...globalMantineTheme, colorScheme: colorScheme }} withNormalizeCSS>
-        <NotificationsProvider>
+        <NotificationsProvider position="top-right">
           <GlobalStyles />
           <ModalsProvider>{children}</ModalsProvider>
         </NotificationsProvider>
