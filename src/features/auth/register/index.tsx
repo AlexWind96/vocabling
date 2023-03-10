@@ -1,20 +1,22 @@
-import { yupResolver } from '@hookform/resolvers/yup'
+import { zodResolver } from '@hookform/resolvers/zod'
 import { AxiosError } from 'axios'
 import * as React from 'react'
 import { useState } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-import * as Yup from 'yup'
+import { z } from 'zod'
 import { Alert, Button, PasswordInput, Stack, TextInput } from '@mantine/core'
 import { auth } from '@/entities/auth'
 import { PATH } from '@/shared/config'
 
-export type RegisterFormValues = {
-  email: string
-  password: string
-  name: string
-}
+const registerSchema = z.object({
+  email: z.string().email(),
+  password: z.string().min(3),
+  name: z.string(),
+})
+
+type RegisterForm = z.infer<typeof registerSchema>
 
 export const Register = () => {
   const {
@@ -22,21 +24,15 @@ export const Register = () => {
     handleSubmit,
     reset,
     formState: { errors, isSubmitting },
-  } = useForm<RegisterFormValues>({
-    resolver: yupResolver(
-      Yup.object().shape({
-        email: Yup.string().required('This field is required'),
-        password: Yup.string().required('This field is required'),
-        name: Yup.string().required('This field is required'),
-      })
-    ),
+  } = useForm<RegisterForm>({
+    resolver: zodResolver(registerSchema),
     mode: 'onChange',
   })
 
   const [alertError, setAlertError] = useState<string | null>(null)
   const dispatch = useDispatch()
   const navigate = useNavigate()
-  const onSubmit: SubmitHandler<RegisterFormValues> = async (data) => {
+  const onSubmit: SubmitHandler<RegisterForm> = async (data) => {
     try {
       await dispatch(auth.model.actions.register.request(data))
       navigate(`/${PATH.app}`, { replace: true })

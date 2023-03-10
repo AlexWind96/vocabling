@@ -1,20 +1,22 @@
-import { yupResolver } from '@hookform/resolvers/yup'
+import { zodResolver } from '@hookform/resolvers/zod'
 import { AxiosError } from 'axios'
 import * as React from 'react'
 import { useState } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-import * as Yup from 'yup'
+import { z } from 'zod'
 import { Alert, Button, PasswordInput, TextInput } from '@mantine/core'
 import { auth } from '@/entities/auth'
+import { ServerError } from '@/shared/api'
 import { PATH } from '@/shared/config'
-import { ServerError } from '../../../shared/api'
 
-export type LoginFormValues = {
-  email: string
-  password: string
-}
+const loginSchema = z.object({
+  email: z.string().email(),
+  password: z.string().min(3),
+})
+
+type LoginForm = z.infer<typeof loginSchema>
 
 export const Login = () => {
   const {
@@ -22,13 +24,8 @@ export const Login = () => {
     handleSubmit,
     reset,
     formState: { errors, isSubmitting },
-  } = useForm<LoginFormValues>({
-    resolver: yupResolver(
-      Yup.object().shape({
-        email: Yup.string().required('This field is required'),
-        password: Yup.string().required('This field is required'),
-      })
-    ),
+  } = useForm<LoginForm>({
+    resolver: zodResolver(loginSchema),
     mode: 'onChange',
   })
 
@@ -36,7 +33,7 @@ export const Login = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
-  const onSubmit: SubmitHandler<LoginFormValues> = async (data) => {
+  const onSubmit: SubmitHandler<LoginForm> = async (data) => {
     try {
       await dispatch(auth.model.actions.login.request(data))
       navigate(`/${PATH.app}`, { replace: true })
