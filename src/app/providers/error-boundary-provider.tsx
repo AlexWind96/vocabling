@@ -1,9 +1,7 @@
 import React from 'react'
-import { ErrorBoundary } from 'react-error-boundary'
+import { ErrorBoundary as Error } from 'react-error-boundary'
 import { ErrorFallback } from '@/shared/ui'
 
-function Provider({ children }) {
-  return <ErrorBoundary FallbackComponent={ErrorFallback}>{children}</ErrorBoundary>
+export function ErrorBoundary({ children }) {
+  return <Error FallbackComponent={ErrorFallback}>{children}</Error>
 }
-
-export default Provider
