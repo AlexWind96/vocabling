@@ -41,17 +41,18 @@ export const SimpleCard = ({
         <Box p={'xs'}>
           <Stack spacing={'sm'}>
             <Group position={'apart'} align={'start'}>
-              {data.progress && (
-                <div className={'flex gap-4'}>
-                  {data.progress && <Progress progress={data.progress.step + diff} />}
-                  {data.module && showModule && (
-                    <Badge color={'slate.4'} size={'xs'}>
-                      {data.module.label}
-                    </Badge>
-                  )}
-                </div>
-              )}
-
+              <div className={'flex gap-4'}>
+                {data.progress ? (
+                  <Progress progress={data.progress.step + diff} />
+                ) : (
+                  <Progress progress={1} />
+                )}
+                {data.module && showModule && (
+                  <Badge color={'slate.4'} size={'xs'}>
+                    {data.module.label}
+                  </Badge>
+                )}
+              </div>
               {rightSection}
             </Group>
             <Stack spacing={'xs'}>
