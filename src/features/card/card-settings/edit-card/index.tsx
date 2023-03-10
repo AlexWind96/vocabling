@@ -3,13 +3,14 @@ import React from 'react'
 import { Menu } from '@mantine/core'
 import { closeModal, openModal } from '@mantine/modals'
 import { useCard } from '@/entities/card'
-import { UpdateCardDTO } from '@/shared/api'
+import { CardsQueryParams, UpdateCardDTO } from '@/shared/api'
 import { LoadingScreen } from '@/shared/ui'
 import { EditCardForm } from './edit-card-form'
 import { useUpdateCard } from './use-update-card'
 
 type EditCardProps = {
   id: string
+  params: CardsQueryParams
 }
 
 export const EditCard = (props: EditCardProps) => {
@@ -18,7 +19,9 @@ export const EditCard = (props: EditCardProps) => {
       id: props.id,
     },
   })
-  const { mutateAsync } = useUpdateCard()
+  const { mutateAsync } = useUpdateCard({
+    onMutate: () => props.params,
+  })
 
   const handleSubmit = async (data: UpdateCardDTO) => {
     await mutateAsync({ id: props.id, body: data })
