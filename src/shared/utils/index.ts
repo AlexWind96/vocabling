@@ -34,3 +34,7 @@ export const getPercent = (smaller: number, bigger: number) => {
 export const getBearer = (token: string): string => {
   return 'Bearer ' + token
 }
+
+export function sleep(ms = 2000): Promise<void> {
+  return new Promise((resolve) => setTimeout(resolve, ms))
+}
