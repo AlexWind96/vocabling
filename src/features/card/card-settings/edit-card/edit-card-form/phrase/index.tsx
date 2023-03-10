@@ -5,7 +5,7 @@ import { getSentenceUnits } from '../helpers'
 import { CardFormValues } from '../model'
 
 export const Phrase = () => {
-  const { control, resetField } = useFormContext<CardFormValues>()
+  const { control, setValue, formState } = useFormContext<CardFormValues>()
   const sentence = useWatch({
     control,
     name: 'sentence',
@@ -13,8 +13,10 @@ export const Phrase = () => {
   const sentenceUnits = getSentenceUnits(sentence)
 
   useEffect(() => {
-    resetField('phrase')
-  }, [sentence])
+    if (formState.isDirty) {
+      setValue('phrase', [])
+    }
+  }, [formState.isDirty])
 
   return (
     <Controller
