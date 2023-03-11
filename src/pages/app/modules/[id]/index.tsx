@@ -1,6 +1,6 @@
+import { IconPlus, IconX } from '@tabler/icons-react'
 import React, { useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
-import { Plus, X } from 'tabler-icons-react'
 import { ActionIcon, Button, Grid, Stack, TextInput } from '@mantine/core'
 import { useDebouncedValue } from '@mantine/hooks'
 import { ModuleTitle } from '@/features/module/module-title'
@@ -22,7 +22,7 @@ export const ModulePage = () => {
         </Grid.Col>
         <Grid.Col span={6} md={3} order={2} orderMd={3}>
           <div className={'flex justify-end'}>
-            <Button color={'green'} component={Link} to={'add-cards'} leftIcon={<Plus />}>
+            <Button color={'green'} component={Link} to={'add-cards'} leftIcon={<IconPlus />}>
               Add cards
             </Button>
           </div>
@@ -33,7 +33,7 @@ export const ModulePage = () => {
             value={value}
             rightSection={
               <ActionIcon size={'sm'} onClick={() => setValue('')}>
-                <X />
+                <IconX />
               </ActionIcon>
             }
             onChange={(event) => setValue(event.currentTarget.value)}

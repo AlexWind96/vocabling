@@ -1,4 +1,4 @@
-import { IconMoodAnnoyed2 } from '@tabler/icons'
+import { IconMoodAnnoyed2 } from '@tabler/icons-react'
 import * as React from 'react'
 import { Stack, Title, useMantineTheme } from '@mantine/core'
 

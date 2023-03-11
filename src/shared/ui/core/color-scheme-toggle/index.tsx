@@ -1,4 +1,4 @@
-import { Moon, Sun } from 'tabler-icons-react'
+import { IconMoon, IconSun } from '@tabler/icons-react'
 import { ActionIcon, useMantineColorScheme } from '@mantine/core'
 
 export const ColorSchemeToggle = () => {
@@ -13,7 +13,11 @@ export const ColorSchemeToggle = () => {
         color: theme.colorScheme === 'dark' ? theme.colors.yellow[4] : theme.colors.amber[6],
       })}
     >
-      {colorScheme === 'dark' ? <Sun width={18} height={18} /> : <Moon width={20} height={20} />}
+      {colorScheme === 'dark' ? (
+        <IconSun width={18} height={18} />
+      ) : (
+        <IconMoon width={20} height={20} />
+      )}
     </ActionIcon>
   )
 }

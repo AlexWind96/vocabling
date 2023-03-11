@@ -1,4 +1,4 @@
-import { IconMinus, IconPlus } from '@tabler/icons'
+import { IconMinus, IconPlus } from '@tabler/icons-react'
 import * as React from 'react'
 import { ActionIcon } from '@mantine/core'
 import { useUpdateModule } from '../use-update-module'

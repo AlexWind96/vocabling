@@ -1,4 +1,4 @@
-import { IconEdit } from '@tabler/icons'
+import { IconEdit } from '@tabler/icons-react'
 import React from 'react'
 import { Menu } from '@mantine/core'
 import { closeModal, openModal } from '@mantine/modals'

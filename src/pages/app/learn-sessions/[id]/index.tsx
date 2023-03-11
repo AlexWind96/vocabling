@@ -1,4 +1,4 @@
-import { IconCertificate } from '@tabler/icons'
+import { IconCertificate } from '@tabler/icons-react'
 import * as React from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { Button, Stack, Title, useMantineTheme } from '@mantine/core'

@@ -1,19 +1,16 @@
-import { createStyles } from '@mantine/core'
+import { createStyles, getStylesRef, rem } from '@mantine/core'
 
-export const useNavbarLinkStyles = createStyles((theme, _params, getRef) => {
-  const icon = getRef('icon')
+export const useNavbarLinkStyles = createStyles((theme, _params) => {
+  const icon = getStylesRef('icon')
   return {
     link: {
-      ...theme.fn.focusStyles(),
+      width: rem(50),
+      height: rem(50),
+      borderRadius: theme.radius.md,
       display: 'flex',
       alignItems: 'center',
-      textDecoration: 'none',
-      fontSize: theme.fontSizes.sm,
-      color: theme.colorScheme === 'dark' ? theme.colors.slate[1] : theme.colors.gray[7],
-      padding: `${theme.spacing.xs}px ${theme.spacing.sm}px`,
-      borderRadius: theme.radius.sm,
-      fontWeight: 500,
-      marginBottom: 4,
+      justifyContent: 'center',
+      color: theme.colorScheme === 'dark' ? theme.colors.dark[0] : theme.colors.gray[7],
 
       '&:hover': {
         backgroundColor:

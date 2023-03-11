@@ -1,4 +1,4 @@
-import { IconFolderOff } from '@tabler/icons'
+import { IconFolderOff } from '@tabler/icons-react'
 import * as React from 'react'
 import { Menu } from '@mantine/core'
 import { useUpdateModule } from '../../use-update-module'

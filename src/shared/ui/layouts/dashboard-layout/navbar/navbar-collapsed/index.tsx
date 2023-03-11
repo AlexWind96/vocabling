@@ -18,7 +18,13 @@ export const NavbarCollapsed: FC<NavbarExpandProps> = ({
   const { classes, cx } = useNavbarLinkStyles()
 
   const links = navbarLinks.map((item) => (
-    <Tooltip key={item.label} label={item.label} position="right" withArrow transitionDuration={0}>
+    <Tooltip
+      key={item.label}
+      label={item.label}
+      position="right"
+      withArrow
+      transitionProps={{ duration: 0 }}
+    >
       <NavLink
         to={item.path}
         key={item.label}
@@ -39,7 +45,7 @@ export const NavbarCollapsed: FC<NavbarExpandProps> = ({
         </Center>
       </Navbar.Section>
       <Navbar.Section grow mt={50}>
-        <Stack align="center" spacing={0}>
+        <Stack align="center" spacing={3}>
           {links}
         </Stack>
       </Navbar.Section>

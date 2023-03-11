@@ -1,4 +1,4 @@
-import { HexagonLetterM, School, Stack2 } from 'tabler-icons-react'
+import { IconHexagonLetterM, IconSchool, IconStack2 } from '@tabler/icons-react'
 import { ROLE } from '@/shared/api'
 import { PATH } from '@/shared/config'
 import { INavbarLink } from './types'
@@ -8,19 +8,19 @@ export const navbarLinks: INavbarLink[] = [
     path: `${PATH.modules}`,
     roles: [ROLE.User, ROLE.Admin],
     label: 'Modules',
-    icon: HexagonLetterM,
+    icon: IconHexagonLetterM,
   },
   {
     path: `${PATH.learn_cards}`,
     roles: [ROLE.User, ROLE.Admin],
     label: 'Learn',
-    icon: School,
+    icon: IconSchool,
   },
   {
     path: `${PATH.all_cards}`,
     roles: [ROLE.User, ROLE.Admin],
     label: 'All cards',
-    icon: Stack2,
+    icon: IconStack2,
   },
 ]
 

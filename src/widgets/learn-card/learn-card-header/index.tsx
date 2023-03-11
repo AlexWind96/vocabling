@@ -1,7 +1,7 @@
+import { IconHome } from '@tabler/icons-react'
 import * as React from 'react'
 import { useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import { Home } from 'tabler-icons-react'
 import { ActionIcon, Grid, Progress, Skeleton, Text } from '@mantine/core'
 import { useAuth } from '@/entities/auth'
 import { useCurrentLearnSession } from '@/entities/current-learn-session'
@@ -41,7 +41,7 @@ export const LearnCardHeader = ({}: LearnCardHeaderProps) => {
     <Grid align={'center'}>
       <Grid.Col span={2}>
         <ActionIcon component={Link} to={`/${PATH.learn_cards}`} variant="light" color={'pink'}>
-          <Home />
+          <IconHome />
         </ActionIcon>
       </Grid.Col>
       <Grid.Col span={7} sm={8}>

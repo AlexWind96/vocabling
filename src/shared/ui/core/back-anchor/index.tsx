@@ -1,4 +1,4 @@
-import { IconArrowLeft } from '@tabler/icons'
+import { IconArrowLeft } from '@tabler/icons-react'
 import * as React from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Anchor, AnchorProps, Group } from '@mantine/core'

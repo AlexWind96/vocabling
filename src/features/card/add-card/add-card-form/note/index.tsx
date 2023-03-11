@@ -1,6 +1,6 @@
+import { IconPlus } from '@tabler/icons-react'
 import React from 'react'
 import { Controller, useFormContext } from 'react-hook-form'
-import { Plus } from 'tabler-icons-react'
 import { Button, Stack } from '@mantine/core'
 import { useDisclosure } from '@mantine/hooks'
 import { AddCardFormValues } from '../index'
@@ -31,7 +31,7 @@ export function Note() {
         )}
       />
       {!isNotes && (
-        <Button onClick={handleClick} leftIcon={<Plus />} variant="light" color="gray.4">
+        <Button onClick={handleClick} leftIcon={<IconPlus />} variant="light" color="gray.4">
           Notes
         </Button>
       )}

@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { Controller, useFormContext, useWatch } from 'react-hook-form'
-import { Chip, Text } from '@mantine/core'
+import { Chip, Group, Text } from '@mantine/core'
 import { getSentenceUnits } from '../helpers'
 import { EditCardFormValues } from '../index'
 
@@ -23,7 +23,7 @@ export const Phrase = () => {
       name={'phrase'}
       control={control}
       render={({ field, fieldState: { invalid, error } }) => (
-        <>
+        <Group spacing={6}>
           <Chip.Group multiple value={field.value} onChange={field.onChange}>
             {sentenceUnits.length === 0
               ? null
@@ -41,7 +41,7 @@ export const Phrase = () => {
               {error?.message}
             </Text>
           )}
-        </>
+        </Group>
       )}
     />
   )

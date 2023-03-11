@@ -1,5 +1,5 @@
+import { IconX } from '@tabler/icons-react'
 import React, { useState } from 'react'
-import { X } from 'tabler-icons-react'
 import { ActionIcon, Grid, Stack, TextInput, Title } from '@mantine/core'
 import { useDebouncedValue } from '@mantine/hooks'
 import { QueryWrapper } from '@/shared/lib/react-query'
@@ -21,7 +21,7 @@ export const AllCardsPage = () => {
             value={value}
             rightSection={
               <ActionIcon size={'sm'} onClick={() => setValue('')}>
-                <X />
+                <IconX />
               </ActionIcon>
             }
             onChange={(event) => setValue(event.currentTarget.value)}

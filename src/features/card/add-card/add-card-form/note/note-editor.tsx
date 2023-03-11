@@ -1,10 +1,9 @@
-import { IconColorPicker } from '@tabler/icons'
+import { IconColorPicker, IconX } from '@tabler/icons-react'
 import { Color } from '@tiptap/extension-color'
 import TextStyle from '@tiptap/extension-text-style'
 import { useEditor } from '@tiptap/react'
 import StarterKit from '@tiptap/starter-kit'
 import React, { useEffect } from 'react'
-import { X } from 'tabler-icons-react'
 import { Link, RichTextEditor } from '@mantine/tiptap'
 
 export function NoteEditor({ value, onChange, isSubmitted, isNotes, onClose }) {
@@ -62,7 +61,7 @@ export function NoteEditor({ value, onChange, isSubmitted, isNotes, onClose }) {
         <RichTextEditor.UnsetColor />
         <RichTextEditor.ControlsGroup className={'flex-1 flex justify-end'}>
           <RichTextEditor.Control onClick={onClose}>
-            <X size={16} />
+            <IconX size={16} />
           </RichTextEditor.Control>
         </RichTextEditor.ControlsGroup>
       </RichTextEditor.Toolbar>

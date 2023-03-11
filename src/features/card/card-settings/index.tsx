@@ -1,5 +1,5 @@
+import { IconDotsVertical } from '@tabler/icons-react'
 import * as React from 'react'
-import { DotsVertical } from 'tabler-icons-react'
 import { ActionIcon, Menu } from '@mantine/core'
 import { useDisclosure } from '@mantine/hooks'
 import { CardsQueryParams } from '@/shared/api'
@@ -17,7 +17,7 @@ export const CardSettings = ({ id, params }: CardSettingsProps) => {
     <Menu shadow="md" width={200} opened={opened} onChange={toggle}>
       <Menu.Target>
         <ActionIcon size="sm">
-          <DotsVertical />
+          <IconDotsVertical />
         </ActionIcon>
       </Menu.Target>
       <Menu.Dropdown>

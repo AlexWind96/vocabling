@@ -1,6 +1,6 @@
+import { IconX } from '@tabler/icons-react'
 import React, { FC } from 'react'
 import { NavLink } from 'react-router-dom'
-import { X } from 'tabler-icons-react'
 import { ActionIcon, Drawer, Group, Navbar, ScrollArea, Title } from '@mantine/core'
 import { useNavbarLinkStyles } from '../../../navbar-link.styles'
 import { INavbarLink } from '../../../types'
@@ -50,7 +50,7 @@ export const NavbarDrawer: FC<NavbarExpandProps> = ({
       <Group className={classes.header} position="apart">
         <Title order={3}>{title}</Title>
         <ActionIcon onClick={onClose} size="sm" mr="xl">
-          <X />
+          <IconX />
         </ActionIcon>
       </Group>
       <Navbar className={classes.nav} p="sm">

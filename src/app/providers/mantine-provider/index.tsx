@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { ColorScheme, ColorSchemeProvider, MantineProvider as Provider } from '@mantine/core'
 import { useColorScheme } from '@mantine/hooks'
 import { ModalsProvider } from '@mantine/modals'
-import { NotificationsProvider } from '@mantine/notifications'
+import { Notifications } from '@mantine/notifications'
 import { GlobalStyles } from './global-styles'
 import { globalMantineTheme } from './theme'
 
@@ -21,10 +21,9 @@ export function MantineProvider({ children }) {
   return (
     <ColorSchemeProvider colorScheme={colorScheme} toggleColorScheme={toggleColorScheme}>
       <Provider theme={{ ...globalMantineTheme, colorScheme: colorScheme }} withNormalizeCSS>
-        <NotificationsProvider position="top-right">
-          <GlobalStyles />
-          <ModalsProvider>{children}</ModalsProvider>
-        </NotificationsProvider>
+        <Notifications position="top-right" />
+        <GlobalStyles />
+        <ModalsProvider>{children}</ModalsProvider>
       </Provider>
     </ColorSchemeProvider>
   )

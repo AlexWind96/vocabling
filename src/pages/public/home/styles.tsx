@@ -15,13 +15,13 @@ export default createStyles((theme) => ({
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'flex-start',
-    paddingBottom: theme.spacing.xl * 6,
+    paddingBottom: `calc(${theme.spacing.xl} * 6)`,
     zIndex: 1,
     position: 'relative',
 
     [theme.fn.smallerThan('sm')]: {
       height: 500,
-      paddingBottom: theme.spacing.xl * 3,
+      paddingBottom: `calc(${theme.spacing.xl} * 3)`,
     },
   },
 
@@ -53,7 +53,7 @@ export default createStyles((theme) => ({
   },
 
   control: {
-    marginTop: theme.spacing.xl * 1.5,
+    marginTop: `calc(${theme.spacing.xl} * 1.5)`,
 
     [theme.fn.smallerThan('sm')]: {
       width: '100%',

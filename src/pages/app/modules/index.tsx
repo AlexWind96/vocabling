@@ -1,5 +1,5 @@
+import { IconPlus } from '@tabler/icons-react'
 import React from 'react'
-import { Plus } from 'tabler-icons-react'
 import { Divider, Grid, Group, Stack, Title } from '@mantine/core'
 import { CreateFolder } from '@/features/folder/create-folder'
 import { CreateModule } from '@/features/module/create-module'
@@ -13,10 +13,10 @@ export const ModulesPage = () => {
       <Group position={'apart'}>
         <Title>Learn Modules</Title>
         <Group>
-          <CreateModule color={'green'} leftIcon={<Plus />}>
+          <CreateModule color={'green'} leftIcon={<IconPlus />}>
             Create module
           </CreateModule>
-          <CreateFolder leftIcon={<Plus />} color={'blue'}>
+          <CreateFolder leftIcon={<IconPlus />} color={'blue'}>
             Create folder
           </CreateFolder>
         </Group>

@@ -1,7 +1,7 @@
+import { IconLogout } from '@tabler/icons-react'
 import * as React from 'react'
 import { FC } from 'react'
 import { Outlet } from 'react-router-dom'
-import { Logout } from 'tabler-icons-react'
 import { AppShell, Container, UnstyledButtonProps } from '@mantine/core'
 import { useNavbarLinkStyles } from '../navbar-link.styles'
 import { INavbarLink } from '../types'
@@ -34,7 +34,7 @@ export const DashboardLayout: FC<DashboardLayoutProps> = ({
             navbarLinks={navbarLinks}
             footerActions={
               <LogoutButton className={navbarLinkClasses.link}>
-                <Logout />
+                <IconLogout />
               </LogoutButton>
             }
           />

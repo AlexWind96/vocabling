@@ -1,4 +1,4 @@
-import { IconColorPicker } from '@tabler/icons'
+import { IconColorPicker } from '@tabler/icons-react'
 import { Color } from '@tiptap/extension-color'
 import TextStyle from '@tiptap/extension-text-style'
 import { useEditor } from '@tiptap/react'

@@ -1,6 +1,6 @@
 import { AxiosError } from 'axios'
 import { createMutation } from 'react-query-kit'
-import { useCards } from '@/entities/card'
+import { useCard, useCards } from '@/entities/card'
 import { API, Card, CardsQueryParams, Page, UpdateCardDTO } from '@/shared/api'
 import { InfiniteData, queryClient } from '@/shared/lib/react-query'
 
@@ -36,6 +36,7 @@ export const useUpdateCard = createMutation<
         })
       }
       await queryClient.invalidateQueries(useCards.getKey(context))
+      await queryClient.invalidateQueries(useCard.getKey({ id: data.id }))
     },
   }
 )

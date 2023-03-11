@@ -1,6 +1,6 @@
+import { IconPlus, IconX } from '@tabler/icons-react'
 import React from 'react'
 import { useFormContext } from 'react-hook-form'
-import { Plus, X } from 'tabler-icons-react'
 import { ActionIcon, Button, Stack } from '@mantine/core'
 import { useDisclosure } from '@mantine/hooks'
 import { TextareaController } from '@/shared/ui'
@@ -27,13 +27,13 @@ export const SentenceTranslation = () => {
           placeholder={'Translate sentence...'}
           rightSection={
             <ActionIcon color={'rose.4'} size={'sm'} variant="light" onClick={handlers.close}>
-              <X />
+              <IconX />
             </ActionIcon>
           }
         />
       }
       {!isSentenceTranslation && (
-        <Button onClick={openField} leftIcon={<Plus />} variant="light" color="gray.4">
+        <Button onClick={openField} leftIcon={<IconPlus />} variant="light" color="gray.4">
           Translate sentence
         </Button>
       )}
