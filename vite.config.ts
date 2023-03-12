@@ -50,9 +50,4 @@ export default defineConfig({
       '@': '/src',
     },
   },
-  build: {
-    rollupOptions: {
-      external: ['@tiptap/pm/state'],
-    },
-  },
 })
