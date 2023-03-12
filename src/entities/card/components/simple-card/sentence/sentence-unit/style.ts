@@ -3,7 +3,7 @@ import { createStyles } from '@mantine/core'
 export const useStyles = createStyles((theme) => ({
   unit: {},
   accent: {
-    color: theme.colors[theme.primaryColor][4],
+    color: theme.fn.primaryColor(),
   },
   hidden: {
     position: 'relative',
@@ -15,7 +15,7 @@ export const useStyles = createStyles((theme) => ({
       height: '100%',
       top: 0,
       left: 0,
-      backgroundColor: theme.colors[theme.primaryColor][4],
+      backgroundColor: theme.fn.primaryColor(),
       borderRadius: theme.radius.md,
     },
   },

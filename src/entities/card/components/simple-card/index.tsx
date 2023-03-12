@@ -3,6 +3,7 @@ import { Accordion, Badge, Box, Group, Paper, Stack, Text } from '@mantine/core'
 import { Card } from '@/shared/api'
 import { Progress } from './progress'
 import { Sentence } from './sentence'
+import { useStyles } from './styles'
 
 type CardViewProps = {
   data: Card
@@ -31,6 +32,7 @@ export const SimpleCard = ({
   hideStudyPhrase = false,
   showModule = false,
 }: CardViewProps) => {
+  const { classes } = useStyles()
   const diff = isGraterProgress ? 1 : 0
 
   const isAdditionalInfo = hasAdditionalInfo(data.notes, data.sentenceTranslation)
@@ -64,7 +66,7 @@ export const SimpleCard = ({
           <Accordion variant="separated" radius="lg">
             <Accordion.Item value="translations">
               <Accordion.Control>
-                <Text fw={'600'}>{data.phraseTranslation}</Text>
+                <Text className={classes.phraseTranslation}>{data.phraseTranslation}</Text>
               </Accordion.Control>
               <Accordion.Panel>
                 <Text c={'slate.7'} size={'md'}>
@@ -83,7 +85,7 @@ export const SimpleCard = ({
                 theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.slate[0],
             })}
           >
-            <Text fw={'600'}>{data.phraseTranslation}</Text>
+            <Text className={classes.phraseTranslation}>{data.phraseTranslation}</Text>
           </Box>
         )}
       </Stack>

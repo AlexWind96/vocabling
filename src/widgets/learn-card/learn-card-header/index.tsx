@@ -2,7 +2,7 @@ import { IconHome } from '@tabler/icons-react'
 import * as React from 'react'
 import { useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import { ActionIcon, Grid, Progress, Skeleton, Text } from '@mantine/core'
+import { ActionIcon, Grid, Progress, Skeleton, Text, useMantineTheme } from '@mantine/core'
 import { useAuth } from '@/entities/auth'
 import { useCurrentLearnSession } from '@/entities/current-learn-session'
 import { useCompleteCurrentLearnSession } from '@/features/current-learn-session/complete-current-learn-session'
@@ -16,7 +16,7 @@ export const LearnCardHeader = ({}: LearnCardHeaderProps) => {
   const { mutateAsync } = useCompleteCurrentLearnSession()
   const { user } = useAuth()
   const navigate = useNavigate()
-
+  const { primaryColor } = useMantineTheme()
   useEffect(() => {
     if (session && session.countOfCompleted === user!.learnGoal) {
       mutateAsync().then(() => {
@@ -40,12 +40,17 @@ export const LearnCardHeader = ({}: LearnCardHeaderProps) => {
   return (
     <Grid align={'center'}>
       <Grid.Col span={2}>
-        <ActionIcon component={Link} to={`/${PATH.learn_cards}`} variant="light" color={'pink'}>
+        <ActionIcon
+          component={Link}
+          to={`/${PATH.learn_cards}`}
+          variant="light"
+          color={primaryColor}
+        >
           <IconHome />
         </ActionIcon>
       </Grid.Col>
       <Grid.Col span={7} sm={8}>
-        <Progress value={getPercent(session.countOfCompleted, user!.learnGoal)} color={'pink'} />
+        <Progress value={getPercent(session.countOfCompleted, user!.learnGoal)} />
       </Grid.Col>
       <Grid.Col span={3} sm={2}>
         <Text>

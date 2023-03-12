@@ -9,7 +9,8 @@ type UnitProps = {
 }
 
 export const Unit = ({ unit, withSpace = false, hideStudyPhrase }: UnitProps) => {
-  const { classes, cx } = useStyles()
+  const { classes, cx, theme } = useStyles()
+  console.log(theme.primaryShade, theme.primaryColor)
   const accent = hideStudyPhrase
     ? cx(classes.unit, classes.accent, classes.hidden)
     : cx(classes.unit, classes.accent)

@@ -29,9 +29,7 @@ export const CardsLearningSettingsPage = ({}: CardsLearningSettingsPageProps) =>
           <Group>
             <Title>Learn new words</Title>
           </Group>
-          {data && (
-            <Progress value={getPercent(data.countOfCompleted, user!.learnGoal)} color={'pink'} />
-          )}
+          {data && <Progress value={getPercent(data.countOfCompleted, user!.learnGoal)} />}
           <StartCurrentLearnSession
             isSessionLoading={isLoading}
             learnSession={data}

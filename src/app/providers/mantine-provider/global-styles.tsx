@@ -13,6 +13,7 @@ export function GlobalStyles() {
           backgroundColor: theme.colorScheme === 'dark' ? theme.colors.slate[8] : theme.white,
           color: theme.colorScheme === 'dark' ? theme.colors.slate[0] : theme.black,
           lineHeight: theme.lineHeight,
+          overscrollBehaviorY: 'contain',
         },
       })}
     />
