@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "rm yarn-lock.json && tsc && vite build",
+    "build": "tsc && vite build",
     "lint": "eslint .",
     "lint:fix": "eslint --fix .",
     "format": "prettier --write \"**/*.{js,jsx,json,md,html,css,less,scss, ts, tsx}\"",
