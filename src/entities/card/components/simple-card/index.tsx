@@ -64,9 +64,7 @@ export const SimpleCard = ({
           <Accordion variant="separated" radius="lg">
             <Accordion.Item value="translations">
               <Accordion.Control>
-                <Text fw={'bold'} c={'slate.6'}>
-                  {data.phraseTranslation}
-                </Text>
+                <Text fw={'600'}>{data.phraseTranslation}</Text>
               </Accordion.Control>
               <Accordion.Panel>
                 <Text c={'slate.7'} size={'md'}>
@@ -77,10 +75,15 @@ export const SimpleCard = ({
             </Accordion.Item>
           </Accordion>
         ) : (
-          <Box p={16} bg={'slate.0'} sx={(theme) => ({ borderRadius: theme.radius.lg })}>
-            <Text fw={'bold'} c={'slate.6'}>
-              {data.phraseTranslation}
-            </Text>
+          <Box
+            p={16}
+            sx={(theme) => ({
+              borderRadius: theme.radius.lg,
+              backgroundColor:
+                theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.slate[0],
+            })}
+          >
+            <Text fw={'600'}>{data.phraseTranslation}</Text>
           </Box>
         )}
       </Stack>

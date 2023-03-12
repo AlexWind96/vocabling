@@ -13,10 +13,10 @@ export const NoCard = ({}: NoCardProps) => {
           No more cards to learn
         </Title>
         <Group>
-          <Button color={'pink'} component={Link} to={`/${PATH.learn_cards}`}>
+          <Button component={Link} to={`/${PATH.learn_cards}`}>
             Choose another module
           </Button>
-          <Button color={'blue'} component={Link} to={`/${PATH.modules}`}>
+          <Button variant={'outline'} component={Link} to={`/${PATH.modules}`}>
             Add new cards
           </Button>
         </Group>

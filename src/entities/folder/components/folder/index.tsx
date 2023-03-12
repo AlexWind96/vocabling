@@ -1,6 +1,7 @@
 import * as React from 'react'
 import { PropsWithChildren } from 'react'
-import { Group, Stack, Title, useMantineTheme } from '@mantine/core'
+import { Group, Stack, Title } from '@mantine/core'
+import useStyles from './styles'
 
 type FolderProps = {
   title: string
@@ -8,11 +9,11 @@ type FolderProps = {
 } & PropsWithChildren
 
 export const Folder = ({ title, children, actions }: FolderProps) => {
-  const { radius } = useMantineTheme()
+  const { classes } = useStyles()
   return (
-    <Stack p={'md'} bg={'pink.1'} style={{ borderRadius: radius.md }}>
+    <Stack className={classes.wrapper}>
       <Group align={'center'}>
-        <Title color={'pink'} order={3}>
+        <Title order={3} className={classes.title}>
           {title}
         </Title>
         {actions}

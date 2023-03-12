@@ -1,62 +1,89 @@
-import { createStyles } from '@mantine/core'
+import { createStyles, rem } from '@mantine/core'
 
 export default createStyles((theme) => ({
-  hero: {
+  wrapper: {
     position: 'relative',
-    backgroundImage:
-      'url(https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80)',
-    backgroundSize: 'cover',
-    backgroundPosition: 'center',
+    paddingTop: rem(100),
+    paddingBottom: rem(130),
+    [theme.fn.smallerThan('xs')]: {
+      paddingTop: rem(80),
+      paddingBottom: rem(50),
+    },
   },
 
-  container: {
-    height: 700,
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'flex-start',
-    paddingBottom: `calc(${theme.spacing.xl} * 6)`,
-    zIndex: 1,
+  inner: {
     position: 'relative',
-
-    [theme.fn.smallerThan('sm')]: {
-      height: 500,
-      paddingBottom: `calc(${theme.spacing.xl} * 3)`,
-    },
+    zIndex: 1,
   },
 
   title: {
-    color: theme.white,
-    fontSize: 60,
-    fontWeight: 900,
-    lineHeight: 1.1,
-
-    [theme.fn.smallerThan('sm')]: {
-      fontSize: 40,
-      lineHeight: 1.2,
-    },
+    fontWeight: 800,
+    fontSize: rem(60),
+    letterSpacing: rem(1),
+    paddingLeft: theme.spacing.md,
+    paddingRight: theme.spacing.md,
+    color: theme.colorScheme === 'dark' ? theme.white : theme.black,
+    marginBottom: theme.spacing.xs,
+    textAlign: 'center',
+    fontFamily: `Greycliff CF, ${theme.fontFamily}`,
 
     [theme.fn.smallerThan('xs')]: {
-      fontSize: 28,
-      lineHeight: 1.3,
+      fontSize: rem(40),
+      textAlign: 'left',
     },
   },
 
-  description: {
-    color: theme.white,
-    maxWidth: 600,
+  highlight: {
+    color: theme.colors[theme.primaryColor][5],
+  },
 
-    [theme.fn.smallerThan('sm')]: {
-      maxWidth: '100%',
-      fontSize: theme.fontSizes.sm,
+  description: {
+    color: theme.colorScheme === 'dark' ? theme.white : theme.colors.slate[7],
+    textAlign: 'center',
+    fontWeight: 500,
+    paddingLeft: theme.spacing.md,
+    paddingRight: theme.spacing.md,
+    fontSize: rem(20),
+    [theme.fn.smallerThan('xs')]: {
+      fontSize: theme.fontSizes.md,
+      textAlign: 'left',
+    },
+  },
+
+  controls: {
+    marginTop: `calc(${theme.spacing.xl} * 1.5)`,
+    display: 'flex',
+    justifyContent: 'center',
+    paddingLeft: theme.spacing.md,
+    paddingRight: theme.spacing.md,
+
+    [theme.fn.smallerThan('xs')]: {
+      flexDirection: 'column',
     },
   },
 
   control: {
-    marginTop: `calc(${theme.spacing.xl} * 1.5)`,
+    height: rem(42),
+    fontSize: theme.fontSizes.md,
 
-    [theme.fn.smallerThan('sm')]: {
-      width: '100%',
+    '&:not(:first-of-type)': {
+      marginLeft: theme.spacing.md,
+    },
+
+    [theme.fn.smallerThan('xs')]: {
+      '&:not(:first-of-type)': {
+        marginTop: theme.spacing.md,
+        marginLeft: 0,
+      },
+    },
+  },
+
+  secondaryControl: {
+    color: theme.white,
+    backgroundColor: 'rgba(255, 255, 255, .4)',
+
+    '&:hover': {
+      backgroundColor: 'rgba(255, 255, 255, .45) !important',
     },
   },
 }))

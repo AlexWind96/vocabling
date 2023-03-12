@@ -1,33 +1,32 @@
 import * as React from 'react'
 import { Link } from 'react-router-dom'
-import { Button, Container, Overlay, Text } from '@mantine/core'
+import { Button, Text, Title } from '@mantine/core'
 import { PATH } from '@/shared/config'
 import useStyles from './styles'
 
 export const HomePage = () => {
   const { classes } = useStyles()
   return (
-    <div className={classes.hero}>
-      <Overlay
-        gradient="linear-gradient(180deg, rgba(0, 0, 0, 0.25) 0%, rgba(0, 0, 0, .65) 40%)"
-        opacity={1}
-        zIndex={0}
-      />
-      <Container className={classes.container}>
-        <Text
-          component="h1"
-          align="center"
-          variant="gradient"
-          gradient={{ from: 'yellow', to: 'white', deg: 45 }}
-          weight={700}
-          style={{ fontFamily: 'Greycliff CF, sans-serif', fontSize: 56 }}
-        >
-          Lango
+    <div className={classes.wrapper}>
+      <div className={classes.inner}>
+        <Title className={classes.title}>
+          Learn languages
+          <br />
+          <Text component="span" inherit className={classes.highlight}>
+            effectively
+          </Text>
+        </Title>
+
+        <Text className={classes.description}>
+          Save and learn new words without loosing context
         </Text>
-        <Button component={Link} to={`/${PATH.login}`}>
-          Get started
-        </Button>
-      </Container>
+
+        <div className={classes.controls}>
+          <Button component={Link} to={`/${PATH.login}`} size={'lg'} radius={'lg'}>
+            Get started
+          </Button>
+        </div>
+      </div>
     </div>
   )
 }

@@ -4,7 +4,7 @@ export default createStyles((theme) => ({
   footer: {
     marginTop: '80px',
     borderTop: `1px solid ${
-      theme.colorScheme === 'dark' ? theme.colors.dark[5] : theme.colors.gray[2]
+      theme.colorScheme === 'dark' ? theme.colors.black : theme.colors.gray[2]
     }`,
   },
 

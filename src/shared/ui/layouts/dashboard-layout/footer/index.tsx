@@ -1,6 +1,7 @@
+import { IconArrowLeft } from '@tabler/icons-react'
 import * as React from 'react'
-import { NavLink } from 'react-router-dom'
-import { Footer as MantineFooter } from '@mantine/core'
+import { NavLink, useNavigate } from 'react-router-dom'
+import { ActionIcon, Grid, Footer as MantineFooter } from '@mantine/core'
 import { useNavbarLinkStyles } from '../../navbar-link.styles'
 import { INavbarLink } from '../../types'
 
@@ -9,8 +10,8 @@ type FooterProps = {
 }
 
 export const Footer = ({ navbarLinks }: FooterProps) => {
-  const { classes, cx } = useNavbarLinkStyles()
-
+  const { classes, cx, theme } = useNavbarLinkStyles()
+  const navigate = useNavigate()
   const links = navbarLinks.map((item) => (
     <NavLink
       to={item.path}
@@ -23,8 +24,22 @@ export const Footer = ({ navbarLinks }: FooterProps) => {
     </NavLink>
   ))
   return (
-    <MantineFooter height={60} className={'flex justify-center gap-x-4 py-1'}>
-      {links}
+    <MantineFooter
+      height={60}
+      bg={theme.colorScheme === 'dark' ? theme.colors.dark[8] : theme.white}
+    >
+      <Grid align={'center'} py={4}>
+        <Grid.Col span={3}>
+          <ActionIcon color={'primary'} onClick={() => navigate(-1)} ml={10}>
+            <IconArrowLeft size={20} />
+          </ActionIcon>
+        </Grid.Col>
+
+        <Grid.Col span={6}>
+          <div className={'flex justify-center gap-2'}>{links}</div>
+        </Grid.Col>
+        <Grid.Col span={3} />
+      </Grid>
     </MantineFooter>
   )
 }

@@ -23,7 +23,9 @@ export declare type ExtendedCustomColors =
   | 'violet'
   | 'yellow'
   | 'zinc'
-  | 'white' | (string & {})
+  | 'dark'
+  | 'white'
+  | (string & {})
 
 declare module '@mantine/core' {
   declare interface MantineThemeColorsOverride {

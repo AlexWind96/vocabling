@@ -11,12 +11,10 @@ export const ModulesPage = () => {
   return (
     <Stack>
       <Group position={'apart'}>
-        <Title>Learn Modules</Title>
+        <Title>Modules</Title>
         <Group>
-          <CreateModule color={'green'} leftIcon={<IconPlus />}>
-            Create module
-          </CreateModule>
-          <CreateFolder leftIcon={<IconPlus />} color={'blue'}>
+          <CreateModule leftIcon={<IconPlus />}>Create module</CreateModule>
+          <CreateFolder leftIcon={<IconPlus />} variant={'outline'}>
             Create folder
           </CreateFolder>
         </Group>

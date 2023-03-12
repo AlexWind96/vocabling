@@ -1,6 +1,6 @@
 import React from 'react'
 import { useParams } from 'react-router-dom'
-import { Badge, Grid, Group, Title } from '@mantine/core'
+import { Badge, Grid, Group, MediaQuery, Title } from '@mantine/core'
 import { useModuleTitle } from '@/entities/module'
 import { AddCard } from '@/features/card/add-card'
 import { QueryWrapper } from '@/shared/lib/react-query'
@@ -13,9 +13,11 @@ export const AddCardsPage = () => {
   return (
     <>
       <Grid gutter={'sm'}>
-        <Grid.Col>
-          <BackAnchor>Back</BackAnchor>
-        </Grid.Col>
+        <MediaQuery smallerThan={'sm'} styles={{ display: 'none' }}>
+          <Grid.Col>
+            <BackAnchor>Back</BackAnchor>
+          </Grid.Col>
+        </MediaQuery>
         <Grid.Col>
           <Group align={'flex-start'} spacing={2}>
             <Title>Create cards</Title>

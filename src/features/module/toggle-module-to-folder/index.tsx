@@ -15,7 +15,6 @@ export const ToggleModuleToFolder = ({
   hasFolder,
 }: ToggleModuleToFolderProps) => {
   const { mutate, isLoading, error } = useUpdateModule()
-  console.log(error)
   const handleClick = () => {
     if (hasFolder) {
       mutate({ id: moduleId, body: { folderId: null } })
@@ -29,7 +28,7 @@ export const ToggleModuleToFolder = ({
     }
   }
   return (
-    <ActionIcon color={'green'} onClick={handleClick} disabled={isLoading}>
+    <ActionIcon onClick={handleClick} disabled={isLoading}>
       {hasFolder ? <IconMinus /> : <IconPlus />}
     </ActionIcon>
   )

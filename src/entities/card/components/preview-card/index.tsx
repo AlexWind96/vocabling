@@ -18,7 +18,9 @@ export const PreviewCard = ({ data }: PreviewCardProps) => {
         </Box>
         <Accordion variant="separated" radius="lg" defaultValue={'translations'}>
           <Accordion.Item value="translations">
-            <Accordion.Control>{data.phraseTranslation || '...'}</Accordion.Control>
+            <Accordion.Control>
+              <Text fw={'600'}>{data.phraseTranslation || '...'}</Text>
+            </Accordion.Control>
             <Accordion.Panel>
               <Text c={'slate.7'} size={'md'}>
                 {data.sentenceTranslation}

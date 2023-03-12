@@ -25,7 +25,7 @@ export const Header = ({ links, colorSchemeToggle: ColorSchemeToggle }: HeaderPr
           {items}
         </Group>
 
-        <Title order={3}>LOGO</Title>
+        <Title order={3}>LANGO</Title>
 
         <Group spacing={0} className={classes.social} position="right" noWrap>
           <ColorSchemeToggle />

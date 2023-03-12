@@ -1,7 +1,7 @@
 import { IconPlus, IconX } from '@tabler/icons-react'
 import React, { useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
-import { ActionIcon, Button, Grid, Stack, TextInput } from '@mantine/core'
+import { ActionIcon, Button, Grid, MediaQuery, Stack, TextInput } from '@mantine/core'
 import { useDebouncedValue } from '@mantine/hooks'
 import { ModuleTitle } from '@/features/module/module-title'
 import { QueryWrapper } from '@/shared/lib/react-query'
@@ -14,15 +14,16 @@ export const ModulePage = () => {
   const [debounced] = useDebouncedValue(value, 400)
   return (
     <Stack>
-      <BackAnchor>Back to modules</BackAnchor>
-
+      <MediaQuery smallerThan={'sm'} styles={{ display: 'none' }}>
+        <BackAnchor>Back to modules</BackAnchor>
+      </MediaQuery>
       <Grid align={'center'}>
         <Grid.Col span={6} md={3} order={1} orderMd={1}>
           <ModuleTitle moduleId={id!} />
         </Grid.Col>
         <Grid.Col span={6} md={3} order={2} orderMd={3}>
           <div className={'flex justify-end'}>
-            <Button color={'green'} component={Link} to={'add-cards'} leftIcon={<IconPlus />}>
+            <Button component={Link} to={'add-cards'} leftIcon={<IconPlus />}>
               Add cards
             </Button>
           </div>

@@ -13,7 +13,7 @@ type NavbarExpandProps = {
 export const NavbarCollapsed: FC<NavbarExpandProps> = ({
   navbarLinks,
   footerActions,
-  title = 'LOGO',
+  title = 'LANGO',
 }) => {
   const { classes, cx } = useNavbarLinkStyles()
 

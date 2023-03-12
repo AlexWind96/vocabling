@@ -1,6 +1,6 @@
 import { IconFolderX, IconPlus } from '@tabler/icons-react'
 import * as React from 'react'
-import { Grid, Group } from '@mantine/core'
+import { Grid, Group, Stack } from '@mantine/core'
 import { Folder, useFolders } from '@/entities/folder'
 import { ModuleCard } from '@/entities/module'
 import { DeleteFolder } from '@/features/folder/delete-folder'
@@ -22,7 +22,7 @@ export const FoldersStack = ({}: FoldersStackProps) => {
     return <NoData message={'No folders'} />
   }
   return (
-    <>
+    <Stack>
       {data.map((folder) => {
         return (
           <Folder
@@ -54,6 +54,6 @@ export const FoldersStack = ({}: FoldersStackProps) => {
           </Folder>
         )
       })}
-    </>
+    </Stack>
   )
 }
