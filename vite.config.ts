@@ -19,7 +19,7 @@ export default defineConfig({
       includeAssets: ['favicon.ico', 'apple-touch-icon.png', 'masked-icon.svg'],
       manifest: {
         name: 'Lango',
-        short_name: 'L',
+        short_name: 'Lango App',
         description: 'Tool for saving and learning foreign words in context',
         icons: [
           {
@@ -41,7 +41,7 @@ export default defineConfig({
         ],
         theme_color: '#db2777',
         background_color: '#f8fafc',
-        display: 'fullscreen',
+        display: 'standalone',
       },
     }),
   ],
