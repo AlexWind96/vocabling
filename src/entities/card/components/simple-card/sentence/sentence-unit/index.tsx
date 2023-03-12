@@ -1,5 +1,6 @@
 import * as React from 'react'
 import { SentenceUnit } from '@/shared/api'
+import { useStyles } from './style'
 
 type UnitProps = {
   unit: Partial<SentenceUnit>
@@ -8,13 +9,24 @@ type UnitProps = {
 }
 
 export const Unit = ({ unit, withSpace = false, hideStudyPhrase }: UnitProps) => {
+  const { classes, cx } = useStyles()
   const accent = hideStudyPhrase
-    ? 'bg-pink-300 text-pink-300 select-none'
-    : 'text-pink-500 dark:text-pink-500'
-  const space = withSpace ? 'mr-2' : ''
+    ? cx(classes.unit, classes.accent, classes.hidden)
+    : cx(classes.unit, classes.accent)
+
   if (unit.isStudyPhrase) {
-    return <div className={`inline-block rounded-sm ${accent} ${space}`}>{unit.value}</div>
+    return (
+      <>
+        <span className={accent}>{unit.value}</span>
+        {withSpace && <span> </span>}
+      </>
+    )
   } else {
-    return <div className={`inline-block ${space}`}>{unit.value}</div>
+    return (
+      <>
+        <span className={cx(classes.unit)}>{unit.value}</span>
+        {withSpace && <span> </span>}
+      </>
+    )
   }
 }

@@ -15,9 +15,9 @@ import { SentenceTranslation } from './sentence-translation'
 
 const addCardSchema = z.object({
   sentenceTranslation: z.string().optional(),
-  sentence: z.string(),
+  sentence: z.string().min(1),
   phrase: z.array(z.string()).min(1),
-  phraseTranslation: z.string(),
+  phraseTranslation: z.string().min(1),
   notes: z.string(),
 })
 
