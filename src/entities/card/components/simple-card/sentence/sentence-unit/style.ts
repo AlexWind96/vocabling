@@ -1,14 +1,16 @@
 import { createStyles } from '@mantine/core'
 
 export const useStyles = createStyles((theme) => ({
-  unit: {},
+  unit: {
+    lineHeight: 1.5,
+  },
   accent: {
     color: theme.fn.primaryColor(),
   },
   hidden: {
     position: 'relative',
     userSelect: 'none',
-    '&:before': {
+    '&:after': {
       position: 'absolute',
       content: '""',
       width: '100%',

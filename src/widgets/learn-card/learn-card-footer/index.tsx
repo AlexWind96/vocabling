@@ -1,4 +1,5 @@
 import * as React from 'react'
+import { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { Button, Group, Skeleton } from '@mantine/core'
 import { useLearnCard } from '@/entities/card'
@@ -26,6 +27,12 @@ export const LearnCardFooter = ({}: LearnCardFooterProps) => {
     await queryClient.invalidateQueries(useLearnCard.getKey())
     await queryClient.invalidateQueries(useCurrentLearnSession.getKey())
   }
+
+  useEffect(() => {
+    return () => {
+      dispatch(actions.cleanState())
+    }
+  }, [])
 
   if (isLoading)
     return (
