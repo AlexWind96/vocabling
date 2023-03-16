@@ -40,7 +40,7 @@ export default defineConfig({
             purpose: 'any maskable',
           },
         ],
-        theme_color: '#db2777',
+        theme_color: '#f8fafc',
         background_color: '#f8fafc',
         display: 'standalone',
       },
