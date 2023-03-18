@@ -1,8 +1,8 @@
 import * as React from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Grid, Group, Progress, Stack, Title } from '@mantine/core'
-import { useAuth } from '@/entities/auth/hooks'
 import { useCurrentLearnSession } from '@/entities/current-learn-session'
+import { useUser } from '@/entities/user'
 import { StartCurrentLearnSession } from '@/features/current-learn-session/start-current-learn-session'
 import { useUpdateCurrentLearnSession } from '@/features/current-learn-session/update-current-learn-session'
 import { UpdateCurrentLearnSessionDto } from '@/shared/api'
@@ -14,7 +14,7 @@ export const CardsLearningSettingsPage = ({}: CardsLearningSettingsPageProps) =>
   const navigate = useNavigate()
   const { data, isLoading } = useCurrentLearnSession()
   const { mutateAsync } = useUpdateCurrentLearnSession()
-  const { user } = useAuth()
+  const { data: user } = useUser()
 
   const handleSubmit = async (values: UpdateCurrentLearnSessionDto) => {
     const currentLearnSession = await mutateAsync(values)

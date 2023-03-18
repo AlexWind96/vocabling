@@ -3,8 +3,8 @@ import * as React from 'react'
 import { useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { ActionIcon, Grid, Progress, Skeleton, Text, useMantineTheme } from '@mantine/core'
-import { useAuth } from '@/entities/auth'
 import { useCurrentLearnSession } from '@/entities/current-learn-session'
+import { useUser } from '@/entities/user'
 import { useCompleteCurrentLearnSession } from '@/features/current-learn-session/complete-current-learn-session'
 import { PATH } from '@/shared/config'
 import { getPercent } from '@/shared/utils'
@@ -14,7 +14,7 @@ type LearnCardHeaderProps = {}
 export const LearnCardHeader = ({}: LearnCardHeaderProps) => {
   const { data: session, isLoading } = useCurrentLearnSession()
   const { mutateAsync } = useCompleteCurrentLearnSession()
-  const { user } = useAuth()
+  const { data: user } = useUser()
   const navigate = useNavigate()
   const { primaryColor } = useMantineTheme()
   useEffect(() => {

@@ -5,19 +5,20 @@ import {
   rejectPromiseAction,
   resolvePromiseAction,
 } from 'redux-saga-promise-actions'
-import { call, put, takeEvery } from 'redux-saga/effects'
+import { call, takeEvery } from 'redux-saga/effects'
+import { useUser } from '@/entities/user'
 import { API, LoginBody, ServerError } from '@/shared/api'
 import { jwtTokenService } from '@/shared/lib/jwt-token-service'
+import { queryClient } from '@/shared/lib/react-query'
 
-export const login = createPromiseAction('AUTH_LOGIN')<LoginBody, null, AxiosError>()
+export const login = createPromiseAction('AUTH_LOGIN')<LoginBody, undefined, AxiosError>()
 
 function* worker(action: PromiseAction<string, LoginBody, any>) {
   try {
     const { data: tokens } = yield call(API.auth.login, action.payload)
     jwtTokenService.updateTokens(tokens)
-    const { data: user } = yield call(API.auth.getCurrentUser)
-    yield put(login.success(user))
-    resolvePromiseAction(action, user)
+    queryClient.invalidateQueries(useUser.getKey())
+    resolvePromiseAction(action)
   } catch (err) {
     const error = err as AxiosError<ServerError>
     rejectPromiseAction(action, error)

@@ -4,7 +4,7 @@ import { Menu } from '@mantine/core'
 import { closeModal, openModal } from '@mantine/modals'
 import { useModule } from '@/entities/module'
 import { UpdateModuleDTO } from '@/shared/api'
-import { LoadingScreen } from '@/shared/ui'
+import { LoadingData } from '@/shared/ui'
 import { useUpdateModule } from '../../use-update-module'
 import { RenameModuleForm } from './rename-module-form'
 
@@ -30,7 +30,7 @@ export const RenameModule = (props: RenameModuleProps) => {
             title: 'Rename module',
             children:
               isFetching || !data ? (
-                <LoadingScreen />
+                <LoadingData />
               ) : (
                 <RenameModuleForm onSubmit={handleSubmit} defaultValues={data} />
               ),

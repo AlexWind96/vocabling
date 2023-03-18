@@ -1,10 +1,14 @@
 import React from 'react'
-import { Loader } from '@mantine/core'
+import { Center, Loader, Stack } from '@mantine/core'
+import Logo from '@/shared/assets/logo.svg'
 
 export const LoadingScreen = () => {
   return (
-    <div className="flex items-center justify-center mt-4">
-      <Loader size="lg" variant="dots" />
-    </div>
+    <Center w={'100vw'} h={'100vh'}>
+      <Stack align={'center'} spacing={4}>
+        <img className={'w-24 h-24'} src={Logo} alt={'Lango logo'} />
+        <Loader size="lg" variant="dots" />
+      </Stack>
+    </Center>
   )
 }

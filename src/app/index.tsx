@@ -1,7 +1,7 @@
 import React from 'react'
 import { BrowserRouter as Router } from 'react-router-dom'
-import { AppRoutes } from '@/pages'
 import '@/shared/lib/i18n'
+import { AppRoutes } from '../pages'
 import {
   ApiInterceptorsProvider,
   ErrorBoundary,

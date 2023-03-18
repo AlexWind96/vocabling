@@ -1,7 +1,7 @@
 import React from 'react'
 import { Navigate } from 'react-router-dom'
 import { PATH } from '@/shared/config'
-import { AuthLayout, LoadingScreen } from '@/shared/ui'
+import { AuthLayout, LoadingData } from '@/shared/ui'
 import { lazyImport } from '@/shared/utils'
 
 //pages
@@ -13,7 +13,7 @@ export const getAuthRoutes = (user: any) => {
   return [
     {
       element: !user ? (
-        <AuthLayout fallback={<LoadingScreen />} />
+        <AuthLayout fallback={<LoadingData />} />
       ) : (
         <Navigate to={`/${PATH.app}`} replace />
       ),

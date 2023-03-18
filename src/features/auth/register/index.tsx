@@ -7,8 +7,8 @@ import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { z } from 'zod'
 import { Alert, Button, PasswordInput, Stack, TextInput } from '@mantine/core'
-import { auth } from '@/entities/auth'
 import { PATH } from '@/shared/config'
+import { register as registerAsync } from './saga'
 
 const registerSchema = z.object({
   email: z.string().email(),
@@ -34,7 +34,7 @@ export const Register = () => {
   const navigate = useNavigate()
   const onSubmit: SubmitHandler<RegisterForm> = async (data) => {
     try {
-      await dispatch(auth.model.actions.register.request(data))
+      await dispatch(registerAsync.request(data))
       navigate(`/${PATH.app}`, { replace: true })
       reset()
     } catch (err) {

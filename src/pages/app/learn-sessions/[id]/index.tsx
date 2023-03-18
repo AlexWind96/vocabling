@@ -4,7 +4,7 @@ import { Link, useParams } from 'react-router-dom'
 import { Button, Stack, Title, useMantineTheme } from '@mantine/core'
 import { useLearnSession } from '@/entities/learn-session'
 import { PATH } from '@/shared/config'
-import { LoadingScreen } from '@/shared/ui'
+import { LoadingData } from '@/shared/ui'
 
 type LearnSessionProps = {}
 
@@ -13,7 +13,7 @@ export const LearnSession = ({}: LearnSessionProps) => {
   const { id } = useParams()
   const { data, isLoading } = useLearnSession({ variables: { id: id as string } })
 
-  if (isLoading || !data) return <LoadingScreen />
+  if (isLoading || !data) return <LoadingData />
   return (
     <Stack align={'center'}>
       <IconCertificate size={70} color={colors.green[5]} />

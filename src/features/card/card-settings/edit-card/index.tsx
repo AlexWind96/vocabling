@@ -4,7 +4,7 @@ import { Menu } from '@mantine/core'
 import { closeModal, openModal } from '@mantine/modals'
 import { useCard } from '@/entities/card'
 import { CardsQueryParams, UpdateCardDTO } from '@/shared/api'
-import { LoadingScreen } from '@/shared/ui'
+import { LoadingData } from '@/shared/ui'
 import { EditCardForm } from './edit-card-form'
 import { useUpdateCard } from './use-update-card'
 
@@ -37,7 +37,7 @@ export const EditCard = (props: EditCardProps) => {
             title: 'Edit Card',
             children:
               isFetching || !data ? (
-                <LoadingScreen />
+                <LoadingData />
               ) : (
                 <EditCardForm onSubmit={handleSubmit} defaultValues={data} />
               ),

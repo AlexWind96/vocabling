@@ -4,7 +4,7 @@ import { mapNavbarLinksByRole } from '@/entities/navigation'
 import { Logout } from '@/features/auth/logout'
 import { ROLE } from '@/shared/api'
 import { PATH } from '@/shared/config'
-import { DashboardLayout, LoadingScreen } from '@/shared/ui'
+import { DashboardLayout, LoadingData } from '@/shared/ui'
 import { lazyImport } from '@/shared/utils'
 
 const { ModulesPage } = lazyImport(() => import('./modules'), 'ModulesPage')
@@ -29,7 +29,7 @@ export const getAppRoutes = (user: any) => {
         <DashboardLayout
           logoutButton={Logout}
           navbarLinks={mapNavbarLinksByRole(user?.role)}
-          fallBack={<LoadingScreen />}
+          fallBack={<LoadingData />}
         />
       ) : (
         <Navigate to={`/${PATH.login}`} replace />

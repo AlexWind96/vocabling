@@ -7,9 +7,9 @@ import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { z } from 'zod'
 import { Alert, Button, PasswordInput, TextInput } from '@mantine/core'
-import { auth } from '@/entities/auth'
 import { ServerError } from '@/shared/api'
 import { PATH } from '@/shared/config'
+import { login } from './saga'
 
 const loginSchema = z.object({
   email: z.string().email(),
@@ -35,7 +35,7 @@ export const Login = () => {
 
   const onSubmit: SubmitHandler<LoginForm> = async (data) => {
     try {
-      await dispatch(auth.model.actions.login.request(data))
+      await dispatch(login.request(data))
       navigate(`/${PATH.app}`, { replace: true })
       reset()
     } catch (err) {
