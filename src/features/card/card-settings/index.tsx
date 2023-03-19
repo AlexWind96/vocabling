@@ -1,7 +1,6 @@
 import { IconDotsVertical } from '@tabler/icons-react'
 import * as React from 'react'
 import { ActionIcon, Menu } from '@mantine/core'
-import { useDisclosure } from '@mantine/hooks'
 import { CardsQueryParams } from '@/shared/api'
 import { DeleteCard } from './delete-card'
 import { EditCard } from './edit-card'
@@ -12,9 +11,8 @@ type CardSettingsProps = {
 }
 
 export const CardSettings = ({ id, params }: CardSettingsProps) => {
-  const [opened, { toggle }] = useDisclosure(false)
   return (
-    <Menu shadow="md" width={200} opened={opened} onChange={toggle}>
+    <Menu shadow="md" width={200}>
       <Menu.Target>
         <ActionIcon size="sm">
           <IconDotsVertical />

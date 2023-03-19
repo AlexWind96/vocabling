@@ -2,7 +2,6 @@ import { IconDotsVertical, IconPlus } from '@tabler/icons-react'
 import * as React from 'react'
 import { Link } from 'react-router-dom'
 import { ActionIcon, Menu } from '@mantine/core'
-import { useDisclosure } from '@mantine/hooks'
 import { DeleteModule } from './delete-module'
 import { RemoveFromFolder } from './remove-from-folder'
 import { RenameModule } from './rename-module'
@@ -13,9 +12,8 @@ type ModuleSettingsProps = {
 }
 
 export const ModuleSettings = ({ id, folderId }: ModuleSettingsProps) => {
-  const [opened, { toggle }] = useDisclosure(false)
   return (
-    <Menu shadow="md" width={200} opened={opened} onChange={toggle}>
+    <Menu shadow="md" width={200}>
       <Menu.Target>
         <ActionIcon size="sm">
           <IconDotsVertical />
