@@ -9,34 +9,33 @@ export const useUpdateCard = createMutation<
   { id: string; body: UpdateCardDTO },
   AxiosError,
   CardsQueryParams
->(
-  async (vars) => {
+>({
+  mutationFn: async (vars) => {
     return API.card.updateCard(vars.id, vars.body).then((res) => res.data)
   },
-  {
-    onSuccess: async (data, variables, context) => {
-      const previousRecords = queryClient.getQueryData<InfiniteData<Page<Card>>>(
-        useCards.getKey(context)
-      )
-      if (previousRecords) {
-        queryClient.setQueryData<InfiniteData<Page<Card>>>(useCards.getKey(context), {
-          ...previousRecords,
-          pages: previousRecords.pages.map((page) => {
-            return {
-              ...page,
-              edges: page.edges.map((edge) => {
-                if (edge.cursor === data.id) {
-                  return { node: data, cursor: data.id }
-                } else {
-                  return edge
-                }
-              }),
-            }
-          }),
-        })
-      }
-      await queryClient.invalidateQueries(useCards.getKey(context))
-      await queryClient.invalidateQueries(useCard.getKey({ id: data.id }))
-    },
-  }
-)
+
+  onSuccess: async (data, variables, context) => {
+    const previousRecords = queryClient.getQueryData<InfiniteData<Page<Card>>>(
+      useCards.getKey(context)
+    )
+    if (previousRecords) {
+      queryClient.setQueryData<InfiniteData<Page<Card>>>(useCards.getKey(context), {
+        ...previousRecords,
+        pages: previousRecords.pages.map((page) => {
+          return {
+            ...page,
+            edges: page.edges.map((edge) => {
+              if (edge.cursor === data.id) {
+                return { node: data, cursor: data.id }
+              } else {
+                return edge
+              }
+            }),
+          }
+        }),
+      })
+    }
+    await queryClient.invalidateQueries(useCards.getKey(context))
+    await queryClient.invalidateQueries(useCard.getKey({ id: data.id }))
+  },
+})

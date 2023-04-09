@@ -9,14 +9,13 @@ export const useUpdateCurrentLearnSession = createMutation<
   CurrentLearnSession,
   UpdateCurrentLearnSessionDto,
   AxiosError
->(
-  async (vars) => {
+>({
+  mutationFn: async (vars) => {
     return API.currentLearnSession.updateCurrentLearnSession(vars).then((res) => res.data)
   },
-  {
-    onSettled: () => {
-      queryClient.invalidateQueries(useCurrentLearnSession.getKey())
-      queryClient.invalidateQueries(useLearnCard.getKey())
-    },
-  }
-)
+
+  onSettled: () => {
+    queryClient.invalidateQueries(useCurrentLearnSession.getKey())
+    queryClient.invalidateQueries(useLearnCard.getKey())
+  },
+})

@@ -5,14 +5,13 @@ import { useModules } from '@/entities/module'
 import { API, Folder } from '@/shared/api'
 import { queryClient } from '@/shared/lib/react-query'
 
-export const useDeleteFolder = createMutation<Folder, { id: string }, AxiosError>(
-  async (vars) => {
+export const useDeleteFolder = createMutation<Folder, { id: string }, AxiosError>({
+  mutationFn: async (vars) => {
     return API.folder.deleteFolder(vars.id).then((res) => res.data)
   },
-  {
-    onSettled: () => {
-      queryClient.invalidateQueries(useFolders.getKey())
-      queryClient.invalidateQueries(useModules.getKey())
-    },
-  }
-)
+
+  onSettled: () => {
+    queryClient.invalidateQueries(useFolders.getKey())
+    queryClient.invalidateQueries(useModules.getKey())
+  },
+})

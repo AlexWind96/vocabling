@@ -4,13 +4,12 @@ import { useFolders } from '@/entities/folder'
 import { API, CreateFolderDto, Folder } from '@/shared/api'
 import { queryClient } from '@/shared/lib/react-query'
 
-export const useCreateFolder = createMutation<Folder, CreateFolderDto, AxiosError>(
-  async (variables) => {
+export const useCreateFolder = createMutation<Folder, CreateFolderDto, AxiosError>({
+  mutationFn: async (variables) => {
     return API.folder.createFolder(variables).then((res) => res.data)
   },
-  {
-    onSettled: () => {
-      queryClient.invalidateQueries(useFolders.getKey())
-    },
-  }
-)
+
+  onSettled: () => {
+    queryClient.invalidateQueries(useFolders.getKey())
+  },
+})

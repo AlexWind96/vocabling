@@ -9,17 +9,16 @@ export const useUpdateModule = createMutation<
   Module,
   { id: string; body: UpdateModuleDTO },
   AxiosError
->(
-  async (vars) => {
+>({
+  mutationFn: async (vars) => {
     return API.module
       .updateModule(vars.id, vars.body)
       .then((res) => res.data)
       .catch((err) => err)
   },
-  {
-    onSuccess: () => {
-      queryClient.invalidateQueries(useModules.getKey())
-      queryClient.invalidateQueries(useFolders.getKey())
-    },
-  }
-)
+
+  onSuccess: () => {
+    queryClient.invalidateQueries(useModules.getKey())
+    queryClient.invalidateQueries(useFolders.getKey())
+  },
+})
