@@ -5,7 +5,7 @@ import { Progress } from './progress'
 import { Sentence } from './sentence'
 import { useStyles } from './styles'
 
-type CardViewProps = {
+type BaseCardProps = {
   data: Card
   rightSection: React.ReactNode
   isGraterProgress?: boolean
@@ -25,13 +25,13 @@ const hasAdditionalInfo = (notes: string | null, sentence: string | null) => {
   return isSentence || isNotes
 }
 
-export const SimpleCard = ({
+export const BaseCard = ({
   data,
   rightSection,
   isGraterProgress,
   hideStudyPhrase = false,
   showModule = false,
-}: CardViewProps) => {
+}: BaseCardProps) => {
   const { classes } = useStyles()
   const diff = isGraterProgress ? 1 : 0
 

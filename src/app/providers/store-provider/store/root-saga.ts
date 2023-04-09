@@ -1,7 +1,7 @@
 import { all, fork } from 'redux-saga/effects'
-import { currentLearnSession } from '@/entities/current-learn-session'
 import { authSaga } from '@/features/auth/auth-saga'
+import { registerAnswerSaga } from '@/features/current-learn-session/register-answer/saga'
 
 export default function* rootSaga() {
-  yield all([fork(authSaga), fork(currentLearnSession.saga)])
+  yield all([fork(authSaga), fork(registerAnswerSaga)])
 }

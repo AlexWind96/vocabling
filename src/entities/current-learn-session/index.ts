@@ -1,2 +1,3 @@
 export * from './hooks'
-export * as currentLearnSession from './model'
+export * from './model'
+export * from './components'

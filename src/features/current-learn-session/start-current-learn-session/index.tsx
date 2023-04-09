@@ -49,6 +49,7 @@ export const StartCurrentLearnSession = (props: StartCurrentLearnSessionProps) =
         return {
           value: module.id,
           label: module.label,
+          group: module?.folder?.label || undefined,
         }
       })
     : []
@@ -67,6 +68,7 @@ export const StartCurrentLearnSession = (props: StartCurrentLearnSessionProps) =
         name={'modules'}
         data={data}
         label="Pick a module"
+        placeholder={'All modules by default'}
         clearable
         size="lg"
       />

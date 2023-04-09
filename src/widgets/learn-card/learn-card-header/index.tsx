@@ -17,6 +17,7 @@ export const LearnCardHeader = ({}: LearnCardHeaderProps) => {
   const { data: user } = useUser()
   const navigate = useNavigate()
   const { primaryColor } = useMantineTheme()
+
   useEffect(() => {
     if (session && session.countOfCompleted === user!.learnGoal) {
       mutateAsync().then(() => {

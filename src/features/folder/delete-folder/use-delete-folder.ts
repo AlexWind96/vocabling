@@ -12,7 +12,7 @@ export const useDeleteFolder = createMutation<Folder, { id: string }, AxiosError
   {
     onSettled: () => {
       queryClient.invalidateQueries(useFolders.getKey())
-      queryClient.invalidateQueries([useModules.getKey()])
+      queryClient.invalidateQueries(useModules.getKey())
     },
   }
 )

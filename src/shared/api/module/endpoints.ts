@@ -1,7 +1,7 @@
 import type { AxiosPromise } from 'axios'
 import { Endpoints } from '../endpoints'
 import { Page } from '../types'
-import { CreateModuleDTO, Module, ModulesQueryParams, UpdateModuleDTO } from './models'
+import { CreateModuleDTO, Module, ModulesQueryParams, UpdateModuleDTO } from './model'
 
 export class ModuleEndpoints extends Endpoints {
   basePath: string = 'modules'

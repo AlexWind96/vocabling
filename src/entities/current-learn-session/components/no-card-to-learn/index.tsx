@@ -3,9 +3,9 @@ import { Link } from 'react-router-dom'
 import { Button, Group, Paper, Stack, Title } from '@mantine/core'
 import { PATH } from '@/shared/config'
 
-type NoCardProps = {}
+type NoCardToLearnProps = {}
 
-export const NoCard = ({}: NoCardProps) => {
+export const NoCardToLearn = ({}: NoCardToLearnProps) => {
   return (
     <Paper h={170} p={'xs'} shadow="md" withBorder radius="md">
       <Stack h={'100%'} align={'center'} justify={'center'} spacing={'lg'}>

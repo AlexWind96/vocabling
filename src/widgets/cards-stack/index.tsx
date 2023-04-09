@@ -2,7 +2,7 @@ import * as React from 'react'
 import { useEffect } from 'react'
 import { Center, Stack } from '@mantine/core'
 import { useIntersection } from '@mantine/hooks'
-import { SimpleCard, useCards } from '@/entities/card'
+import { BaseCard, useCards } from '@/entities/card'
 import { CardSettings } from '@/features/card/card-settings'
 import { CardsQueryParams } from '@/shared/api'
 import { LoadingData, NoData } from '@/shared/ui'
@@ -37,7 +37,7 @@ export const CardsStack = ({ params, showModules = false }: CardsStackProps) => 
           }
           return group.edges.map(({ node: card }) => {
             return (
-              <SimpleCard
+              <BaseCard
                 showModule={showModules}
                 key={card.id}
                 data={card}

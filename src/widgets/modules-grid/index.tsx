@@ -6,9 +6,10 @@ import { NoData } from '@/shared/ui'
 
 type ModulesGridProps = {
   folderId: string
+  withoutNoDataView?: boolean
 }
 
-export const ModulesGrid = ({ folderId }: ModulesGridProps) => {
+export const ModulesGrid = ({ folderId, withoutNoDataView }: ModulesGridProps) => {
   const { isSuccess, data } = useModules({
     variables: { folderId },
     suspense: true,
@@ -18,8 +19,10 @@ export const ModulesGrid = ({ folderId }: ModulesGridProps) => {
   if (!isSuccess) return null
 
   if (!data.length) {
+    if (withoutNoDataView) return null
     return <NoData message={'No modules'} />
   }
+
   return (
     <Grid>
       {data.map((module) => {

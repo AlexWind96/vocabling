@@ -1,2 +1,2 @@
 export { ModuleEndpoints } from './endpoints'
-export * from './models'
+export * from './model'

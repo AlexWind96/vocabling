@@ -1,11 +1,10 @@
 import { IconFolderX, IconPlus } from '@tabler/icons-react'
 import * as React from 'react'
-import { Grid, Group, Stack } from '@mantine/core'
+import { Group, Stack } from '@mantine/core'
 import { Folder, useFolders } from '@/entities/folder'
-import { ModuleCard } from '@/entities/module'
 import { DeleteFolder } from '@/features/folder/delete-folder'
-import { ModuleSettings } from '@/features/module/module-settings'
 import { NoData } from '@/shared/ui'
+import { ModulesGrid } from '../modules-grid'
 import { UpdateFolder } from '../update-module'
 
 type FoldersStackProps = {}
@@ -39,18 +38,7 @@ export const FoldersStack = ({}: FoldersStackProps) => {
               </Group>
             }
           >
-            <Grid>
-              {folder.modules.map((module) => {
-                return (
-                  <Grid.Col span={12} xs={6} sm={4} key={module.id}>
-                    <ModuleCard
-                      data={module}
-                      actions={<ModuleSettings folderId={module.folderId} id={module.id} />}
-                    />
-                  </Grid.Col>
-                )
-              })}
-            </Grid>
+            <ModulesGrid folderId={folder.id} withoutNoDataView />
           </Folder>
         )
       })}

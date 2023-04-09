@@ -3,25 +3,29 @@ import { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { Button, Group, Skeleton } from '@mantine/core'
 import { useLearnCard } from '@/entities/card'
-import { currentLearnSession, useCurrentLearnSession } from '@/entities/current-learn-session'
-import { RegisterAnswer } from '@/features/current-learn-session/register-answer'
+import {
+  currentLearnSessionSlice,
+  selectCurrentLearnSessionSlice,
+  useCurrentLearnSession,
+} from '@/entities/current-learn-session'
+import { RegisterAnswer, registerAnswer } from '@/features/current-learn-session/register-answer'
 import { useTypedSelector } from '@/shared/hooks'
 import { queryClient } from '@/shared/lib/react-query'
 
 type LearnCardFooterProps = {}
 const {
-  selectors,
-  actions,
-  asyncActions: { registerAnswer },
-} = currentLearnSession
+  actions: { showResult, cleanState },
+} = currentLearnSessionSlice
 
 export const LearnCardFooter = ({}: LearnCardFooterProps) => {
-  const { data, isLoading } = useLearnCard()
-  const { isShownResult } = useTypedSelector(selectors.selectCurrentLearnSessionState)
+  const { data, isFetching } = useLearnCard()
+  const { isShownResult } = useTypedSelector(selectCurrentLearnSessionSlice)
   const dispatch = useDispatch()
+
   const handleShowResult = () => {
-    dispatch(actions.showResult())
+    dispatch(showResult())
   }
+
   const handleRegisterAnswerClick = async (id: string, isRight: boolean) => {
     await dispatch(registerAnswer.request({ id, isRight }))
     await queryClient.invalidateQueries(useLearnCard.getKey())
@@ -30,11 +34,11 @@ export const LearnCardFooter = ({}: LearnCardFooterProps) => {
 
   useEffect(() => {
     return () => {
-      dispatch(actions.cleanState())
+      dispatch(cleanState())
     }
   }, [])
 
-  if (isLoading)
+  if (isFetching)
     return (
       <Group position={'apart'}>
         <Skeleton height={40} width={70} radius="lg" />

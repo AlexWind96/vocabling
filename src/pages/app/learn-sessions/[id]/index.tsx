@@ -14,6 +14,7 @@ export const LearnSession = ({}: LearnSessionProps) => {
   const { data, isLoading } = useLearnSession({ variables: { id: id as string } })
 
   if (isLoading || !data) return <LoadingData />
+
   return (
     <Stack align={'center'}>
       <IconCertificate size={70} color={colors.green[5]} />

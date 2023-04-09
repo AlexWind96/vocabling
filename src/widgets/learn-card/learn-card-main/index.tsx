@@ -1,22 +1,20 @@
 import * as React from 'react'
 import { Skeleton } from '@mantine/core'
-import { NoCard, SimpleCard, useLearnCard } from '@/entities/card'
-import { currentLearnSession } from '@/entities/current-learn-session'
+import { BaseCard, useLearnCard } from '@/entities/card'
+import { NoCardToLearn, selectCurrentLearnSessionSlice } from '@/entities/current-learn-session'
 import { useTypedSelector } from '@/shared/hooks'
 
 type LearnCardMainProps = {}
 
 export const LearnCardMain = ({}: LearnCardMainProps) => {
   const { data, isFetching } = useLearnCard()
-  const { isRightAnswer, isShownResult } = useTypedSelector(
-    currentLearnSession.selectors.selectCurrentLearnSessionState
-  )
+  const { isRightAnswer, isShownResult } = useTypedSelector(selectCurrentLearnSessionSlice)
   if (isFetching) return <Skeleton height={150} radius="xl" />
 
-  if (!data) return <NoCard />
+  if (!data) return <NoCardToLearn />
 
   return (
-    <SimpleCard
+    <BaseCard
       data={data}
       rightSection={null}
       isGraterProgress={isRightAnswer}

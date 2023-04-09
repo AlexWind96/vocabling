@@ -1,16 +1,18 @@
-import { PropsWithChildren } from 'react'
 import * as React from 'react'
+import { PropsWithChildren } from 'react'
 import { Loader } from '@mantine/core'
 
-type QuerySuspenseProps = PropsWithChildren
+type QuerySuspenseProps = { fallback?: React.ReactElement } & PropsWithChildren
 
-export const QuerySuspense = ({ children }: QuerySuspenseProps) => {
+export const QuerySuspense = ({ children, fallback }: QuerySuspenseProps) => {
   return (
     <React.Suspense
       fallback={
-        <div className="flex items-center justify-center mt-4">
-          <Loader size="lg" variant="dots" />
-        </div>
+        fallback || (
+          <div className="flex items-center justify-center mt-4">
+            <Loader size="lg" variant="dots" />
+          </div>
+        )
       }
     >
       {children}

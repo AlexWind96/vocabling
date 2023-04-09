@@ -1,7 +1,7 @@
 export { API } from './api-service'
 export * from './auth/models'
 export * from './card/model'
-export * from './module/models'
+export * from './module/model'
 export * from './types'
 export * from './current-learn-session/model'
 export * from './learn-session/model'

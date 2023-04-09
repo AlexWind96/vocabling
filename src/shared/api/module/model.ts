@@ -1,3 +1,5 @@
+import { Folder } from '../folder'
+
 export type Module = {
   id: string
   createdAt: Date
@@ -16,6 +18,7 @@ export type Module = {
     in_familiar: number
     known: number
   }
+  folder?: Folder
 }
 
 export type CreateModuleDTO = {

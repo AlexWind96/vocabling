@@ -6,8 +6,12 @@ import {
   resolvePromiseAction,
 } from 'redux-saga-promise-actions'
 import { call, put, takeEvery } from 'redux-saga/effects'
+import { currentLearnSessionSlice } from '@/entities/current-learn-session'
 import { API } from '@/shared/api'
-import { actions } from '..'
+
+const {
+  actions: { makeAnswer, cleanState },
+} = currentLearnSessionSlice
 
 export const registerAnswer = createPromiseAction('REGISTER_CARD_ANSWER')<
   { id: string; isRight: boolean },
@@ -18,16 +22,16 @@ export const registerAnswer = createPromiseAction('REGISTER_CARD_ANSWER')<
 function* worker(action: PromiseAction<string, { id: string; isRight: boolean }, any>) {
   try {
     if (action.payload.isRight) {
-      yield put(actions.makeAnswer(true))
+      yield put(makeAnswer(true))
       yield call(API.card.registerRightAnswer, action.payload.id)
     } else {
-      yield put(actions.makeAnswer(false))
+      yield put(makeAnswer(false))
       yield call(API.card.registerWrongAnswer, action.payload.id)
     }
-    yield put(actions.cleanState())
+    yield put(cleanState())
     resolvePromiseAction(action, null)
   } catch (err) {
-    yield put(actions.cleanState())
+    yield put(cleanState())
     const error = err as AxiosError
     rejectPromiseAction(action, error.message)
   }
