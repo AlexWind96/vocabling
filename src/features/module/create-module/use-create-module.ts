@@ -10,6 +10,6 @@ export const useCreateModule = createMutation<Module, CreateModuleDTO, AxiosErro
   },
 
   onSettled: () => {
-    queryClient.invalidateQueries(useModules.getKey({ folderId: 'without_folder' }))
+    queryClient.invalidateQueries(useModules.getKey())
   },
 })

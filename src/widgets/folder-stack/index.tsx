@@ -1,9 +1,11 @@
-import { IconFolderX, IconPlus } from '@tabler/icons-react'
+import { IconFolderX, IconPlus, IconSchool, IconSquarePlus } from '@tabler/icons-react'
 import * as React from 'react'
 import { Group, Stack } from '@mantine/core'
 import { Folder, useFolders } from '@/entities/folder'
 import { DeleteFolder } from '@/features/folder/delete-folder'
 import { NoData } from '@/shared/ui'
+import { LearnFolder } from '../../features/folder/learn-folder'
+import { CreateModuleActionIcon } from '../../features/module/create-module/create-module-action-icon'
 import { ModulesGrid } from '../modules-grid'
 import { UpdateFolder } from '../update-module'
 
@@ -35,6 +37,12 @@ export const FoldersStack = ({}: FoldersStackProps) => {
                 <DeleteFolder id={folder.id} color={'pink'}>
                   <IconFolderX />
                 </DeleteFolder>
+                <CreateModuleActionIcon folderId={folder.id} color={'pink'}>
+                  <IconSquarePlus />
+                </CreateModuleActionIcon>
+                <LearnFolder id={folder.id} color={'pink'}>
+                  <IconSchool />
+                </LearnFolder>
               </Group>
             }
           >

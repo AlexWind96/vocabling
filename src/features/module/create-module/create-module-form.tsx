@@ -8,6 +8,7 @@ import { TextInputController } from '@/shared/ui'
 
 type CreateModuleFormProps = {
   onSubmit: (values: CreateModuleDTO) => Promise<void>
+  folderId?: string
 }
 
 const createModuleFormSchema = z.object({
@@ -34,6 +35,7 @@ export const CreateModuleForm = (props: CreateModuleFormProps) => {
   const onSubmit: SubmitHandler<CreateModuleFormValues> = async (data) => {
     const module: CreateModuleDTO = {
       label: data.label.trim(),
+      folderId: props.folderId,
     }
     await props.onSubmit(module)
 

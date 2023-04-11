@@ -23,6 +23,7 @@ export type Module = {
 
 export type CreateModuleDTO = {
   label: string
+  folderId?: string
 }
 
 export type UpdateModuleDTO = {

@@ -10,4 +10,7 @@ export type CurrentLearnSession = {
   modules: string[]
 }
 
-export type UpdateCurrentLearnSessionDto = Pick<CurrentLearnSession, 'modules'>
+export type UpdateCurrentLearnSessionDto = { folderId?: string } & Pick<
+  CurrentLearnSession,
+  'modules'
+>
