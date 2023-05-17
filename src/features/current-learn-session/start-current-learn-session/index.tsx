@@ -73,13 +73,7 @@ export const StartCurrentLearnSession = (props: StartCurrentLearnSessionProps) =
         size="lg"
       />
       <Stack spacing="xs">
-        <Button
-          fullWidth
-          mt="xl"
-          type={'submit'}
-          loading={isSubmitting}
-          disabled={!isFetched || props.isSessionLoading}
-        >
+        <Button fullWidth mt="xl" type={'submit'} loading={isSubmitting || props.isSessionLoading}>
           Start
         </Button>
       </Stack>
