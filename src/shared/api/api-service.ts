@@ -35,7 +35,7 @@ export class ApiService {
     this.instance.interceptors.response.use(async (response) => {
       // add artificial delay for dev env
       if (isDevEnv) {
-        await sleep(4000)
+        await sleep(3000)
       }
       return response
     })
