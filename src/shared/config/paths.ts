@@ -16,4 +16,5 @@ export const PATH = {
   learn_cards: 'learn-cards',
   learn_sessions: 'learn-sessions',
   all_cards: 'all-cards',
+  account: 'account',
 }

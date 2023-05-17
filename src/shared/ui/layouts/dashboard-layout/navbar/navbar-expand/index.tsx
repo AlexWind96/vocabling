@@ -1,6 +1,6 @@
 import React, { FC } from 'react'
 import { NavLink } from 'react-router-dom'
-import { Group, Navbar, ScrollArea, Title } from '@mantine/core'
+import { Anchor, Group, Navbar, ScrollArea } from '@mantine/core'
 import { useNavbarLinkStyles } from '../../../navbar-link.styles'
 import { INavbarLink } from '../../../types'
 import useStyles from './styles'
@@ -35,7 +35,10 @@ export const NavbarExpand: FC<NavbarExpandProps> = ({
     <Navbar height={'100vh'} width={{ base: 250 }} p="sm" hiddenBreakpoint={'sm'} hidden={true}>
       <Navbar.Section>
         <Group className={classes.header} position="apart">
-          <Title order={3}>{title}</Title>
+          {/*TODO extract*/}
+          <Anchor to={'/home'} component={NavLink}>
+            {title}
+          </Anchor>
         </Group>
       </Navbar.Section>
       <Navbar.Section component={ScrollArea} grow>

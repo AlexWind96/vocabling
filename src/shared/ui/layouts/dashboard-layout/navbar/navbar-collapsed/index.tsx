@@ -1,6 +1,6 @@
 import React, { FC } from 'react'
 import { NavLink } from 'react-router-dom'
-import { Center, Navbar, Stack, Title, Tooltip } from '@mantine/core'
+import { Anchor, Center, Navbar, Stack, Tooltip } from '@mantine/core'
 import { useNavbarLinkStyles } from '../../../navbar-link.styles'
 import { INavbarLink } from '../../../types'
 
@@ -41,7 +41,10 @@ export const NavbarCollapsed: FC<NavbarExpandProps> = ({
     <Navbar height={'100vh'} width={{ base: 80 }} p="md" hiddenBreakpoint={'sm'} hidden={true}>
       <Navbar.Section>
         <Center>
-          <Title order={5}>{title}</Title>
+          {/*TODO extract*/}
+          <Anchor fw={'bold'} to={'/home'} component={NavLink}>
+            {title}
+          </Anchor>
         </Center>
       </Navbar.Section>
       <Navbar.Section grow mt={50}>

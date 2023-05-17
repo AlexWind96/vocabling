@@ -2,7 +2,7 @@ import * as React from 'react'
 import { PropsWithChildren } from 'react'
 import { Loader } from '@mantine/core'
 
-type QuerySuspenseProps = { fallback?: React.ReactElement } & PropsWithChildren
+type QuerySuspenseProps = { fallback?: React.ReactNode } & PropsWithChildren
 
 export const QuerySuspense = ({ children, fallback }: QuerySuspenseProps) => {
   return (
