@@ -1,1 +1,1 @@
-export { globalMantineTheme } from './global-mantine-theme'
+export { generateGlobalMantineTheme } from './global-mantine-theme'
