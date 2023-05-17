@@ -1,7 +1,7 @@
 import React from 'react'
 import { Navigate } from 'react-router-dom'
 import { mapNavbarLinksByRole } from '@/entities/navigation'
-import { Logout } from '@/features/auth/logout'
+import { LogoutUnstyledButton } from '@/features/auth/logout'
 import { ROLE } from '@/shared/api'
 import { PATH } from '@/shared/config'
 import { DashboardLayout, LoadingData } from '@/shared/ui'
@@ -11,6 +11,7 @@ const { ModulesPage } = lazyImport(() => import('./modules'), 'ModulesPage')
 const { ModulePage } = lazyImport(() => import('./modules/[id]'), 'ModulePage')
 const { AllCardsPage } = lazyImport(() => import('./all-cards'), 'AllCardsPage')
 const { AddCardsPage } = lazyImport(() => import('./modules/[id]/add-cards'), 'AddCardsPage')
+const { AccountPage } = lazyImport(() => import('./account'), 'AccountPage')
 const { CardsLearningSettingsPage } = lazyImport(
   () => import('./learn'),
   'CardsLearningSettingsPage'
@@ -27,7 +28,7 @@ export const getAppRoutes = (user: any) => {
     {
       element: user ? (
         <DashboardLayout
-          logoutButton={Logout}
+          logoutButton={LogoutUnstyledButton}
           navbarLinks={mapNavbarLinksByRole(user?.role)}
           fallBack={<LoadingData />}
         />
@@ -62,6 +63,11 @@ type PrivateRouteType = {
 
 const privateRoutes: PrivateRouteType[] = [
   {
+    path: `${PATH.app}`,
+    element: <Navigate to={`/${PATH.modules}`} replace />,
+    roles: [ROLE.User, ROLE.Admin],
+  },
+  {
     path: `${PATH.modules}`,
     element: <ModulesPage />,
     roles: [ROLE.User, ROLE.Admin],
@@ -82,11 +88,6 @@ const privateRoutes: PrivateRouteType[] = [
     roles: [ROLE.User, ROLE.Admin],
   },
   {
-    path: `${PATH.app}`,
-    element: <Navigate to={`/${PATH.modules}`} replace />,
-    roles: [ROLE.User, ROLE.Admin],
-  },
-  {
     path: `${PATH.learn_cards}`,
     element: <CardsLearningSettingsPage />,
     roles: [ROLE.User, ROLE.Admin],
@@ -99,6 +100,11 @@ const privateRoutes: PrivateRouteType[] = [
   {
     path: `${PATH.learn_sessions}/:id`,
     element: <LearnSession />,
+    roles: [ROLE.User, ROLE.Admin],
+  },
+  {
+    path: `${PATH.account}`,
+    element: <AccountPage />,
     roles: [ROLE.User, ROLE.Admin],
   },
 ]

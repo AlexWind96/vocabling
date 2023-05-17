@@ -5,7 +5,7 @@ import { ActionIcon, Button, Grid, MediaQuery, Stack, TextInput } from '@mantine
 import { useDebouncedValue } from '@mantine/hooks'
 import { ModuleTitle } from '@/features/module/module-title'
 import { QueryWrapper } from '@/shared/lib/react-query'
-import { BackAnchor, ScrollToTop } from '@/shared/ui'
+import { BackAnchor, CardSkeletons, ScrollToTop } from '@/shared/ui'
 import { CardsStack } from '@/widgets/cards-stack'
 
 export const ModulePage = () => {
@@ -44,7 +44,13 @@ export const ModulePage = () => {
       <Grid>
         <Grid.Col span={1} sm={2} md={3} />
         <Grid.Col span={12} sm={8} md={6}>
-          <QueryWrapper>
+          <QueryWrapper
+            loadingFallback={
+              <Stack>
+                <CardSkeletons height={150} />
+              </Stack>
+            }
+          >
             <CardsStack
               params={{ moduleId: id as string, keywords: debounced || undefined, first: 10 }}
             />

@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import { ActionIcon, Grid, Stack, TextInput, Title } from '@mantine/core'
 import { useDebouncedValue } from '@mantine/hooks'
 import { QueryWrapper } from '@/shared/lib/react-query'
-import { ScrollToTop } from '@/shared/ui'
+import { CardSkeletons, ScrollToTop } from '@/shared/ui'
 import { CardsStack } from '@/widgets/cards-stack'
 
 export const AllCardsPage = () => {
@@ -31,7 +31,13 @@ export const AllCardsPage = () => {
       <Grid>
         <Grid.Col span={1} sm={2} md={3} />
         <Grid.Col span={12} sm={8} md={6}>
-          <QueryWrapper>
+          <QueryWrapper
+            loadingFallback={
+              <Stack>
+                <CardSkeletons height={150} />
+              </Stack>
+            }
+          >
             <CardsStack params={{ keywords: debounced || undefined, first: 10 }} showModules />
           </QueryWrapper>
         </Grid.Col>
