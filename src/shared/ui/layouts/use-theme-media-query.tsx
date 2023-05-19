@@ -2,6 +2,7 @@ import { useCallback } from 'react'
 import { useMantineTheme } from '@mantine/core'
 import { useViewportSize } from '@mantine/hooks'
 
+
 type UseThemeMediaQueryReturnType = {
   isXS: boolean
   isSM: boolean

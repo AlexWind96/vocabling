@@ -2,6 +2,7 @@ import type { AxiosPromise } from 'axios'
 import { Endpoints } from '../endpoints'
 import { CurrentLearnSession, UpdateCurrentLearnSessionDto } from './model'
 
+
 export class CurrentLearnSessionEndpoints extends Endpoints {
   basePath: string = 'current-learn-session'
 

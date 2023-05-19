@@ -3,6 +3,7 @@ import { PropsWithChildren } from 'react'
 import { QueryErrorBoundary } from './query-error-boundary'
 import { QuerySuspense } from './query-suspense'
 
+
 type QueryWrapperProps = {
   loadingFallback?: React.ReactNode
 } & PropsWithChildren

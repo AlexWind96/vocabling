@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { Grid } from '@mantine/core'
-import { LearnCard } from '@/widgets/learn-card'
+import { LearnCard } from '@widgets/learn-card'
 
 type CardsLearningSessionPageProps = {}
 

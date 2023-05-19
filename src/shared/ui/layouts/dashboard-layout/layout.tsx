@@ -10,6 +10,7 @@ import { Footer } from './footer'
 import { NavbarCollapsed } from './navbar'
 import useStyles from './styles'
 
+
 type DashboardLayoutProps = {
   navbarLinks?: INavbarLink[]
   logoutButton: React.FC<Omit<UnstyledButtonProps, 'onClick' | 'disabled'>>

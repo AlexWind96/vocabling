@@ -1,5 +1,5 @@
-import { Card, CreateSentenceUnitDto } from '@/shared/api'
-import { EditCardFormValues } from './index'
+import { Card, CreateSentenceUnitDto } from '@shared/api'
+import { EditCardFormValues } from './edit-card-form'
 
 export const getSentenceUnits = (sentence: string): CreateSentenceUnitDto[] => {
   const notLettersReg = /[^'’\s\p{L}\p{N}\p{M}-]+/gu

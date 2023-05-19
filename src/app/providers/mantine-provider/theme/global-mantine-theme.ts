@@ -1,6 +1,7 @@
 import { MantineThemeOverride } from '@mantine/core'
 import { overrideColors } from './colors'
 
+
 type GenerateGlobalMantineTheme = (themeOverride?: MantineThemeOverride) => MantineThemeOverride
 
 export const generateGlobalMantineTheme: GenerateGlobalMantineTheme = (themeOverride) => {

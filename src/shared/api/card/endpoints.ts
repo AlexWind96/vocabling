@@ -3,6 +3,7 @@ import { Endpoints } from '../endpoints'
 import { Page } from '../types'
 import { Card, CardsQueryParams, CreateCardDTO, UpdateCardDTO } from './model'
 
+
 export class CardEndpoints extends Endpoints {
   basePath: string = 'cards'
 

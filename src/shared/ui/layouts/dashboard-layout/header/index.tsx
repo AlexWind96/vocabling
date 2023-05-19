@@ -2,6 +2,7 @@ import React, { FC } from 'react'
 import { Group, Header as MantineHeader } from '@mantine/core'
 import useStyles from './styles'
 
+
 type HeaderProps = {
   before?: React.ReactNode
   after?: React.ReactNode

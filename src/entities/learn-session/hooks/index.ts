@@ -1,2 +1,2 @@
-export { useLearnSession } from './use-learn-session'
-export { useLearnSessions } from './use-learn-sessions'
+export { useLearnSessionQuery } from './use-learn-session-query'
+export { useLearnSessionsQuery } from './use-learn-sessions-query'

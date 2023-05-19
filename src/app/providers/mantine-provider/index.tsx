@@ -3,9 +3,10 @@ import { ColorScheme, ColorSchemeProvider, MantineProvider as Provider } from '@
 import { useHotkeys, useLocalStorage } from '@mantine/hooks'
 import { ModalsProvider } from '@mantine/modals'
 import { Notifications } from '@mantine/notifications'
-import { useTypedSelector } from '@/shared/hooks'
+import { useTypedSelector } from '@shared/hooks'
 import { GlobalStyles } from './global-styles'
 import { generateGlobalMantineTheme } from './theme'
+
 
 export function MantineProvider({ children }) {
   const [colorScheme, setColorScheme] = useLocalStorage<ColorScheme>({

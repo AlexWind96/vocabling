@@ -6,8 +6,8 @@ import {
   resolvePromiseAction,
 } from 'redux-saga-promise-actions'
 import { call, put, takeEvery } from 'redux-saga/effects'
-import { currentLearnSessionSlice } from '@/entities/current-learn-session'
-import { API } from '@/shared/api'
+import { API } from '@shared/api'
+import { currentLearnSessionSlice } from '@entities/current-learn-session'
 
 const {
   actions: { makeAnswer, cleanState },

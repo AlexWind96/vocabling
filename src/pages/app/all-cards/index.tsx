@@ -2,9 +2,9 @@ import { IconX } from '@tabler/icons-react'
 import React, { useState } from 'react'
 import { ActionIcon, Grid, Stack, TextInput, Title } from '@mantine/core'
 import { useDebouncedValue } from '@mantine/hooks'
-import { QueryWrapper } from '@/shared/lib/react-query'
-import { CardSkeletons, ScrollToTop } from '@/shared/ui'
-import { CardsStack } from '@/widgets/cards-stack'
+import { QueryWrapper } from '@shared/lib/react-query'
+import { CardSkeletons, ScrollToTop } from '@shared/ui'
+import { CardsStack } from '@widgets/cards-stack'
 
 export const AllCardsPage = () => {
   const [value, setValue] = useState('')

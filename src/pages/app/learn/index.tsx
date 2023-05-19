@@ -1,20 +1,20 @@
 import * as React from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Grid, Group, Progress, Stack, Title } from '@mantine/core'
-import { useCurrentLearnSession } from '@/entities/current-learn-session'
-import { useUser } from '@/entities/user'
-import { StartCurrentLearnSession } from '@/features/current-learn-session/start-current-learn-session'
-import { useUpdateCurrentLearnSession } from '@/features/current-learn-session/update-current-learn-session'
-import { UpdateCurrentLearnSessionDto } from '@/shared/api'
-import { getPercent } from '@/shared/utils'
+import { UpdateCurrentLearnSessionDto } from '@shared/api'
+import { getPercent } from '@shared/utils'
+import { useCurrentLearnSessionQuery } from '@entities/current-learn-session'
+import { useUserQuery } from '@entities/user'
+import { StartLearnSessionForm } from '@features/current-learn-session/start-learn-session-form'
+import { useUpdateLearnSessionMutation } from '@features/current-learn-session/update-current-learn-session'
 
 type CardsLearningSettingsPageProps = {}
 
 export const CardsLearningSettingsPage = ({}: CardsLearningSettingsPageProps) => {
   const navigate = useNavigate()
-  const { data, isLoading } = useCurrentLearnSession()
-  const { mutateAsync } = useUpdateCurrentLearnSession()
-  const { data: user } = useUser()
+  const { data, isLoading } = useCurrentLearnSessionQuery()
+  const { mutateAsync } = useUpdateLearnSessionMutation()
+  const { data: user } = useUserQuery()
 
   const handleSubmit = async (values: UpdateCurrentLearnSessionDto) => {
     const currentLearnSession = await mutateAsync(values)
@@ -30,7 +30,7 @@ export const CardsLearningSettingsPage = ({}: CardsLearningSettingsPageProps) =>
             <Title>Learn new words</Title>
           </Group>
           {data && <Progress value={getPercent(data.countOfCompleted, user!.learnGoal)} />}
-          <StartCurrentLearnSession
+          <StartLearnSessionForm
             isSessionLoading={isLoading}
             learnSession={data}
             onSubmit={handleSubmit}

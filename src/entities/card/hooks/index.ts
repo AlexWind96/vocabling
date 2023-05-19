@@ -1,3 +1,3 @@
-export { useCard } from './use-card'
-export { useCards } from './use-cards'
-export { useLearnCard } from './use-learn-card'
+export { useCardQuery } from './use-card-query'
+export { useCardsQuery } from './use-cards-query'
+export { useLearnCardQuery } from './use-learn-card-query'

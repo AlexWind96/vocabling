@@ -1,6 +1,7 @@
 import React from 'react'
 import { Center, Loader, Stack } from '@mantine/core'
-import Logo from '@/shared/assets/logo.svg'
+import Logo from '@shared/assets/logo.svg'
+
 
 export const LoadingScreen = () => {
   return (

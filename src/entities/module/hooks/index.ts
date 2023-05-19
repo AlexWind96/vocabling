@@ -1,2 +1,2 @@
-export { useModules } from './use-modules'
-export { useModule, useModuleTitle } from './use-module'
+export { useModulesQuery } from './use-modules-query'
+export { useModuleQuery, useModuleTitle } from './use-module-query'

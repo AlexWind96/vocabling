@@ -3,6 +3,7 @@ import * as React from 'react'
 import { ActionIcon, Affix, Transition } from '@mantine/core'
 import { useWindowScroll } from '@mantine/hooks'
 
+
 type ScrollToTopProps = {}
 
 export const ScrollToTop = ({}: ScrollToTopProps) => {

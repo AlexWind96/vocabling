@@ -1,8 +1,8 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { Anchor, Paper, Text, Title } from '@mantine/core'
-import { Login } from '@/features/auth/login'
-import { PATH } from '@/shared/config'
+import { PATH } from '@shared/config'
+import { LoginForm } from '@features/auth/login'
 
 export const LoginPage = () => {
   return (
@@ -10,7 +10,7 @@ export const LoginPage = () => {
       <Title align="center" order={3} mb={'md'}>
         Log in
       </Title>
-      <Login />
+      <LoginForm />
       <Text color="dimmed" size="sm" align="center" mt={'sm'}>
         Do not have an account yet?{' '}
         <Anchor size={'sm'} component={Link} to={`/${PATH.register}`}>

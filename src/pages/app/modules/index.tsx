@@ -1,23 +1,27 @@
 import { IconPlus } from '@tabler/icons-react'
 import React from 'react'
-import { Divider, Grid, Group, Stack, Title } from '@mantine/core'
-import { CreateFolder } from '@/features/folder/create-folder'
-import { CreateModule } from '@/features/module/create-module'
-import { QueryWrapper } from '@/shared/lib/react-query'
-import { CardSkeletons } from '@/shared/ui'
-import { FoldersStack } from '@/widgets/folder-stack'
-import { ModulesGrid } from '@/widgets/modules-grid'
+import { Button, Divider, Grid, Group, Stack, Title } from '@mantine/core'
+import { QueryWrapper } from '@shared/lib/react-query'
+import { CardSkeletons } from '@shared/ui'
+import { useCreateFolderModal } from '@features/folder/create-folder-modal'
+import { useCreateModuleModal } from '@features/module/create-module-modal'
+import { FoldersStack } from '@widgets/folder-stack'
+import { ModulesGrid } from '@widgets/modules-grid'
 
 export const ModulesPage = () => {
+  const { openCreateModuleModal } = useCreateModuleModal({})
+  const { openCreateFolderModal } = useCreateFolderModal()
   return (
     <Stack>
       <Group position={'apart'}>
         <Title>Modules</Title>
         <Group>
-          <CreateModule leftIcon={<IconPlus />}>Create module</CreateModule>
-          <CreateFolder leftIcon={<IconPlus />} variant={'outline'}>
+          <Button leftIcon={<IconPlus />} onClick={openCreateModuleModal}>
+            Create module
+          </Button>
+          <Button leftIcon={<IconPlus />} variant={'outline'} onClick={openCreateFolderModal}>
             Create folder
-          </CreateFolder>
+          </Button>
         </Group>
       </Group>
       <Divider my="sm" label="Folders" labelProps={{ fz: 14, c: 'slate.4', fw: 'bold' }} />

@@ -1,11 +1,11 @@
 import React from 'react'
 import { useParams } from 'react-router-dom'
 import { Badge, Grid, Group, MediaQuery, Title } from '@mantine/core'
-import { useModuleTitle } from '@/entities/module'
-import { AddCard } from '@/features/card/add-card'
-import { QueryWrapper } from '@/shared/lib/react-query'
-import { BackAnchor, ScrollToTop } from '@/shared/ui'
-import { CardsStack } from '@/widgets/cards-stack'
+import { QueryWrapper } from '@shared/lib/react-query'
+import { BackAnchor, ScrollToTop } from '@shared/ui'
+import { useModuleTitle } from '@entities/module'
+import { AddCardForm } from '@features/card/add-card'
+import { CardsStack } from '@widgets/cards-stack'
 
 export const AddCardsPage = () => {
   const { id } = useParams()
@@ -25,7 +25,7 @@ export const AddCardsPage = () => {
           </Group>
         </Grid.Col>
         <Grid.Col>
-          <AddCard
+          <AddCardForm
             previewSection={
               <QueryWrapper>
                 <CardsStack params={{ moduleId: id as string, first: 3 }} />

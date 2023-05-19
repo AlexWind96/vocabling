@@ -1,1 +1,1 @@
-export { useUpdateCurrentLearnSession } from './use-update-current-learn-session'
+export { useUpdateLearnSessionMutation } from './use-update-learn-session-mutation'

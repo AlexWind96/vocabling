@@ -1,6 +1,7 @@
 import * as React from 'react'
 import { Button, ButtonProps } from '@mantine/core'
 
+
 type LoadMoreProps = {
   hasNextPage: boolean | undefined
   fetchCb: () => Promise<any>

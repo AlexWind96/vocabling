@@ -1,6 +1,7 @@
 import { ILocalStorage, LocalStorageService } from '../local-storage-service'
 import { IJwtTokenService } from './jwt-token.service.interface'
 
+
 class JwtTokenService implements IJwtTokenService {
   constructor(private storage: ILocalStorage) {}
 

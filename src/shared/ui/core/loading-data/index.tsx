@@ -1,6 +1,7 @@
 import * as React from 'react'
 import { Loader } from '@mantine/core'
 
+
 type LoadingDataProps = {}
 
 export const LoadingData = ({}: LoadingDataProps) => {

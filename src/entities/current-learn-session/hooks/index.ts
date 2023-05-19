@@ -1,1 +1,1 @@
-export { useCurrentLearnSession } from './use-current-learn-session'
+export { useCurrentLearnSessionQuery } from './use-current-learn-session-query'

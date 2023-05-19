@@ -6,6 +6,7 @@ import { useThemeMediaQuery } from '../use-theme-media-query'
 import { NavbarCollapsed, NavbarDrawer, NavbarExpand } from './navbar'
 import useStyles from './styles'
 
+
 type LayoutExtensions = {
   NavbarCollapsed: typeof NavbarCollapsed
   NavbarExpand: typeof NavbarExpand

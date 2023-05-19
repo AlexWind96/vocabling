@@ -1,1 +1,1 @@
-export { useUser } from './use-user'
+export { useUserQuery } from './use-user-query'

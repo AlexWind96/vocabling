@@ -1,6 +1,6 @@
 import { IconHexagonLetterM, IconSchool, IconStack2, IconUserCircle } from '@tabler/icons-react'
-import { ROLE } from '@/shared/api'
-import { PATH } from '@/shared/config'
+import { ROLE } from '@shared/api'
+import { PATH } from '@shared/config'
 import { INavbarLink } from './types'
 
 export const navbarLinks: INavbarLink[] = [

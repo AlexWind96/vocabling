@@ -2,6 +2,7 @@ import React from 'react'
 import { useTranslation } from 'react-i18next'
 import { Button, Menu } from '@mantine/core'
 
+
 type LangSwitcherProps = {
   languages: string[]
 }

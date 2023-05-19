@@ -3,6 +3,7 @@ import { Endpoints } from '../endpoints'
 import { Page } from '../types'
 import { CreateFolderDto, Folder } from './models'
 
+
 export class FolderEndpoints extends Endpoints {
   basePath: string = 'folders'
 

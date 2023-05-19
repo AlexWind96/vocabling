@@ -1,6 +1,7 @@
 import * as React from 'react'
 import { Box, Group, Text } from '@mantine/core'
 
+
 type ColoredCountProps = {
   color: string[]
   count: number

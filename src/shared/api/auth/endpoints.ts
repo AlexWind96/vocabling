@@ -1,10 +1,11 @@
 import { Dispatch } from '@reduxjs/toolkit'
 import type { AxiosPromise } from 'axios'
 import { AxiosRequestConfig } from 'axios'
-import { IJwtTokenService } from '@/shared/lib/jwt-token-service'
-import { getBearer } from '@/shared/utils'
+import { IJwtTokenService } from '@shared/lib/jwt-token-service'
+import { getBearer } from '@shared/utils'
 import { Endpoints } from '../endpoints'
 import { LoginBody, RegisterBody, Tokens, User } from './models'
+
 
 export class AuthEndpoints extends Endpoints {
   basePath: string = 'auth'

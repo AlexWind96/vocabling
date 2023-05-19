@@ -5,6 +5,7 @@ import { useNavbarLinkStyles } from '../../../navbar-link.styles'
 import { INavbarLink } from '../../../types'
 import useStyles from './styles'
 
+
 type NavbarExpandProps = {
   navbarLinks: INavbarLink[]
   footerActions: React.ReactNode

@@ -1,7 +1,8 @@
 import * as React from 'react'
 import { Group, Stack, Text, Title } from '@mantine/core'
-import { ColorSchemeSwitch } from '@/entities/ui-config'
-import { LogoutButton } from '@/features/auth/logout'
+import { ColorSchemeSwitch } from '@entities/ui-config'
+import { LogoutButton } from '@features/auth/logout'
+
 
 type AccountPageProps = {}
 

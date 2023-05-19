@@ -1,6 +1,7 @@
 import { Module } from '../module'
 import { PaginationArgs, SortType } from '../types'
 
+
 export type Card = {
   id: string
   createdAt: Date

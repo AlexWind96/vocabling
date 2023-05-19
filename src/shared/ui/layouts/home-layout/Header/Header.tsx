@@ -4,6 +4,7 @@ import { Anchor, Container, Group, Header as MantineHeader, Space, Title } from 
 import { INavbarLink } from '../../types'
 import useStyles from './Header.styles'
 
+
 type HeaderProps = {
   colorSchemeToggle: React.FC
   links: Omit<INavbarLink, 'roles'>[]

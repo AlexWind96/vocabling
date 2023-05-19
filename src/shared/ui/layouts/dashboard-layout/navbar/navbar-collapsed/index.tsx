@@ -4,6 +4,7 @@ import { Anchor, Center, Navbar, Stack, Tooltip } from '@mantine/core'
 import { useNavbarLinkStyles } from '../../../navbar-link.styles'
 import { INavbarLink } from '../../../types'
 
+
 type NavbarExpandProps = {
   navbarLinks: INavbarLink[]
   footerActions: React.ReactNode

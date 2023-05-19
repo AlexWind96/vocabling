@@ -4,6 +4,7 @@ import { PropsWithChildren } from 'react'
 import { ErrorBoundary } from 'react-error-boundary'
 import { Alert, Anchor } from '@mantine/core'
 
+
 type QueryErrorBoundaryProps = PropsWithChildren
 
 export const QueryErrorBoundary = (props: QueryErrorBoundaryProps) => {

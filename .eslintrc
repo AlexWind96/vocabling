@@ -34,7 +34,11 @@
         "importOrder": [
           "^@mantine/(.*)$",
           "^@/store/(.*)$",
-          "^@/(.*)$",
+          "^@shared/(.*)$",
+          "^@entities/(.*)$",
+          "^@features/(.*)$",
+          "^@widgets(.*)$",
+          "^@pages(.*)$",
           "^[./]"
         ],
         "importOrderSeparation": false,

@@ -1,8 +1,9 @@
 import React from 'react'
 import { Navigate } from 'react-router-dom'
-import { PATH } from '@/shared/config'
-import { AuthLayout, LoadingData } from '@/shared/ui'
-import { lazyImport } from '@/shared/utils'
+import { PATH } from '@shared/config'
+import { AuthLayout, LoadingData } from '@shared/ui'
+import { lazyImport } from '@shared/utils'
+
 
 //pages
 const { LoginPage } = lazyImport(() => import('./login'), 'LoginPage')

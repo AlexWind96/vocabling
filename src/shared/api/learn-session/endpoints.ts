@@ -3,6 +3,7 @@ import { Endpoints } from '../endpoints'
 import { Page } from '../types'
 import { LearnSession } from './model'
 
+
 export class LearnSessionEndpoints extends Endpoints {
   basePath: string = 'learn-sessions'
 

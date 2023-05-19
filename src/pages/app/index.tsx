@@ -1,11 +1,12 @@
 import React from 'react'
 import { Navigate } from 'react-router-dom'
-import { mapNavbarLinksByRole } from '@/entities/navigation'
-import { LogoutUnstyledButton } from '@/features/auth/logout'
-import { ROLE } from '@/shared/api'
-import { PATH } from '@/shared/config'
-import { DashboardLayout, LoadingData } from '@/shared/ui'
-import { lazyImport } from '@/shared/utils'
+import { ROLE } from '@shared/api'
+import { PATH } from '@shared/config'
+import { DashboardLayout, LoadingData } from '@shared/ui'
+import { lazyImport } from '@shared/utils'
+import { mapNavbarLinksByRole } from '@entities/navigation'
+import { LogoutUnstyledButton } from '@features/auth/logout'
+
 
 const { ModulesPage } = lazyImport(() => import('./modules'), 'ModulesPage')
 const { ModulePage } = lazyImport(() => import('./modules/[id]'), 'ModulePage')

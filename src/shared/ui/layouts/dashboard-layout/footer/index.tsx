@@ -5,6 +5,7 @@ import { ActionIcon, Grid, Footer as MantineFooter } from '@mantine/core'
 import { useNavbarLinkStyles } from '../../navbar-link.styles'
 import { INavbarLink } from '../../types'
 
+
 type FooterProps = {
   navbarLinks: INavbarLink[]
 }

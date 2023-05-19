@@ -1,6 +1,7 @@
 import React from 'react'
 import { useMantineTheme } from '@mantine/core'
 
+
 export interface DotsProps extends React.ComponentPropsWithoutRef<'svg'> {
   size?: number
   radius?: number

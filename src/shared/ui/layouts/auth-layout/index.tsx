@@ -3,6 +3,7 @@ import { Link, Outlet } from 'react-router-dom'
 import { Anchor, Container, Title } from '@mantine/core'
 import useStyles from './styles'
 
+
 type AuthLayoutProps = {
   fallback: React.ReactNode
 }

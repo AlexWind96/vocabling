@@ -3,6 +3,7 @@ import LanguageDetector from 'i18next-browser-languagedetector'
 import { initReactI18next } from 'react-i18next'
 import { DE, EN, RU } from './locales'
 
+
 const DEFAULT_LANGUAGE_CODE = import.meta.env.VITE_DEFAULT_LANGUAGE_CODE
 
 // the translations

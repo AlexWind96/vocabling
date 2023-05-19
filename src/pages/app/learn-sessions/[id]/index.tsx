@@ -2,16 +2,16 @@ import { IconCertificate } from '@tabler/icons-react'
 import * as React from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { Button, Stack, Title, useMantineTheme } from '@mantine/core'
-import { useLearnSession } from '@/entities/learn-session'
-import { PATH } from '@/shared/config'
-import { LoadingData } from '@/shared/ui'
+import { PATH } from '@shared/config'
+import { LoadingData } from '@shared/ui'
+import { useLearnSessionQuery } from '@entities/learn-session'
 
 type LearnSessionProps = {}
 
 export const LearnSession = ({}: LearnSessionProps) => {
   const { colors } = useMantineTheme()
   const { id } = useParams()
-  const { data, isLoading } = useLearnSession({ variables: { id: id as string } })
+  const { data, isLoading } = useLearnSessionQuery({ variables: { id: id as string } })
 
   if (isLoading || !data) return <LoadingData />
 

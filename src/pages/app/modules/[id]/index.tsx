@@ -3,10 +3,10 @@ import React, { useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { ActionIcon, Button, Grid, MediaQuery, Stack, TextInput } from '@mantine/core'
 import { useDebouncedValue } from '@mantine/hooks'
-import { ModuleTitle } from '@/features/module/module-title'
-import { QueryWrapper } from '@/shared/lib/react-query'
-import { BackAnchor, CardSkeletons, ScrollToTop } from '@/shared/ui'
-import { CardsStack } from '@/widgets/cards-stack'
+import { QueryWrapper } from '@shared/lib/react-query'
+import { BackAnchor, CardSkeletons, ScrollToTop } from '@shared/ui'
+import { ModuleTitle } from '@features/module/module-title'
+import { CardsStack } from '@widgets/cards-stack'
 
 export const ModulePage = () => {
   const { id } = useParams()

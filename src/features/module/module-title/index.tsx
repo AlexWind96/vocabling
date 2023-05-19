@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { Skeleton, Title, TitleProps } from '@mantine/core'
-import { useModuleTitle } from '@/entities/module'
+import { useModuleTitle } from '@entities/module'
 
 type ModuleTitleProps = {
   moduleId: string
