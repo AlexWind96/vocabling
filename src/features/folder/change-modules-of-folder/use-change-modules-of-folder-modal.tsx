@@ -15,10 +15,11 @@ export const useChangeModulesOfFolderModal = ({ id }: { id: string }) => {
   const openChangeModulesOfFolderModal = useCallback(() => {
     openModal({
       modalId: CHANGE_MODULES_OF_FOLDER_MODULE,
-      title: 'Create module',
+      title: 'Add modules',
       children: (
         <QueryWrapper>
           <ModulesStack
+            folderId={'without_folder'}
             moduleCardActions={(module) => {
               return (
                 <div className={'flex h-100'}>

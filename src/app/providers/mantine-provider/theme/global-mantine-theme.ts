@@ -1,13 +1,12 @@
 import { MantineThemeOverride } from '@mantine/core'
 import { overrideColors } from './colors'
 
-
 type GenerateGlobalMantineTheme = (themeOverride?: MantineThemeOverride) => MantineThemeOverride
 
 export const generateGlobalMantineTheme: GenerateGlobalMantineTheme = (themeOverride) => {
   return {
     colors: overrideColors.colors,
-    primaryShade: { light: 6, dark: 7 },
+    primaryShade: { light: 6, dark: 6 },
     primaryColor: themeOverride?.primaryColor || 'pink',
     datesLocale: 'en',
     components: {
@@ -26,6 +25,11 @@ export const generateGlobalMantineTheme: GenerateGlobalMantineTheme = (themeOver
       Header: {
         defaultProps: (theme) => ({
           bg: theme.colorScheme === 'dark' ? theme.colors.dark[8] : undefined,
+        }),
+      },
+      ActionIcon: {
+        defaultProps: (theme) => ({
+          color: theme.colorScheme === 'dark' ? theme.colors.white : theme.colors.pink,
         }),
       },
     },
