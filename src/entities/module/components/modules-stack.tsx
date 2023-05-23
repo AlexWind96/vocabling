@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { ScrollArea, Stack } from '@mantine/core'
+import { Stack } from '@mantine/core'
 import { Module } from '@shared/api'
 import { NoData } from '@shared/ui'
 import { ModuleCard, useModulesQuery } from '@entities/module'
@@ -21,12 +21,10 @@ export const ModulesStack = ({ folderId, moduleCardActions }: UpdateFolderProps)
     return <NoData message={'No modules'} />
   }
   return (
-    <ScrollArea style={{ height: 400 }}>
-      <Stack spacing={'xs'} px={20} pb={10}>
-        {data.map((module) => {
-          return <ModuleCard key={module.id} data={module} actions={moduleCardActions(module)} />
-        })}
-      </Stack>
-    </ScrollArea>
+    <Stack spacing={'xs'} px={20} pb={10}>
+      {data.map((module) => {
+        return <ModuleCard key={module.id} data={module} actions={moduleCardActions(module)} />
+      })}
+    </Stack>
   )
 }

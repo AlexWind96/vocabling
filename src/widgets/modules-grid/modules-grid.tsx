@@ -1,8 +1,12 @@
+import { IconPlus } from '@tabler/icons-react'
 import * as React from 'react'
-import { Grid } from '@mantine/core'
-import { NoData } from '@shared/ui'
+import { Link } from 'react-router-dom'
+import { Grid, Menu } from '@mantine/core'
+import { NoData, SettingsMenu } from '@shared/ui'
 import { ModuleCard, useModulesQuery } from '@entities/module'
-import { ModuleSettings } from '@widgets/module-settings'
+import { DeleteModuleMenuItem } from '@features/module/delete-module'
+import { RemoveFromFolderMenuItem } from '@features/module/remove-from-folder'
+import { RenameModuleMenuItem } from '@features/module/rename-module'
 
 type ModulesGridProps = {
   folderId: string
@@ -31,7 +35,20 @@ export const ModulesGrid = ({ folderId, withoutNoDataView }: ModulesGridProps) =
             <ModuleCard
               key={module.id}
               data={module}
-              actions={<ModuleSettings folderId={module.folderId} id={module.id} />}
+              actions={
+                <SettingsMenu>
+                  <Menu.Item
+                    icon={<IconPlus size={14} />}
+                    component={Link}
+                    to={`${module.id}/add-cards`}
+                  >
+                    Add cards
+                  </Menu.Item>
+                  <RenameModuleMenuItem id={module.id} />
+                  {module.folderId && <RemoveFromFolderMenuItem id={module.id} />}
+                  <DeleteModuleMenuItem id={module.id} />
+                </SettingsMenu>
+              }
             />
           </Grid.Col>
         )

@@ -2,17 +2,15 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import * as React from 'react'
 import { useEffect } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
+import { useNavigate } from 'react-router-dom'
 import { z } from 'zod'
 import { Button, Stack } from '@mantine/core'
-import { CurrentLearnSession, UpdateCurrentLearnSessionDto } from '@shared/api'
 import { MultiSelectController } from '@shared/ui'
+import { useCurrentLearnSessionQuery } from '@entities/current-learn-session'
 import { useModulesQuery } from '@entities/module'
+import { useStartLearnSessionMutation } from './start-learn-session-mutation'
 
-type StartLearnSessionFormProps = {
-  onSubmit: (values: UpdateCurrentLearnSessionDto) => Promise<void>
-  learnSession?: CurrentLearnSession
-  isSessionLoading: boolean
-}
+type StartLearnSessionFormProps = {}
 
 const startLearnSessionFormSchema = z.object({
   modules: z.array(z.string()),
@@ -21,13 +19,15 @@ const startLearnSessionFormSchema = z.object({
 type StartLearnSessionFormValues = z.infer<typeof startLearnSessionFormSchema>
 
 export const StartLearnSessionForm = (props: StartLearnSessionFormProps) => {
+  const navigate = useNavigate()
   const { data: modules, isFetched } = useModulesQuery()
-
+  const { data: learnSession, isLoading: isSessionLoading } = useCurrentLearnSessionQuery()
+  const { mutateAsync } = useStartLearnSessionMutation()
   const methods = useForm<StartLearnSessionFormValues>({
     resolver: zodResolver(startLearnSessionFormSchema),
     mode: 'onChange',
     defaultValues: {
-      modules: props.learnSession?.modules || [],
+      modules: learnSession?.modules || [],
     },
   })
 
@@ -40,7 +40,8 @@ export const StartLearnSessionForm = (props: StartLearnSessionFormProps) => {
   } = methods
 
   const onSubmit: SubmitHandler<StartLearnSessionFormValues> = async (data) => {
-    await props.onSubmit(data)
+    const currentLearnSession = await mutateAsync(data)
+    navigate(currentLearnSession.id)
     reset()
   }
 
@@ -55,15 +56,15 @@ export const StartLearnSessionForm = (props: StartLearnSessionFormProps) => {
     : []
 
   useEffect(() => {
-    if (props.learnSession) {
-      setValue('modules', props.learnSession.modules)
+    if (learnSession) {
+      setValue('modules', learnSession.modules)
     }
-  }, [props.learnSession])
+  }, [learnSession])
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <MultiSelectController
-        disabled={!isFetched || props.isSessionLoading}
+        disabled={!isFetched || isSessionLoading}
         control={control}
         name={'modules'}
         data={data}
@@ -73,7 +74,7 @@ export const StartLearnSessionForm = (props: StartLearnSessionFormProps) => {
         size="lg"
       />
       <Stack spacing="xs">
-        <Button fullWidth mt="xl" type={'submit'} loading={isSubmitting || props.isSessionLoading}>
+        <Button fullWidth mt="xl" type={'submit'} loading={isSubmitting || isSessionLoading}>
           Start
         </Button>
       </Stack>

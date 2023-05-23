@@ -1,7 +1,7 @@
 import React, { useCallback, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-import { PATH } from '@shared/config'
+import { PATH } from '@entities/navigation'
 import { logoutAction } from './saga'
 
 export const useLogout = () => {

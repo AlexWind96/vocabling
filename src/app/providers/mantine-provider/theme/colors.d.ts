@@ -25,6 +25,7 @@ export declare type ExtendedCustomColors =
   | 'zinc'
   | 'dark'
   | 'white'
+  | 'darkBlue'
   | (string & {})
 
 declare module '@mantine/core' {

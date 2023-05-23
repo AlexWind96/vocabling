@@ -1,9 +1,8 @@
 import { IconMoon, IconSun } from '@tabler/icons-react'
-import { ActionIcon } from '@mantine/core'
-import { useColorScheme } from '@shared/hooks'
+import { ActionIcon, useMantineColorScheme } from '@mantine/core'
 
 export const ColorSchemeActionIcon = () => {
-  const { toggleColorScheme, colorScheme } = useColorScheme()
+  const { toggleColorScheme, colorScheme } = useMantineColorScheme()
   return (
     <ActionIcon
       onClick={() => toggleColorScheme()}

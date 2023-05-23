@@ -4,8 +4,8 @@ import { Link, useParams } from 'react-router-dom'
 import { ActionIcon, Button, Grid, MediaQuery, Stack, TextInput } from '@mantine/core'
 import { useDebouncedValue } from '@mantine/hooks'
 import { QueryWrapper } from '@shared/lib/react-query'
-import { BackAnchor, CardSkeletons, ScrollToTop } from '@shared/ui'
-import { ModuleTitle } from '@features/module/module-title'
+import { BackAnchor, ScrollToTop, Skeletons } from '@shared/ui'
+import { ModuleTitle } from '@entities/module'
 import { CardsStack } from '@widgets/cards-stack'
 
 export const ModulePage = () => {
@@ -47,7 +47,7 @@ export const ModulePage = () => {
           <QueryWrapper
             loadingFallback={
               <Stack>
-                <CardSkeletons height={150} />
+                <Skeletons height={150} />
               </Stack>
             }
           >

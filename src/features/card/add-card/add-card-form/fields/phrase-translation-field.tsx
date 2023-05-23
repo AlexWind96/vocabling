@@ -39,7 +39,7 @@ export const PhraseTranslationField = () => {
       placeholder={'Translate the phrase'}
       error={errors.phraseTranslation?.message}
       rightSection={
-        <ActionIcon color={'dark.8'} size={'sm'} variant="light" onClick={onAddClick}>
+        <ActionIcon size={'sm'} onClick={onAddClick}>
           <IconCopy />
         </ActionIcon>
       }

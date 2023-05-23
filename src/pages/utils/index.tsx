@@ -1,7 +1,6 @@
 import React from 'react'
-import { PATH } from '@shared/config'
 import { lazyImport } from '@shared/utils'
-
+import { PATH } from '@entities/navigation'
 
 const { NotFoundPage } = lazyImport(() => import('./404'), 'NotFoundPage')
 const { ErrorPage } = lazyImport(() => import('./error'), 'ErrorPage')

@@ -6,7 +6,7 @@ type GenerateGlobalMantineTheme = (themeOverride?: MantineThemeOverride) => Mant
 export const generateGlobalMantineTheme: GenerateGlobalMantineTheme = (themeOverride) => {
   return {
     colors: overrideColors.colors,
-    primaryShade: { light: 6, dark: 6 },
+    primaryShade: { light: 6, dark: 7 },
     primaryColor: themeOverride?.primaryColor || 'pink',
     datesLocale: 'en',
     components: {
@@ -14,7 +14,7 @@ export const generateGlobalMantineTheme: GenerateGlobalMantineTheme = (themeOver
         defaultProps: (theme) => ({
           shadow: 'md',
           radius: 'lg',
-          bg: theme.colorScheme === 'dark' ? theme.colors.dark[8] : undefined,
+          bg: theme.colorScheme === 'dark' ? theme.colors.dark[7] : undefined,
         }),
       },
       Navbar: {
@@ -30,6 +30,21 @@ export const generateGlobalMantineTheme: GenerateGlobalMantineTheme = (themeOver
       ActionIcon: {
         defaultProps: (theme) => ({
           color: theme.colorScheme === 'dark' ? theme.colors.white : theme.colors.pink,
+        }),
+      },
+      Modal: {
+        styles: (theme) => ({
+          header: {
+            backgroundColor:
+              theme.colorScheme === 'dark' ? theme.colors.dark[8] : theme.colors.white,
+          },
+          body: {
+            backgroundColor:
+              theme.colorScheme === 'dark' ? theme.colors.dark[8] : theme.colors.white,
+          },
+          title: {
+            fontWeight: 500,
+          },
         }),
       },
     },

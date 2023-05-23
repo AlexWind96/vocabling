@@ -1,1 +1,1 @@
-export { useRenameModuleModal } from './use-rename-module-modal'
+export * from './ui'

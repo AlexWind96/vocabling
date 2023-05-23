@@ -1,12 +1,11 @@
 import { IconMoonStars, IconSun } from '@tabler/icons-react'
 import * as React from 'react'
-import { Switch, useMantineTheme } from '@mantine/core'
-import { useColorScheme } from '@shared/hooks'
+import { Switch, useMantineColorScheme, useMantineTheme } from '@mantine/core'
 
 type ColorSchemeSwitchProps = {}
 
 export const ColorSchemeSwitch = (props: ColorSchemeSwitchProps) => {
-  const { toggleColorScheme, colorScheme } = useColorScheme()
+  const { toggleColorScheme, colorScheme } = useMantineColorScheme()
   const theme = useMantineTheme()
   return (
     <Switch

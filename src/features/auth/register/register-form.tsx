@@ -7,7 +7,7 @@ import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { z } from 'zod'
 import { Alert, Button, PasswordInput, Stack, TextInput } from '@mantine/core'
-import { PATH } from '@shared/config'
+import { PATH } from '@entities/navigation'
 import { registerAction } from './saga'
 
 const registerSchema = z.object({

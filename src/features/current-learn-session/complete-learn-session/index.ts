@@ -1,1 +1,1 @@
-export { useCompleteLearnSessionMutation } from './use-complete-learn-session-mutation'
+export { useCompleteLearnSessionEffect } from './use-complete-learn-session-effect'

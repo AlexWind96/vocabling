@@ -1,27 +1,22 @@
-import { IconPlus } from '@tabler/icons-react'
 import React from 'react'
-import { Button, Divider, Grid, Group, Stack, Title } from '@mantine/core'
+import { Divider, Grid, Group, Stack, Title } from '@mantine/core'
 import { QueryWrapper } from '@shared/lib/react-query'
-import { CardSkeletons } from '@shared/ui'
-import { useCreateFolderModal } from '@features/folder/create-folder-modal'
-import { useCreateModuleModal } from '@features/module/create-module-modal'
+import { Skeletons } from '@shared/ui'
+import { useThemeMediaQuery } from '@shared/ui/layouts/use-theme-media-query'
+import { CreateFolderButton } from '@features/folder/create-folder'
+import { CreateModuleButton } from '@features/module/create-module'
 import { FoldersStack } from '@widgets/folder-stack'
 import { ModulesGrid } from '@widgets/modules-grid'
 
 export const ModulesPage = () => {
-  const { openCreateModuleModal } = useCreateModuleModal({})
-  const { openCreateFolderModal } = useCreateFolderModal()
+  const { isMD } = useThemeMediaQuery()
   return (
     <Stack>
       <Group position={'apart'}>
         <Title>Modules</Title>
         <Group>
-          <Button leftIcon={<IconPlus />} onClick={openCreateModuleModal}>
-            Create module
-          </Button>
-          <Button leftIcon={<IconPlus />} variant={'outline'} onClick={openCreateFolderModal}>
-            Create folder
-          </Button>
+          <CreateModuleButton />
+          <CreateFolderButton />
         </Group>
       </Group>
       <Divider my="sm" label="Folders" labelProps={{ fz: 14, c: 'slate.4', fw: 'bold' }} />
@@ -30,7 +25,7 @@ export const ModulesPage = () => {
           <QueryWrapper
             loadingFallback={
               <Stack>
-                <CardSkeletons count={2} height={120} />
+                <Skeletons count={2} height={120} />
               </Stack>
             }
           >
@@ -42,7 +37,7 @@ export const ModulesPage = () => {
       <QueryWrapper
         loadingFallback={
           <Group position="apart">
-            <CardSkeletons width={250} />
+            <Skeletons width={isMD ? 250 : '100%'} />
           </Group>
         }
       >

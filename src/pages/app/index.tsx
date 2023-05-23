@@ -1,12 +1,10 @@
 import React from 'react'
 import { Navigate } from 'react-router-dom'
 import { ROLE } from '@shared/api'
-import { PATH } from '@shared/config'
 import { DashboardLayout, LoadingData } from '@shared/ui'
 import { lazyImport } from '@shared/utils'
-import { mapNavbarLinksByRole } from '@entities/navigation'
+import { PATH, mapNavbarLinksByRole } from '@entities/navigation'
 import { LogoutUnstyledButton } from '@features/auth/logout'
-
 
 const { ModulesPage } = lazyImport(() => import('./modules'), 'ModulesPage')
 const { ModulePage } = lazyImport(() => import('./modules/[id]'), 'ModulePage')
@@ -36,7 +34,7 @@ export const getAppRoutes = (user: any) => {
       ) : (
         <Navigate to={`/${PATH.login}`} replace />
       ),
-      children: getPrivateRoutesByRole(user?.role).map((route, index) => {
+      children: getPrivateRoutesByRole(user?.role, routes).map((route, index) => {
         return {
           key: `${index}-${route.path}`,
           path: route.path,
@@ -45,7 +43,7 @@ export const getAppRoutes = (user: any) => {
       }),
     },
     //When user is not log in, and prevent show 404 page
-    ...getAllPrivateRoutes().map((route, index) => {
+    ...routes.map((route, index) => {
       return {
         key: `${index}-${route.path}`,
         path: route.path,
@@ -62,7 +60,7 @@ type PrivateRouteType = {
   roles: ROLE[]
 }
 
-const privateRoutes: PrivateRouteType[] = [
+const routes: PrivateRouteType[] = [
   {
     path: `${PATH.app}`,
     element: <Navigate to={`/${PATH.modules}`} replace />,
@@ -110,10 +108,6 @@ const privateRoutes: PrivateRouteType[] = [
   },
 ]
 
-export const getPrivateRoutesByRole = (role: ROLE) => {
-  return privateRoutes.filter((route) => route.roles.includes(role))
-}
-
-export const getAllPrivateRoutes = () => {
-  return privateRoutes
+export const getPrivateRoutesByRole = (role: ROLE, routes: PrivateRouteType[]) => {
+  return routes.filter((route) => route.roles.includes(role))
 }

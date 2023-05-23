@@ -3,9 +3,10 @@ import { useEffect } from 'react'
 import { Center, Stack } from '@mantine/core'
 import { useIntersection } from '@mantine/hooks'
 import { CardsQueryParams } from '@shared/api'
-import { LoadingData, NoData } from '@shared/ui'
+import { LoadingData, NoData, SettingsMenu } from '@shared/ui'
 import { BaseCard, useCardsQuery } from '@entities/card'
-import { CardSettings } from '@features/card/card-settings'
+import { DeleteCardMenuItem } from '@features/card/delete-card'
+import { EditCardMenuItem } from '@features/card/edit-card'
 
 type CardsStackProps = {
   params: CardsQueryParams
@@ -41,7 +42,12 @@ export const CardsStack = ({ params, showModules = false }: CardsStackProps) => 
                 showModule={showModules}
                 key={card.id}
                 data={card}
-                rightSection={<CardSettings id={card.id} params={params} />}
+                rightSection={
+                  <SettingsMenu>
+                    <EditCardMenuItem id={card.id} params={params} />
+                    <DeleteCardMenuItem id={card.id} params={params} />
+                  </SettingsMenu>
+                }
               />
             )
           })

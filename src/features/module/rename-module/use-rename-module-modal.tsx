@@ -3,12 +3,12 @@ import { closeModal, openModal } from '@mantine/modals'
 import { UpdateModuleDTO } from '@shared/api'
 import { LoadingData } from '@shared/ui'
 import { useModuleQuery } from '@entities/module'
-import { useUpdateModuleMutation } from '../use-update-module-mutation'
-import { RenameModuleForm } from './rename-module-form'
+import { RenameModuleForm } from './ui'
+import { useRenameModuleMutation } from './use-rename-module-mutation'
 
 export const useRenameModuleModal = ({ id }: { id: string }) => {
   const { data, isFetching } = useModuleQuery({ variables: { id } })
-  const { mutateAsync } = useUpdateModuleMutation()
+  const { mutateAsync } = useRenameModuleMutation()
 
   const handleSubmit = async (data: UpdateModuleDTO) => {
     await mutateAsync({ id: id, body: data })

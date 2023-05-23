@@ -33,7 +33,18 @@ type Colors = {
 
 export const overrideColors: MantineThemeColorsOverride = {
   colors: {
-    dark: Object.values(zinc),
+    dark: Object.values({
+      50: '#ffffff',
+      100: '#A09EDC',
+      200: '#7C7ED0',
+      300: '#5A61C4',
+      400: '#3F4CB1',
+      500: '#33428F',
+      600: '#27356E',
+      700: '#1B274C',
+      800: '#0F172A',
+      900: '#04070C',
+    }),
     slate: Object.values(slate),
     gray: Object.values(gray),
     zinc: Object.values(zinc),

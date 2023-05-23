@@ -8,7 +8,7 @@ import { useNavigate } from 'react-router-dom'
 import { z } from 'zod'
 import { Alert, Button, PasswordInput, TextInput } from '@mantine/core'
 import { ServerError } from '@shared/api'
-import { PATH } from '@shared/config'
+import { PATH } from '@entities/navigation'
 import { loginAction } from './saga'
 
 const loginSchema = z.object({

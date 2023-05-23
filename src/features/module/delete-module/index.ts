@@ -1,1 +1,1 @@
-export { useDeleteModuleModal } from './use-delete-module-modal'
+export * from './ui'

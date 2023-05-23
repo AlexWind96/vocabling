@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { Link } from 'react-router-dom'
 import { Button, Text, Title, createStyles, rem } from '@mantine/core'
-import { PATH } from '@shared/config'
+import { PATH } from '@entities/navigation'
 
 export const HomePage = () => {
   const { classes } = useStyles()

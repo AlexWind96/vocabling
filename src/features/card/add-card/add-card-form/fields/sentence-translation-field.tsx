@@ -31,7 +31,7 @@ export const SentenceTranslationField = () => {
           placeholder={'Translate sentence...'}
           rightSection={
             <Group spacing={'sm'}>
-              <ActionIcon color={'dark.8'} size={'sm'} variant="light" onClick={handleCopy}>
+              <ActionIcon size={'sm'} onClick={handleCopy}>
                 <IconCopy />
               </ActionIcon>
               <ActionIcon color={'rose.4'} size={'sm'} variant="light" onClick={handlers.close}>

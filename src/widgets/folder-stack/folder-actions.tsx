@@ -1,22 +1,19 @@
-import { IconFolderX, IconPlus, IconSchool, IconSquarePlus } from '@tabler/icons-react'
+import { IconPlus } from '@tabler/icons-react'
 import * as React from 'react'
-import { ActionIcon, Group } from '@mantine/core'
+import { ActionIcon, Group, Modal, ScrollArea } from '@mantine/core'
 import { useDisclosure } from '@mantine/hooks'
-import { useNavigateToNewLearnSession } from '@features/current-learn-session/navigate-to-new-learn-session'
-import { ChangeModulesOfFolderModal } from '@features/folder/change-modules-of-folder'
-import { useDeleteFolderModal } from '@features/folder/delete-folder'
-import { useCreateModuleModal } from '@features/module/create-module-modal'
+import { QueryWrapper } from '@shared/lib/react-query'
+import { ModulesStack } from '@entities/module'
+import { NavigateToNewLearnSessionActionIcon } from '@features/current-learn-session/navigate-to-new-learn-session'
+import { DeleteFolderActionIcon } from '@features/folder/delete-folder'
+import { CreateModuleActionIcon } from '@features/module/create-module'
+import { ToggleFolderAttachmentActionIcon } from '@features/module/toggle-module-to-folder'
 
 type FolderActionsProps = {
   id: string
 }
 
 export const FolderActions = ({ id }: FolderActionsProps) => {
-  const { openDeleteFolderModal } = useDeleteFolderModal({ id })
-  const { openCreateModuleModal } = useCreateModuleModal({ folderId: id })
-  const { navigateToNewLearnSession } = useNavigateToNewLearnSession({
-    params: { folderId: id, modules: [] },
-  })
   const [opened, handlers] = useDisclosure(false)
 
   return (
@@ -25,17 +22,33 @@ export const FolderActions = ({ id }: FolderActionsProps) => {
         <ActionIcon onClick={handlers.open}>
           <IconPlus />
         </ActionIcon>
-        <ActionIcon onClick={openDeleteFolderModal}>
-          <IconFolderX />
-        </ActionIcon>
-        <ActionIcon onClick={openCreateModuleModal}>
-          <IconSquarePlus />
-        </ActionIcon>
-        <ActionIcon onClick={navigateToNewLearnSession}>
-          <IconSchool />
-        </ActionIcon>
+        <DeleteFolderActionIcon id={id} />
+        <CreateModuleActionIcon folderId={id} />
+        <NavigateToNewLearnSessionActionIcon folderId={id} />
       </Group>
-      <ChangeModulesOfFolderModal opened={opened} onClose={handlers.close} folderId={id} />
+      <Modal
+        opened={opened}
+        onClose={handlers.close}
+        title={'Add modules'}
+        scrollAreaComponent={ScrollArea.Autosize}
+      >
+        <QueryWrapper>
+          <ModulesStack
+            folderId={'without_folder'}
+            moduleCardActions={(module) => {
+              return (
+                <div className={'flex h-100'}>
+                  <ToggleFolderAttachmentActionIcon
+                    folderId={id}
+                    moduleId={module.id}
+                    hasFolder={Boolean(module.folderId)}
+                  />
+                </div>
+              )
+            }}
+          />
+        </QueryWrapper>
+      </Modal>
     </>
   )
 }

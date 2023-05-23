@@ -1,7 +1,7 @@
 import { useCallback } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { UpdateCurrentLearnSessionDto } from '@shared/api'
-import { useUpdateLearnSessionMutation } from '../update-current-learn-session'
+import { useUpdateLearnSessionMutation } from './use-update-learn-session-mutation'
 
 export const useNavigateToNewLearnSession = ({
   params,

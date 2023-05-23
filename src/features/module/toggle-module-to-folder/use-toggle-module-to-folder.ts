@@ -1,7 +1,7 @@
-import { useUpdateModuleMutation } from '../use-update-module-mutation'
+import { useToggleModuleToFolderMutation } from './use-toggle-module-to-folder-mutation'
 
 export const useToggleModuleToFolder = () => {
-  const { mutate, isLoading } = useUpdateModuleMutation()
+  const { mutate, isLoading } = useToggleModuleToFolderMutation()
   const toggleModuleToFolder = ({
     moduleId,
     hasFolder,

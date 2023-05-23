@@ -1,10 +1,10 @@
 import { useCallback } from 'react'
-import { useUpdateModuleMutation } from '../use-update-module-mutation'
+import { useRemoveFromFolderMutation } from './use-remove-from-folder-mutation'
 
 export const useRemoveFromFolder = ({ id }: { id: string }) => {
-  const { mutateAsync } = useUpdateModuleMutation()
+  const { mutateAsync } = useRemoveFromFolderMutation()
   const removeFromFolder = useCallback(async () => {
-    await mutateAsync({ id, body: { folderId: null } })
+    await mutateAsync({ id })
   }, [])
 
   return { removeFromFolder }

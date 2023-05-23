@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { Anchor, Paper, Text, Title } from '@mantine/core'
-import { PATH } from '@shared/config'
+import { PATH } from '@entities/navigation'
 import { LoginForm } from '@features/auth/login'
 
 export const LoginPage = () => {

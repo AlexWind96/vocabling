@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { Anchor, Paper, Text, Title } from '@mantine/core'
-import { PATH } from '@shared/config'
+import { PATH } from '@entities/navigation'
 import { RegisterForm } from '@features/auth/register'
 
 export const RegisterPage = () => {

@@ -1,30 +1,23 @@
 import { IconHome } from '@tabler/icons-react'
 import * as React from 'react'
-import { useEffect } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
-import { ActionIcon, Grid, Progress, Skeleton, Text, useMantineTheme } from '@mantine/core'
-import { PATH } from '@shared/config'
-import { getPercent } from '@shared/utils'
-import { useCurrentLearnSessionQuery } from '@entities/current-learn-session'
+import { Link } from 'react-router-dom'
+import { ActionIcon, Grid, Skeleton, Text, useMantineTheme } from '@mantine/core'
+import {
+  CurrentLearnSessionProgress,
+  useCurrentLearnSessionQuery,
+} from '@entities/current-learn-session'
+import { PATH } from '@entities/navigation'
 import { useUserQuery } from '@entities/user'
-import { useCompleteLearnSessionMutation } from '@features/current-learn-session/complete-learn-session'
+import { useCompleteLearnSessionEffect } from '@features/current-learn-session/complete-learn-session'
 
 type LearnCardHeaderProps = {}
 
 export const LearnCardHeader = ({}: LearnCardHeaderProps) => {
   const { data: session, isLoading } = useCurrentLearnSessionQuery()
-  const { mutateAsync } = useCompleteLearnSessionMutation()
   const { data: user } = useUserQuery()
-  const navigate = useNavigate()
   const { primaryColor } = useMantineTheme()
 
-  useEffect(() => {
-    if (session && session.countOfCompleted === user!.learnGoal) {
-      mutateAsync().then(() => {
-        navigate(`/${PATH.learn_sessions}/${session.id}`)
-      })
-    }
-  }, [session])
+  useCompleteLearnSessionEffect({ session, learnGoal: user!.learnGoal })
 
   if (isLoading || !session)
     return (
@@ -51,7 +44,7 @@ export const LearnCardHeader = ({}: LearnCardHeaderProps) => {
         </ActionIcon>
       </Grid.Col>
       <Grid.Col span={7} sm={8}>
-        <Progress value={getPercent(session.countOfCompleted, user!.learnGoal)} />
+        <CurrentLearnSessionProgress learnGoal={user!.learnGoal} />
       </Grid.Col>
       <Grid.Col span={3} sm={2}>
         <Text>

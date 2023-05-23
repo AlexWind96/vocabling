@@ -1,6 +1,6 @@
 import React from 'react'
 import { BrowserRouter as Router } from 'react-router-dom'
-import '@shared/lib/i18n'
+import '@entities/i18n'
 import { AppRoutes } from '@pages/index'
 import {
   ApiInterceptorsProvider,

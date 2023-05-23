@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import { ActionIcon, Grid, Stack, TextInput, Title } from '@mantine/core'
 import { useDebouncedValue } from '@mantine/hooks'
 import { QueryWrapper } from '@shared/lib/react-query'
-import { CardSkeletons, ScrollToTop } from '@shared/ui'
+import { ScrollToTop, Skeletons } from '@shared/ui'
 import { CardsStack } from '@widgets/cards-stack'
 
 export const AllCardsPage = () => {
@@ -34,7 +34,7 @@ export const AllCardsPage = () => {
           <QueryWrapper
             loadingFallback={
               <Stack>
-                <CardSkeletons height={150} />
+                <Skeletons height={150} />
               </Stack>
             }
           >

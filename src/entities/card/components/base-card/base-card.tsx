@@ -37,7 +37,7 @@ export const BaseCard = ({
   const isAdditionalInfo = hasAdditionalInfo(data.notes, data.sentenceTranslation)
 
   return (
-    <Paper p={'xs'} shadow="md" withBorder radius="md">
+    <Paper p={'xs'} shadow="lg" radius="md">
       <Stack>
         <Box p={'xs'}>
           <Stack spacing={'sm'}>
@@ -48,11 +48,7 @@ export const BaseCard = ({
                 ) : (
                   <Progress progress={1} />
                 )}
-                {data.module && showModule && (
-                  <Badge color={'slate.4'} size={'xs'}>
-                    {data.module.label}
-                  </Badge>
-                )}
+                {data.module && showModule && <Badge size={'xs'}>{data.module.label}</Badge>}
               </div>
               {rightSection}
             </Group>
