@@ -36,7 +36,7 @@ const useStyles = createStyles((theme) => ({
     lineHeight: 1.5,
   },
   accent: {
-    color: theme.fn.primaryColor(),
+    color: theme.colors[theme.primaryColor][5],
   },
   hidden: {
     position: 'relative',
