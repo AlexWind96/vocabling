@@ -1,7 +1,6 @@
 import { Module } from '../module'
 import { PaginationArgs, SortType } from '../types'
 
-
 export type Card = {
   id: string
   createdAt: Date
@@ -32,6 +31,7 @@ export type CardLearnProgress = {
   countOfAnswers: number
   countOfRightAnswers: number
   step: number
+  views: number
   accuracy: number
   status: LEARN_STATUS
   lastRepetitionDate: Date | null
@@ -71,6 +71,7 @@ export type UpdateCardDTO = {
 export enum CardOrderByFields {
   Progress = 'progress',
   CreatedAt = 'createdAt',
+  Views = 'views',
 }
 
 export type CardsQueryParams = {
@@ -78,5 +79,5 @@ export type CardsQueryParams = {
   orderBy?: CardOrderByFields
   sort?: SortType
   keywords?: string
-  step?: number
+  step?: 1 | 2 | 3 | 4 | 5 | number
 } & PaginationArgs

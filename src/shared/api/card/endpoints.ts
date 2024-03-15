@@ -3,7 +3,6 @@ import { Endpoints } from '../endpoints'
 import { Page } from '../types'
 import { Card, CardsQueryParams, CreateCardDTO, UpdateCardDTO } from './model'
 
-
 export class CardEndpoints extends Endpoints {
   basePath: string = 'cards'
 
@@ -35,5 +34,8 @@ export class CardEndpoints extends Endpoints {
 
   registerWrongAnswer = (id: string): AxiosPromise<Card> => {
     return this.instance.patch(this.basePath + `/${id}/wrong`)
+  }
+  registerView = (id: string): AxiosPromise<Card> => {
+    return this.instance.patch(this.basePath + `/${id}/viewed`)
   }
 }
