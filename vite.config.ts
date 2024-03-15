@@ -43,6 +43,7 @@ export default defineConfig({
   ],
   resolve: {
     alias: {
+      '@': '/src',
       '@entities': '/src/entities',
       '@features': '/src/features',
       '@pages': '/src/pages',

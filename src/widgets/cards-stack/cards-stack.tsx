@@ -22,12 +22,11 @@ export const CardsStack = ({ params, showModules = false }: CardsStackProps) => 
   const { ref, entry } = useIntersection({
     threshold: 1,
   })
-
   useEffect(() => {
     if (entry?.isIntersecting && hasNextPage) {
       fetchNextPage()
     }
-  }, [entry?.isIntersecting])
+  }, [entry?.isIntersecting, hasNextPage])
 
   return (
     <Stack pos={'relative'}>
