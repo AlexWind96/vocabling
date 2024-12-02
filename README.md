@@ -1,4 +1,4 @@
-# Lango APP
+# Lango APP.
 ## 👉 Demo: [https://vocabling-a8d51.firebaseapp.com](https://vocabling-a8d51.firebaseapp.com)
 Логин: testuser@gmail.com
 Пароль: 12345678

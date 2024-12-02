@@ -4,7 +4,7 @@ import { Page } from '../types'
 import { Card, CardsQueryParams, CreateCardDTO, UpdateCardDTO } from './model'
 
 export class CardEndpoints extends Endpoints {
-  basePath: string = 'cards'
+  basePath = 'cards'
 
   getCards = (params: CardsQueryParams | undefined): AxiosPromise<Page<Card>> => {
     return this.instance.get(this.basePath, { params })
