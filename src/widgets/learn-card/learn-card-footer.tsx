@@ -3,7 +3,7 @@ import { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { Button, Group, Skeleton } from '@mantine/core'
 import { useTypedSelector } from '@shared/hooks'
-import { useLearnCardQuery } from '@entities/card'
+import { useLearnCardQuery, useNextLearnCardQuery } from '@entities/card'
 import {
   currentLearnSessionSlice,
   selectCurrentLearnSessionSlice,
@@ -17,19 +17,39 @@ const {
 
 export const LearnCardFooter = ({}: LearnCardFooterProps) => {
   const { data, isFetching } = useLearnCardQuery()
-  const { isShownResult } = useTypedSelector(selectCurrentLearnSessionSlice)
-  const { isProcessingAnswer, registerAnswer } = useRegisterAnswer()
+  const { isShownResult, isProcessingAnswer } = useTypedSelector(selectCurrentLearnSessionSlice)
+  const { registerAnswer } = useRegisterAnswer()
   const dispatch = useDispatch()
 
   const handleShowResult = () => {
     dispatch(showResult())
   }
 
+  const handleKeyDown = (event: KeyboardEvent) => {
+    if (!data) return
+    switch (event.code) {
+      case 'ArrowDown':
+        event.preventDefault()
+        handleShowResult()
+        break
+      case 'ArrowLeft':
+        event.preventDefault()
+        registerAnswer(data.id, false)
+        break
+      case 'ArrowRight':
+        event.preventDefault()
+        registerAnswer(data.id, true)
+        break
+    }
+  }
+
   useEffect(() => {
+    window.addEventListener('keydown', handleKeyDown)
     return () => {
+      window.removeEventListener('keydown', handleKeyDown)
       dispatch(cleanState())
     }
-  }, [])
+  }, [data])
 
   if (isFetching)
     return (

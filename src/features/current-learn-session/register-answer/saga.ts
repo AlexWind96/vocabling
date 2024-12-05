@@ -28,10 +28,8 @@ function* worker(action: PromiseAction<string, { id: string; isRight: boolean },
       yield put(makeAnswer(false))
       yield call(API.card.registerWrongAnswer, action.payload.id)
     }
-    yield put(cleanState())
     resolvePromiseAction(action, null)
   } catch (err) {
-    yield put(cleanState())
     const error = err as AxiosError
     rejectPromiseAction(action, error.message)
   }

@@ -1,6 +1,6 @@
 import { IconPlus } from '@tabler/icons-react'
 import * as React from 'react'
-import { ActionIcon, Group, Modal, ScrollArea } from '@mantine/core'
+import { ActionIcon, Group, Modal, ScrollArea, Tooltip } from '@mantine/core'
 import { useDisclosure } from '@mantine/hooks'
 import { QueryWrapper } from '@shared/lib/react-query'
 import { ModulesStack } from '@entities/module'
@@ -19,9 +19,11 @@ export const FolderActions = ({ id }: FolderActionsProps) => {
   return (
     <>
       <Group>
-        <ActionIcon onClick={handlers.open}>
-          <IconPlus />
-        </ActionIcon>
+        <Tooltip label={'Add modules'}>
+          <ActionIcon onClick={handlers.open}>
+            <IconPlus />
+          </ActionIcon>
+        </Tooltip>
         <DeleteFolderActionIcon id={id} />
         <CreateModuleActionIcon folderId={id} />
         <NavigateToNewLearnSessionActionIcon folderId={id} />

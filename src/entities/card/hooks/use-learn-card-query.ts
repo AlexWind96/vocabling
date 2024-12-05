@@ -8,3 +8,10 @@ export const useLearnCardQuery = createQuery<Card | null, void, AxiosError>({
     return API.card.getLearnCard().then((res) => res.data)
   },
 })
+
+export const useNextLearnCardQuery = createQuery<Card | null, void, AxiosError>({
+  primaryKey: API.card.basePath + 'next-learn-card',
+  queryFn: () => {
+    return API.card.getNextLearnCard().then((res) => res.data)
+  },
+})

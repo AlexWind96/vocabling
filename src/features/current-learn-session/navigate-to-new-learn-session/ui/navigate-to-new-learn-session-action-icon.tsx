@@ -1,7 +1,7 @@
 import { IconSchool } from '@tabler/icons-react'
 import * as React from 'react'
 import { FC } from 'react'
-import { ActionIcon, ActionIconProps } from '@mantine/core'
+import { ActionIcon, ActionIconProps, Tooltip } from '@mantine/core'
 import { useNavigateToNewLearnSession } from '../use-navigate-to-new-learn-session'
 
 interface INavigateToNewLearnSessionActionIcon extends Omit<ActionIconProps, 'onClick'> {
@@ -18,8 +18,10 @@ export const NavigateToNewLearnSessionActionIcon: FC<INavigateToNewLearnSessionA
     params: { folderId, modules },
   })
   return (
-    <ActionIcon onClick={navigateToNewLearnSession} {...rest}>
-      <IconSchool />
-    </ActionIcon>
+    <Tooltip label={'Learn folder modules'}>
+      <ActionIcon onClick={navigateToNewLearnSession} {...rest}>
+        <IconSchool />
+      </ActionIcon>
+    </Tooltip>
   )
 }

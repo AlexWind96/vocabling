@@ -28,6 +28,10 @@ export class CardEndpoints extends Endpoints {
     return this.instance.get(this.basePath + `/learn-card`)
   }
 
+  getNextLearnCard = (): AxiosPromise<Card | null> => {
+    return this.instance.get(this.basePath + `/next-learn-card`)
+  }
+
   registerRightAnswer = (id: string): AxiosPromise<Card> => {
     return this.instance.patch(this.basePath + `/${id}/right`)
   }
