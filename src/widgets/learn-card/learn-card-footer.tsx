@@ -3,7 +3,7 @@ import { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { Button, Group, Skeleton } from '@mantine/core'
 import { useTypedSelector } from '@shared/hooks'
-import { useLearnCardQuery, useNextLearnCardQuery } from '@entities/card'
+import { useLearnCardQuery } from '@entities/card'
 import {
   currentLearnSessionSlice,
   selectCurrentLearnSessionSlice,
@@ -26,7 +26,7 @@ export const LearnCardFooter = ({}: LearnCardFooterProps) => {
   }
 
   const handleKeyDown = (event: KeyboardEvent) => {
-    if (!data) return
+    if (!data || isProcessingAnswer) return
     switch (event.code) {
       case 'ArrowDown':
         event.preventDefault()
@@ -49,7 +49,7 @@ export const LearnCardFooter = ({}: LearnCardFooterProps) => {
       window.removeEventListener('keydown', handleKeyDown)
       dispatch(cleanState())
     }
-  }, [data])
+  }, [data, isProcessingAnswer])
 
   if (isFetching)
     return (
