@@ -1,11 +1,11 @@
 import { IconEye, IconEyeCheck, IconMinus, IconPlus } from '@tabler/icons-react'
+import moment from 'moment'
 import React, { useEffect } from 'react'
 import {
-  Accordion,
   ActionIcon,
   Badge,
   Box,
-  Button,
+  ChevronIcon,
   Collapse,
   Group,
   Paper,
@@ -15,7 +15,7 @@ import {
   createStyles,
 } from '@mantine/core'
 import { useDisclosure } from '@mantine/hooks'
-import { Card } from '@shared/api'
+import { Card, LEARN_STATUS } from '@shared/api'
 import { Progress } from './progress'
 import { Sentence } from './sentence'
 
@@ -73,9 +73,9 @@ export const BaseCard = ({
             <Group position={'apart'} align={'start'}>
               <div className={'flex gap-4'}>
                 {data.progress ? (
-                  <Progress progress={data.progress.step + diff} />
+                  <Progress status={data.progress.status} />
                 ) : (
-                  <Progress progress={1} />
+                  <Progress status={LEARN_STATUS.NEW} />
                 )}
                 {data.module && showModule && <Badge size={'xs'}>{data.module.label}</Badge>}
                 <Badge size={'xs'} color={'gray'} leftSection={<IconEye size={16} />}>
@@ -106,38 +106,35 @@ export const BaseCard = ({
             </Stack>
           </Stack>
         </Box>
-        {isAdditionalInfo ? (
-          <>
-            <UnstyledButton
-              p={16}
-              onClick={toggle}
-              sx={(theme) => ({
-                borderRadius: theme.radius.lg,
-                backgroundColor:
-                  theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.slate[0],
-              })}
-            >
-              <Text className={classes.phraseTranslation}>{data.phraseTranslation}</Text>
-            </UnstyledButton>
-            <Collapse in={opened} px={'1rem'}>
-              <Text c={'slate.7'} size={'md'}>
-                {data.sentenceTranslation}
-              </Text>
-              <div className={'text-sm'} dangerouslySetInnerHTML={{ __html: data.notes || '' }} />
-            </Collapse>
-          </>
-        ) : (
-          <Box
-            p={16}
-            sx={(theme) => ({
-              borderRadius: theme.radius.lg,
-              backgroundColor:
-                theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.slate[0],
-            })}
-          >
+        <UnstyledButton
+          p={16}
+          onClick={toggle}
+          sx={(theme) => ({
+            borderRadius: theme.radius.lg,
+            backgroundColor:
+              theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.slate[0],
+          })}
+        >
+          <Group position={'apart'}>
             <Text className={classes.phraseTranslation}>{data.phraseTranslation}</Text>
+            {data.notes ? <ChevronIcon /> : null}
+          </Group>
+        </UnstyledButton>
+        <Collapse in={opened} px={'1rem'}>
+          <Text c={'slate.7'} size={'md'}>
+            {data.sentenceTranslation}
+          </Text>
+          <div className={'text-sm'} dangerouslySetInnerHTML={{ __html: data.notes || '' }} />
+          <Box bg={'gray.1'} p={'md'} style={{ borderRadius: '4px' }}>
+            {data.progress?.nextRepetitionDate ? (
+              <Text fz={'sm'}>
+                Next repetition: {moment(data.progress.nextRepetitionDate).format('DD-MM HH:mm')}
+              </Text>
+            ) : null}
+            <Text fz={'sm'}>Step: {data.progress?.step}</Text>
+            <Text fz={'sm'}>Threshold: {data.progress?.threshold}</Text>
           </Box>
-        )}
+        </Collapse>
       </Stack>
     </Paper>
   )

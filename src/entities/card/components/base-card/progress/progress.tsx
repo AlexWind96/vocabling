@@ -1,13 +1,14 @@
 import * as React from 'react'
 import { Group } from '@mantine/core'
+import { LEARN_STATUS } from '@shared/api'
 
 type ProgressProps = {
-  progress: number
+  status: LEARN_STATUS
 }
 
-export const Progress = ({ progress }: ProgressProps) => {
-  switch (progress) {
-    case 1: {
+export const Progress = ({ status }: ProgressProps) => {
+  switch (status) {
+    case 'NEW': {
       return (
         <Group spacing={4}>
           <div className={'h-1 rounded w-4 bg-orange-500'} />
@@ -18,7 +19,7 @@ export const Progress = ({ progress }: ProgressProps) => {
         </Group>
       )
     }
-    case 2: {
+    case 'SHOWN': {
       return (
         <Group spacing={4}>
           <div className={'h-1 rounded w-4 bg-pink-500'} />
@@ -29,7 +30,7 @@ export const Progress = ({ progress }: ProgressProps) => {
         </Group>
       )
     }
-    case 3: {
+    case 'IN_PROGRESS': {
       return (
         <Group spacing={4}>
           <div className={'h-1 rounded w-4 bg-purple-500'} />
@@ -40,7 +41,7 @@ export const Progress = ({ progress }: ProgressProps) => {
         </Group>
       )
     }
-    case 4: {
+    case 'FAMILIAR': {
       return (
         <Group spacing={4}>
           <div className={'h-1 rounded w-4 bg-indigo-400'} />
@@ -51,7 +52,7 @@ export const Progress = ({ progress }: ProgressProps) => {
         </Group>
       )
     }
-    case 5: {
+    case 'KNOWN': {
       return (
         <Group spacing={4}>
           <div className={'h-1 rounded w-4 bg-emerald-500'} />
@@ -63,15 +64,7 @@ export const Progress = ({ progress }: ProgressProps) => {
       )
     }
     default: {
-      return (
-        <Group spacing={4}>
-          <div className={'h-1 rounded w-4 bg-slate-slate'} />
-          <div className={'h-1 rounded w-4 bg-slate-slate'} />
-          <div className={'h-1 rounded w-4 bg-slate-slate'} />
-          <div className={'h-1 rounded w-4 bg-slate-slate'} />
-          <div className={'h-1 rounded w-4 bg-slate-slate'} />
-        </Group>
-      )
+      return null
     }
   }
 }

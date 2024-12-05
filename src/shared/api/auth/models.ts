@@ -28,10 +28,19 @@ export type User = {
 
   role: ROLE
   learnGoal: number
-
+  growthRatio?: number
+  initialMemoryPersistence?: number
   learnSessions?: any[]
   currentSession?: any
   cards?: any[]
   modules?: any[]
   folders?: any[]
+}
+
+export type UpdateUserDto = {
+  name?: string
+  email?: string
+  learnGoal?: number
+  growthRatio?: number
+  initialMemoryPersistence?: number
 }

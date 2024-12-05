@@ -4,14 +4,17 @@ import { AxiosRequestConfig } from 'axios'
 import { IJwtTokenService } from '@shared/lib/jwt-token-service'
 import { getBearer } from '@shared/utils'
 import { Endpoints } from '../endpoints'
-import { LoginBody, RegisterBody, Tokens, User } from './models'
-
+import { LoginBody, RegisterBody, Tokens, UpdateUserDto, User } from './models'
 
 export class AuthEndpoints extends Endpoints {
-  basePath: string = 'auth'
+  basePath = 'auth'
 
   register = (body: RegisterBody): AxiosPromise<Tokens> => {
     return this.instance.post(this.basePath + '/signup', body)
+  }
+
+  updateUser = (body: UpdateUserDto): AxiosPromise<User> => {
+    return this.instance.patch('users/me', body)
   }
 
   login = (body: LoginBody): AxiosPromise<Tokens> => {

@@ -27,12 +27,9 @@ export enum LEARN_STATUS {
 export type CardLearnProgress = {
   id: string
   cardId: string
-  interval: number
-  countOfAnswers: number
-  countOfRightAnswers: number
   step: number
   views: number
-  accuracy: number
+  threshold: number
   status: LEARN_STATUS
   lastRepetitionDate: Date | null
   nextRepetitionDate: Date | null

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Accordion, Box, Paper, Stack, Text } from '@mantine/core'
+import { Accordion, Box, ChevronIcon, Paper, Stack, Text } from '@mantine/core'
 import { CreateCardDTO } from '@shared/api'
 import { Sentence } from './sentence'
 
