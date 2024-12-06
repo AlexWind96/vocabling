@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { Anchor, Group, Paper, Stack, Text, createStyles, rem } from '@mantine/core'
+import { Anchor, Badge, Group, Paper, Stack, Text, createStyles, rem } from '@mantine/core'
 import { Module } from '@shared/api'
 import { ColoredCount } from '@shared/ui'
 
@@ -21,15 +21,18 @@ export const ModuleCard = ({ data, actions }: ModuleCardProps) => {
           <Text color={'slate.5'} fz={14} fw={'bold'}>
             Cards: {data._count?.cards || 0}
           </Text>
-          {data.counts && (
-            <Group>
-              <ColoredCount color={theme.colors.orange} count={data.counts.new} />
-              <ColoredCount color={theme.colors.pink} count={data.counts.shown} />
-              <ColoredCount color={theme.colors.purple} count={data.counts.in_progress} />
-              <ColoredCount color={theme.colors.indigo} count={data.counts.in_familiar} />
-              <ColoredCount color={theme.colors.emerald} count={data.counts.known} />
-            </Group>
-          )}
+          <Group position={'apart'} w={'100%'}>
+            {data.counts && (
+              <Group>
+                <ColoredCount color={theme.colors.orange} count={data.counts.new} />
+                <ColoredCount color={theme.colors.pink} count={data.counts.shown} />
+                <ColoredCount color={theme.colors.purple} count={data.counts.in_progress} />
+                <ColoredCount color={theme.colors.indigo} count={data.counts.in_familiar} />
+                <ColoredCount color={theme.colors.emerald} count={data.counts.known} />
+              </Group>
+            )}
+            {data.expired ? <Badge>Expired: {data.expired}</Badge> : null}
+          </Group>
         </Stack>
         {actions}
       </Group>

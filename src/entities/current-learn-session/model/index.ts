@@ -9,6 +9,7 @@ interface CurrentLearnSessionState {
   isLoading: boolean
   session: CurrentLearnSession | null
   learnGoal: number | null
+  remainingCards: number | null
 }
 
 const initialState: CurrentLearnSessionState = {
@@ -19,6 +20,7 @@ const initialState: CurrentLearnSessionState = {
   isLoading: true,
   session: null,
   learnGoal: null,
+  remainingCards: null,
 }
 
 export const setupSession = createAsyncThunk(
@@ -30,6 +32,8 @@ export const setupSession = createAsyncThunk(
     dispatch(currentLearnSessionSlice.actions.setSession(session))
     dispatch(currentLearnSessionSlice.actions.setLearnGoal(user.learnGoal))
     const card = await API.card.getLearnCard().then((res) => res.data)
+    const remainingCards = await API.card.getRemainingCards().then((res) => res.data)
+    dispatch(currentLearnSessionSlice.actions.setRemainingCards(remainingCards))
     dispatch(currentLearnSessionSlice.actions.setLearnCard(card))
     const nextCard = await API.card.getNextLearnCard().then((res) => res.data)
     dispatch(currentLearnSessionSlice.actions.setNextCard(nextCard))
@@ -51,9 +55,11 @@ export const registerAnswer = createAsyncThunk<
   const { session, learnGoal, nextCard, currentCard } = state.currentLearnSession
   dispatch(currentLearnSessionSlice.actions.setIsDisabled(true))
   if (value) {
-    await API.card.registerRightAnswer(id)
+    const remain = await API.card.registerRightAnswer(id).then((res) => res.data)
+    dispatch(currentLearnSessionSlice.actions.setRemainingCards(remain))
   } else {
-    await API.card.registerWrongAnswer(id)
+    const remain = await API.card.registerWrongAnswer(id).then((res) => res.data)
+    dispatch(currentLearnSessionSlice.actions.setRemainingCards(remain))
   }
   if (session && learnGoal) {
     const newCount = session.countOfCompleted + 1
@@ -94,6 +100,9 @@ export const currentLearnSessionSlice = createSlice({
   reducers: {
     setIsHidden: (state, action: PayloadAction<boolean>) => {
       state.isHidden = action.payload
+    },
+    setRemainingCards: (state, action: PayloadAction<number | null>) => {
+      state.remainingCards = action.payload
     },
     setLearnGoal: (state, action: PayloadAction<number | null>) => {
       state.learnGoal = action.payload

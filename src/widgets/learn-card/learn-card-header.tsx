@@ -1,7 +1,7 @@
 import { IconHome } from '@tabler/icons-react'
 import * as React from 'react'
 import { Link } from 'react-router-dom'
-import { ActionIcon, Grid, Skeleton, Text, useMantineTheme } from '@mantine/core'
+import { ActionIcon, Badge, Box, Grid, Group, Skeleton, Text, useMantineTheme } from '@mantine/core'
 import { useTypedSelector } from '@shared/hooks'
 import {
   CurrentLearnSessionProgress,
@@ -11,7 +11,9 @@ import { PATH } from '@entities/navigation'
 
 export const LearnCardHeader = () => {
   const { primaryColor } = useMantineTheme()
-  const { isLoading, learnGoal, session } = useTypedSelector(selectCurrentLearnSessionSlice)
+  const { isLoading, learnGoal, session, remainingCards } = useTypedSelector(
+    selectCurrentLearnSessionSlice
+  )
 
   if (isLoading || !session || !learnGoal)
     return (
@@ -24,27 +26,18 @@ export const LearnCardHeader = () => {
         </Grid.Col>
       </Grid>
     )
-
   return (
-    <Grid align={'center'}>
-      <Grid.Col span={2}>
-        <ActionIcon
-          component={Link}
-          to={`/${PATH.learn_cards}`}
-          variant="light"
-          color={primaryColor}
-        >
-          <IconHome />
-        </ActionIcon>
-      </Grid.Col>
-      <Grid.Col span={7} sm={8}>
+    <Group>
+      <ActionIcon component={Link} to={`/${PATH.learn_cards}`} variant="light" color={primaryColor}>
+        <IconHome />
+      </ActionIcon>
+      <Box className={'flex-1'}>
         <CurrentLearnSessionProgress learnGoal={learnGoal} />
-      </Grid.Col>
-      <Grid.Col span={3} sm={2}>
-        <Text>
-          {session.countOfCompleted} / {learnGoal}
-        </Text>
-      </Grid.Col>
-    </Grid>
+      </Box>
+      <Text>
+        {session.countOfCompleted} / {learnGoal}
+      </Text>
+      <Badge color={'blue'}>Remains: {remainingCards}</Badge>
+    </Group>
   )
 }

@@ -18,6 +18,7 @@ export type Module = {
     in_familiar: number
     known: number
   }
+  expired?: number
   folder?: Folder
 }
 

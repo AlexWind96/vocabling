@@ -66,28 +66,11 @@ export const BaseCard = ({
                 ) : (
                   <Progress status={LEARN_STATUS.NEW} />
                 )}
-                <Badge size={'xs'} color={'gray'} leftSection={<IconEye size={16} />}>
-                  <Text lh={'16px'}>{data.progress?.views}</Text>
-                </Badge>
-                <MetaInfo data={data} />
+
                 {data.module && showModule && <Badge size={'xs'}>{data.module.label}</Badge>}
               </div>
-              <div className={'flex gap-4'}>
-                {onViewed && (
-                  <ActionIcon size={'xs'} color={'gray'} onClick={onViewed}>
-                    <IconEyeCheck />
-                  </ActionIcon>
-                )}
-                {onPlusClick && (
-                  <ActionIcon size={'xs'} color={'green'} onClick={onPlusClick}>
-                    <IconPlus />
-                  </ActionIcon>
-                )}
-                {onMinusClick && (
-                  <ActionIcon size={'xs'} color={'red'} onClick={onMinusClick}>
-                    <IconMinus />
-                  </ActionIcon>
-                )}
+              <div className={'flex gap-4 items-center'}>
+                <MetaInfo data={data} />
                 {rightSection}
               </div>
             </Group>
