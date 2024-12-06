@@ -1,32 +1,44 @@
 import * as React from 'react'
 import { useEffect } from 'react'
-import { useDispatch } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 import { Button, Group, Skeleton } from '@mantine/core'
-import { useTypedSelector } from '@shared/hooks'
-import { useLearnCardQuery } from '@entities/card'
+import { useAppDispatch, useTypedSelector } from '@shared/hooks'
 import {
   currentLearnSessionSlice,
+  registerAnswer,
   selectCurrentLearnSessionSlice,
 } from '@entities/current-learn-session'
-import { useRegisterAnswer } from '@features/current-learn-session/register-answer'
+import { PATH } from '@entities/navigation'
 
-type LearnCardFooterProps = {}
 const {
-  actions: { showResult, cleanState },
+  actions: { setIsHidden },
 } = currentLearnSessionSlice
 
-export const LearnCardFooter = ({}: LearnCardFooterProps) => {
-  const { data, isFetching } = useLearnCardQuery()
-  const { isShownResult, isProcessingAnswer } = useTypedSelector(selectCurrentLearnSessionSlice)
-  const { registerAnswer } = useRegisterAnswer()
-  const dispatch = useDispatch()
-
+export const LearnCardFooter = () => {
+  const { isLoading, currentCard, isHidden, isDisabled, session } = useTypedSelector(
+    selectCurrentLearnSessionSlice
+  )
+  const dispatch = useAppDispatch()
+  const navigate = useNavigate()
   const handleShowResult = () => {
-    dispatch(showResult())
+    dispatch(setIsHidden(false))
+  }
+
+  const handleRightAnswerAction = async (id: string) => {
+    const resp = await dispatch(registerAnswer({ id, value: true })).unwrap()
+    if (resp.isCompleted) {
+      navigate(`/${PATH.learn_sessions}/${session?.id}`)
+    }
+  }
+  const handleWrongAnswerAction = async (id: string) => {
+    const resp = await dispatch(registerAnswer({ id, value: false })).unwrap()
+    if (resp.isCompleted) {
+      navigate(`/${PATH.learn_sessions}/${session?.id}`)
+    }
   }
 
   const handleKeyDown = (event: KeyboardEvent) => {
-    if (!data || isProcessingAnswer) return
+    if (!currentCard || isDisabled) return
     switch (event.code) {
       case 'ArrowDown':
         event.preventDefault()
@@ -34,11 +46,11 @@ export const LearnCardFooter = ({}: LearnCardFooterProps) => {
         break
       case 'ArrowLeft':
         event.preventDefault()
-        registerAnswer(data.id, false)
+        handleWrongAnswerAction(currentCard.id)
         break
       case 'ArrowRight':
         event.preventDefault()
-        registerAnswer(data.id, true)
+        handleRightAnswerAction(currentCard.id)
         break
     }
   }
@@ -47,33 +59,34 @@ export const LearnCardFooter = ({}: LearnCardFooterProps) => {
     window.addEventListener('keydown', handleKeyDown)
     return () => {
       window.removeEventListener('keydown', handleKeyDown)
-      dispatch(cleanState())
     }
-  }, [data, isProcessingAnswer])
+  }, [currentCard, isDisabled])
 
-  if (isFetching)
+  if (isLoading)
     return (
       <Group position={'apart'}>
         <Skeleton height={40} width={70} radius="lg" />
         <Skeleton height={40} width={70} radius="lg" />
       </Group>
     )
-  if (!data) return null
+  if (!currentCard) return null
 
-  if (isShownResult) {
+  if (!isHidden) {
     return (
       <Group position={'apart'}>
         <Button
-          disabled={isProcessingAnswer}
+          disabled={isDisabled}
           color={'red'}
-          onClick={() => registerAnswer(data.id, false)}
+          onClick={() => {
+            handleWrongAnswerAction(currentCard.id)
+          }}
         >
           Wrong
         </Button>
         <Button
-          disabled={isProcessingAnswer}
+          disabled={isDisabled}
           color={'green'}
-          onClick={() => registerAnswer(data.id, true)}
+          onClick={() => handleRightAnswerAction(currentCard.id)}
         >
           Right
         </Button>

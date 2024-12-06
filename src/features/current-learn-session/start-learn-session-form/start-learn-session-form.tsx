@@ -2,11 +2,13 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import * as React from 'react'
 import { useEffect } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
+import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { z } from 'zod'
 import { Button, Stack } from '@mantine/core'
+import { useAppDispatch } from '@shared/hooks'
 import { MultiSelectController } from '@shared/ui'
-import { useCurrentLearnSessionQuery } from '@entities/current-learn-session'
+import { setupSession, useCurrentLearnSessionQuery } from '@entities/current-learn-session'
 import { useModulesQuery } from '@entities/module'
 import { useStartLearnSessionMutation } from './start-learn-session-mutation'
 
@@ -23,6 +25,7 @@ export const StartLearnSessionForm = (props: StartLearnSessionFormProps) => {
   const { data: modules, isFetched } = useModulesQuery()
   const { data: learnSession, isLoading: isSessionLoading } = useCurrentLearnSessionQuery()
   const { mutateAsync } = useStartLearnSessionMutation()
+  const dispatch = useAppDispatch()
   const methods = useForm<StartLearnSessionFormValues>({
     resolver: zodResolver(startLearnSessionFormSchema),
     mode: 'onChange',
@@ -41,6 +44,7 @@ export const StartLearnSessionForm = (props: StartLearnSessionFormProps) => {
 
   const onSubmit: SubmitHandler<StartLearnSessionFormValues> = async (data) => {
     const currentLearnSession = await mutateAsync(data)
+    await dispatch(setupSession()).unwrap()
     navigate(currentLearnSession.id)
     reset()
   }

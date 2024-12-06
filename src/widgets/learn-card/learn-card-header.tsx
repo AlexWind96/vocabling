@@ -2,24 +2,18 @@ import { IconHome } from '@tabler/icons-react'
 import * as React from 'react'
 import { Link } from 'react-router-dom'
 import { ActionIcon, Grid, Skeleton, Text, useMantineTheme } from '@mantine/core'
+import { useTypedSelector } from '@shared/hooks'
 import {
   CurrentLearnSessionProgress,
-  useCurrentLearnSessionQuery,
+  selectCurrentLearnSessionSlice,
 } from '@entities/current-learn-session'
 import { PATH } from '@entities/navigation'
-import { useUserQuery } from '@entities/user'
-import { useCompleteLearnSessionEffect } from '@features/current-learn-session/complete-learn-session'
 
-type LearnCardHeaderProps = {}
-
-export const LearnCardHeader = ({}: LearnCardHeaderProps) => {
-  const { data: session, isLoading } = useCurrentLearnSessionQuery()
-  const { data: user } = useUserQuery()
+export const LearnCardHeader = () => {
   const { primaryColor } = useMantineTheme()
+  const { isLoading, learnGoal, session } = useTypedSelector(selectCurrentLearnSessionSlice)
 
-  useCompleteLearnSessionEffect({ session, learnGoal: user!.learnGoal })
-
-  if (isLoading || !session)
+  if (isLoading || !session || !learnGoal)
     return (
       <Grid align={'center'}>
         <Grid.Col span={2}>
@@ -44,11 +38,11 @@ export const LearnCardHeader = ({}: LearnCardHeaderProps) => {
         </ActionIcon>
       </Grid.Col>
       <Grid.Col span={7} sm={8}>
-        <CurrentLearnSessionProgress learnGoal={user!.learnGoal} />
+        <CurrentLearnSessionProgress learnGoal={learnGoal} />
       </Grid.Col>
       <Grid.Col span={3} sm={2}>
         <Text>
-          {session.countOfCompleted} / {user!.learnGoal}
+          {session.countOfCompleted} / {learnGoal}
         </Text>
       </Grid.Col>
     </Grid>

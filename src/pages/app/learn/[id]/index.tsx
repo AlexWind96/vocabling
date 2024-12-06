@@ -1,10 +1,17 @@
 import * as React from 'react'
+import { Navigate } from 'react-router-dom'
 import { Grid } from '@mantine/core'
+import { useTypedSelector } from '@shared/hooks'
+import { selectCurrentLearnSessionSlice } from '@entities/current-learn-session'
+import { PATH } from '@entities/navigation'
 import { LearnCard } from '@widgets/learn-card'
 
-type CardsLearningSessionPageProps = {}
+export const CardsLearningSessionPage = () => {
+  const state = useTypedSelector(selectCurrentLearnSessionSlice)
+  if (!state.session) {
+    return <Navigate to={`/${PATH.learn_cards}`} replace />
+  }
 
-export const CardsLearningSessionPage = ({}: CardsLearningSessionPageProps) => {
   return (
     <Grid gutter={0}>
       <Grid.Col span={0} sm={2} md={3} />

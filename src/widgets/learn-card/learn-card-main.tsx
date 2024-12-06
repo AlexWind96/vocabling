@@ -1,25 +1,15 @@
 import * as React from 'react'
 import { Skeleton } from '@mantine/core'
 import { useTypedSelector } from '@shared/hooks'
-import { BaseCard, useLearnCardQuery, useNextLearnCardQuery } from '@entities/card'
+import { BaseCard } from '@entities/card'
 import { NoCardToLearn, selectCurrentLearnSessionSlice } from '@entities/current-learn-session'
 
-type LearnCardMainProps = {}
+export const LearnCardMain = () => {
+  const { isLoading, currentCard, isHidden } = useTypedSelector(selectCurrentLearnSessionSlice)
 
-export const LearnCardMain = ({}: LearnCardMainProps) => {
-  const { data, isFetching } = useLearnCardQuery()
-  const { isRightAnswer, isShownResult } = useTypedSelector(selectCurrentLearnSessionSlice)
+  if (isLoading) return <Skeleton height={150} radius="xl" />
 
-  if (isFetching) return <Skeleton height={150} radius="xl" />
+  if (!currentCard) return <NoCardToLearn />
 
-  if (!data) return <NoCardToLearn />
-
-  return (
-    <BaseCard
-      data={data}
-      rightSection={null}
-      isGraterProgress={isRightAnswer}
-      hideStudyPhrase={!isShownResult}
-    />
-  )
+  return <BaseCard data={currentCard} showModule rightSection={null} hideStudyPhrase={isHidden} />
 }
