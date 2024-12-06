@@ -60,7 +60,7 @@ export const BaseCard = ({
         <Box p={'xs'}>
           <Stack spacing={'sm'}>
             <Group position={'apart'} align={'start'}>
-              <div className={'flex gap-4'}>
+              <div className={'flex gap-4 items-center'}>
                 {data.progress ? (
                   <Progress status={data.progress.status} />
                 ) : (
